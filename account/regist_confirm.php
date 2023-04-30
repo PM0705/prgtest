@@ -7,7 +7,7 @@
     <title>お問い合わせフォームを作る</title>
     <meta name="description" content="sanple sanple sanple sanple sanple">
     <link rel="stylesheet" href="CSS/sanitize.css">
-    <link rel="stylesheet" href="CSS/style2.css">
+    <link rel="stylesheet" href="CSS/confirmstyle.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
@@ -18,10 +18,28 @@
         <p>お問い合わせの内容は、こちらで宜しいでしょうか？
             <br>よろしければ「送信する」ボタンを押してください。
         </p>
-        <p>名前
+        <p>名前（姓）
            <br>
            <?php
-           echo $_POST['name'];
+           echo $_POST['lastname'];
+           ?>
+        </p>
+        <p>名前（名）
+           <br>
+           <?php
+           echo $_POST['firstname'];
+           ?>
+        </p>
+        <p>カナ（姓）
+           <br>
+           <?php
+           echo $_POST['lastnamekana'];
+           ?>
+        </p>
+        <p>カナ（名）
+           <br>
+           <?php
+           echo $_POST['firstnamekana'];
            ?>
         </p>
         <p>メールアドレス
@@ -30,27 +48,71 @@
            echo $_POST['mail'];
            ?>
         </p>
-        <p>年齢
+        <p>パスワード
            <br>
            <?php
-           echo $_POST['age'];
+           echo $_POST['pw'];
            ?>
         </p>
-        <p>コメント
+        <p>性別
            <br>
            <?php
-           echo $_POST['comments'];
+           echo $_POST['gender'];
            ?>
         </p>
-        <form action="index.html">
+        <p>性別
+           <br>
+           <?php
+           echo $_POST['gender'];
+           ?>
+        </p>
+        <p>郵便番号
+           <br>
+           <?php
+           echo $_POST['gender'];
+           ?>
+        </p>
+        <p>住所（都道府県）
+           <br>
+           <?php
+           echo $_POST['todouhuken'];
+           ?>
+        </p>
+        <p>住所（市区町村）
+           <br>
+           <?php
+           echo $_POST['citytown'];
+           ?>
+        </p>
+        <p>住所（番地）
+           <br>
+           <?php
+           echo $_POST['housenum'];
+           ?>
+        </p>
+        <p>アカウント権限
+           <br>
+           <?php
+           echo $_POST['kengen'];
+           ?>
+        </p>
+        <form action="regist.php">
             <input type="submit" class="button1" value="戻って修正する">
         </form>
-        <form action="insert.php"method="post">
+        <form action="regist_compleate.php"method="post">
             <input type="submit" class="button2" value="登録する">
-            <input type="hidden" value="<?php echo $_POST['name']; ?>" name="name">
-            <input type="hidden" value="<?php echo $_POST['mail']; ?>" name="mail">
-            <input type="hidden" value="<?php echo $_POST['age']; ?>" name="age">
-            <input type="hidden" value="<?php echo $_POST['comments']; ?>" name="comments">
+            <input type="hidden" value="<?php echo $_POST['lastname']; ?>" name="lastname">
+            <input type="hidden" value="<?php echo $_POST['firstname']; ?>" name="firstname">
+            <input type="hidden" value="<?php echo $_POST['lastnamekana']; ?>" name="lastnamekana">
+            <input type="hidden" value="<?php echo $_POST['firstnamekana']; ?>" name="firstnamekana">
+            <input type="hidden" value="<?php echo $_POST['name']; ?>" name="mail">
+            <input type="hidden" value="<?php echo $_POST['name']; ?>" name="pw">
+            <input type="hidden" value="<?php echo $_POST['name']; ?>" name="gender">
+            <input type="hidden" value="<?php echo $_POST['mail']; ?>" name="addressnum">
+            <input type="hidden" value="<?php echo $_POST['age']; ?>" name="todouhuken">
+            <input type="hidden" value="<?php echo $_POST['comments']; ?>" name="citytown">
+            <input type="hidden" value="<?php echo $_POST['comments']; ?>" name="housenum">
+            <input type="hidden" value="<?php echo $_POST['comments']; ?>" name="kengen">
         </form>
         
     </div>

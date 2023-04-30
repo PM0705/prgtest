@@ -3,7 +3,10 @@ body {
     margin: 0;
     padding: 0;
  }
-
+.slide{
+    position: absolute;
+    right: 100px;
+}
 /* header */
 
 
@@ -16,14 +19,14 @@ header ul{
     
     float: left;
     margin-top: 5px;
-    width: 60%;
+    width: 97%;
     background-color: black;
     color: white;
     list-style: none;
     font-size: 15px;
     margin-bottom: 10px;
     margin-left: 5px;
-    margin-top: -5px;
+    margin-top: 15px;
 }
 header ul li{
     float: left;
@@ -44,7 +47,7 @@ h1{
  border-left: 3px solid #000;
  margin-left: 5px;
  margin-top: -5px;
- font-size: 20px;
+ font-size: 30px;
 }
 .date{
     margin-left: 5px;
@@ -61,18 +64,20 @@ h1{
 
 .left{
     float: left;
-    width:40%;
-    height:800px;
+    width:80%;
+    height:1600px;
     border-right:  5px solid blue;
     border-top: 5px solid blue;
     border-bottom: 5px solid blue;
 
 }
-.imgtop{
-    width: 100%;
-    height: 300px;
-    margin-left: 5px;
-
+.abc{
+    margin-left: 200px;
+}
+.スライド1, .スライド2, .スライド3, .スライド4 {
+    margin-left:  230px;
+    width: 1200px;
+    
 }
 .box2, .box1{
     display: flex;
@@ -81,7 +86,7 @@ h1{
     margin-bottom: 30px;
 }
 .box2{
-    margin-top: -25px;
+    margin-top: -45px;
     margin-bottom: -30px;
     
     
@@ -89,13 +94,15 @@ h1{
 .box-pic8{
     width: 50%;
     margin-top: 20px;
+    margin-right: 100px;
     
     
 }
 .pic-text{
     margin-top: -3px;
-    margin-right: -50px;
+    margin-right: 40px;
     margin-bottom: 15px;
+    font-size: 15px;
 }
 .box-pic2{
     text-align: center;
@@ -108,25 +115,25 @@ margin-left: -40px;
 .box-bgc{
     background-color: lightgray;
     margin-left: 5px;
-    height: 350px;
+    height: 480px;
    
   
 }
 
 .pic1, .pic2, .pic3, .pic4, .pic5, .pic6, .pic7, .pic8{
-    width: 150px;
-    margin-left: 50px;
+    width: 250px;
+    margin-left: 60px;
     
 }
 /* right */
 
 
 .right{
-
+    width: 19%;
     float: left;
-    height: 800px;
+    height: 1600px;
     margin-left:20px;
-    margin-left: -2px;
+    margin-left: 2px;
     border-left:  5px solid red;
     border-top: 5px solid red;
     border-bottom: 5px solid red;
@@ -136,12 +143,12 @@ margin-left: -40px;
 
 .right-nikkititle{
     border-bottom: 3px solid lightgray;
-    font-size: 15px;
+    font-size: 20px;
     width: 230px;
 
 }
 .right-nikkititle-list{
-    font-size: 10px;
+    font-size: 15px;
     margin-left: 20px;
 }
 
@@ -155,17 +162,15 @@ margin-left: -40px;
 
 /* footer */
 footer{
-    width: 120px;
+    width: 99%;
     margin-top: 10px;
     clear: both;
     background-color: black;
     color: white;
     margin-bottom: 0;
-    width: 55%;
     height: 60px;
     line-height: 60px;
+    text-align: center;
+    margin-left: 5px;
 
-}
-.footer-text{
-    margin-left: 200px;
 }
