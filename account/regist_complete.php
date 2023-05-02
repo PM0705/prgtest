@@ -23,11 +23,9 @@ $pdo ->exec("insert into contactform(name,mail,age,comments)
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>お問合せフォーム</h1>
+    <h1>アカウント登録完了画面</h1>
     <div class="confirm">
-        <p>お問合せ理がとうございました、
-            <br>3営業以内に担当よりご連絡差し上げます。
-        </p>
+        <p>登録完了しました</p>
     </div>
     
 </body>

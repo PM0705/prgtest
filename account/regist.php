@@ -34,29 +34,31 @@
                 <form method="post" action="regist_confirm.php">
                     <div>
                         <label for="名前（姓）">名前（姓）※漢字・ひらがなのみ可</label><br>
-                        <input type="text" class="text" size="35" name="lastname"
+                        <input type="text" class="text" size="35" name="family_name"
                                pattern="[\u3041-\u3096]*"maxlength="10">
                            
                     </div>
                     <div>
                         <label for="名前（名）">名前（名）※漢字・ひらがなのみ可</label><br>
-                        <input type="text" class="text" size="35" name="firstname">
+                        <input type="text" class="text" size="35" name="last_name"maxlength="10">
                     </div>
                     <div>
-                        <label for="カナ（姓）">カナ（姓）※カタカナのみ可</label><br>
-                        <input type="text" class="text" size="35" name="lastnamekana"pattern="[\uFF66-\uFF9F]*">
+                        <label for="カナ（姓）">カナ（姓）※全角カタカナのみ可</label><br>
+                        <input type="text" class="text hira_change" size="35" name="family_name_kana"
+                               pattern="[\u30A1-\u30F6]*"maxlength="10">
                     </div>
                     <div>
-                        <label for="カナ（名）">カナ（名）※カタカナのみ可</label><br>
-                        <input type="text" class="text" size="35" name="firstnamekana"pattern="[\uFF66-\uFF9F]*">
+                        <label for="カナ（名）">カナ（名）※全角カタカナのみ可</label><br>
+                        <input type="text" class="text hira_change" size="35" name="last_name_kana"
+                               pattern="[\u30A1-\u30F6]*"maxlength="10">
                     </div>
                     <div>
-                        <label for="メールアドレス">メールアドレス※半角英数字、半角ハイフン、半角記号（ハイフンとアットマーク）のみ可</label><br>
-                        <input type=”email” class="text" size="35" name="mail">
+                        <label for="メールアドレス">メールアドレス<br>※半角英数字、半角ハイフン、半角記号（ハイフンとアットマーク）のみ可</label><br>
+                        <input type=”email” class="text" size="35" name="mail"maxlength="100">
                     </div>
                     <div>
                         <label for="パスワード">パスワード※半角英数字のみ入力可</label><br>
-                        <input type="password" class="text" size="35" name="pw">
+                        <input type="password" class="text" size="35" name="password"maxlength="10"	 pattern=^[0-9A-Za-z]+$>
                     </div>
                     <div>
                         <label for="性別">性別</label><br>
@@ -65,11 +67,11 @@
                     </div>
                     <div>
                         <label for="郵便番号">郵便番号※半角数字のみ</label><br>
-                        <input type=”number” class="text" size="35" name="addressnum">
+                        <input type=”number” class="text" size="35" name="postal_code">
                     </div>
                     <div>
                         <label for="住所（都道府県）">住所（都道府県）</label><br>
-                        <select name="todouhuken">
+                        <select name="prefecture">
                             <?php
                             $prefs = array ('','北海道','青森県','岩手県','宮城県','秋田県','山形県',
                                             '福島県','茨城県','栃木県','群馬県','埼玉県','千葉県',
@@ -87,15 +89,15 @@
                     </div>
                     <div>
                         <label for="住所（市区町村）">住所（市区町村）※ひらがな、漢字、数字、カタカナ、記号（ハイフンとスペース）のみ入力可</label><br>
-                        <input type="text" class="text" size="35" name="citytown">
+                        <input type="text" class="text" size="35" name="address_1"maxlength="10">
                     </div>
                     <div>
                         <label for="住所（番地）">住所（番地）※ひらがな、漢字、数字、カタカナ、記号（ハイフンとスペース）のみ入力可</label><br>
-                        <input type="text" class="text" size="35" name="housenum">
+                        <input type="text" class="text" size="35" name="address_2"maxlength="100">
                     </div>
                     <div>
                         <label for="アカウント権限">アカウント権限</label><br>
-                        <select name="kengen">
+                        <select name="authority">
                             <?php
                             $prefs = array ('一般','管理者',
                                             );
@@ -121,7 +123,7 @@
         <p class="footer-text">Copyright D.I.worksI D.I.blog is the one which provides A to Z about programming</p>
     </footer>
 
-    <script src="./js/app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
 
