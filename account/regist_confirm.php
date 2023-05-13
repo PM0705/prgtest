@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お問い合わせフォームを作る</title>
+    <title>アカウント登録確認画面</title>
     <meta name="description" content="sanple sanple sanple sanple sanple">
     <link rel="stylesheet" href="CSS/sanitize.css">
     <link rel="stylesheet" href="CSS/confirmstyle.css">
@@ -50,11 +50,17 @@
            <?php
            echo $_POST['password'];
            ?>
+           
         </p>
         <p>性別
            <br>
            <?php
-           echo $_POST['gender'];
+           error_reporting(0);
+           if ($gender == 0) {
+               echo "男";
+               }else{
+                    echo "女";
+            }
            ?>
         </p>
         <p>郵便番号
@@ -84,14 +90,23 @@
         <p>アカウント権限
            <br>
            <?php
-           echo $_POST['authority'];
+           error_reporting(0);
+           if ($authority == 0) {
+               echo "一般";
+               }else{
+                    echo "管理者";
+            }
            ?>
         </p>
         <div class="form">
             <form action="regist.php">
-                  <input type="submit" class="button1" value="前に戻る">
+                  <!-- <input type="submit" class="button1" value="前に戻る"> -->
+                  <button type="button" class="button1" value="前に戻る" onclick=history.back()>
+                          前に戻る
+                  </button>
             </form>
-            <form action="regist_compleate.php"method="post">
+            <form action="regist_complete.php" method="post">
+            
                   <input type="submit" class="button2" value="登録する">
                   <input type="hidden" value="<?php echo $_POST['family_name']; ?>" name="family_name">
                   <input type="hidden" value="<?php echo $_POST['last_name']; ?>" name="last_name">
@@ -105,8 +120,12 @@
                   <input type="hidden" value="<?php echo $_POST['address_1']; ?>" name="address_1">
                   <input type="hidden" value="<?php echo $_POST['address_2']; ?>" name="address_2">
                   <input type="hidden" value="<?php echo $_POST['authority']; ?>" name="authority">
+
+                  
             </form>
         </div> 
     </div>
+<script type="text/javascript" src="app3.js"></script>   
 </body>
+
 </html>

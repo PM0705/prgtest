@@ -51,3 +51,9 @@ h1{
     border-radius: 5px;
     border-bottom: 5px solid #E08600;
 }
+
+
+/* エラー */
+.error{
+    color: red;
+}

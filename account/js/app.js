@@ -12,3 +12,15 @@ $(".hira_change").blur(function () {
       $(ele).val(hira)
     }
   };
+
+
+
+
+
+ 
+function SeasonSampleB2() {
+    var gender = $('[name=gender]:checked').parent('label').text();
+    console.log(gender);
+}
+
+console.log(323);

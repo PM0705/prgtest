@@ -1,15 +1,4 @@
 @charset "utf-8";
-
-body{
-    font-family:  "ヒラギノ角ゴ ProN W3", 
-                  HiraKakuProN-W3, 游ゴシック, "Yu Gothic",
-                   メイリオ, Meiryo, Verdana, Helvetica,
-                    Arial, sans-serif;
-    margin-left: 30px;   
-    margin: 0;
-    padding: 0;            
-}
-
 /* header */
 
 
@@ -43,67 +32,67 @@ header ul li{
      
      
 }
-/* left */
 
-.main-container{
-    height: 1800px;
+body{
+    font-family:  "ヒラギノ角ゴ ProN W3", 
+                  HiraKakuProN-W3, 游ゴシック, "Yu Gothic",
+                   メイリオ, Meiryo, Verdana, Helvetica,
+                    Arial, sans-serif;
+    margin-left: 30px;  
+                 
 }
-
-
-/* form  */
-h3{
+h1{
     margin: 0out;
-    margin-top: 50px;
-    margin-bottom: 20px;
+    margin-top:  70px;
+    margin-bottom:  17px;
     border-left: 4px solid red;
     background-color: #f1f1f1;
-    
-    padding-bottom: 5px;
-    padding-left: 15px;
-    width: 500px;
-    font-size: 20px;
-    margin-left: 30px;
-}
 
-form{
+    padding-bottom: 10px;
+    padding-left: 10px;
+    width: 100%;
+    font-size: 23px;
+}
+.confirm{
     margin: 0outo;
     background-color: #fbfbfb;
     border: 3px solid #ebebeb;
     border-radius: 10px;
-    width: 500px;
-    margin-left: 30px;
-}
-form div{
-    padding: 15px;
-}
-.text, textarea, .dropdown{
-    border: 1px solid #dfdfdf;
-    padding: 5px;
-    color: black;
-    background: #fff; 
-
-}
-
+    width:   1900px;
+    padding-top: 20px;
+    padding-left: 20px;
     
-.submit{
-    border: 1px solid lightgray; 
+    padding-bottom: 60px;
+    font-size: 150px;
+    height: 750px;
+    text-align:center ;
+    display:table-cell;
+    vertical-align:middle;
+}
+form{
+   float: left;
+   margin-right: 15px;
+};
+.button{
+    margin-left: 570px;
+}
+.button1{
+    border: 1px solid lightgray;
     padding: 4px 10px;
     color: white;
     background-color: #bfbfbf;
     border-radius: 5px;
-    border-bottom: 2px solid grey;
+    border-bottom: 5px solid gray;
+    
 }
-/* エラー */
-.form-invalid{
-    color: red;
+.button2{
+    border: 1px solid lightgray;
+    padding: 4px 10px;
+    color: white;
+    background-color: darkorange;
+    border-radius: 5px;
+    border-bottom: 5px solid #E08600;
 }
-
-
-
-
-
-
-
 
 /* footer */
 footer{
