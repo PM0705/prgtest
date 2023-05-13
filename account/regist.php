@@ -52,13 +52,13 @@
                                 <dl>
                                     <dt><label for="family_name_kana">カナ（姓）※全角カタカナのみ可</label></dt>
                                     <dd><input type="text" name="family_name_kana" id="family_name_kana" maxlength="10"
-                                               pattern="[\u30A1-\u30F6]*" title="全角カタカナでご入力ください"><br>
+                                               pattern="[\u30A1-\u30F6\ー]*" title="全角カタカナでご入力ください"><br>
                                         <span class="err-msg-family_name_kana"></span></dd>
                                 </dl>
                                 <dl>
                                     <dt><label for="last_name_kana">カナ（名）※全角カタカナのみ可</label></dt>
                                     <dd><input type="text" name="last_name_kana" id="last_name_kana" maxlength="10"
-                                               pattern="[\u30A1-\u30F6]*" title="全角カタカナでご入力ください"><br>
+                                               pattern="[\u30A1-\u30F6\ー]*" title="全角カタカナでご入力ください"><br>
                                         <span class="err-msg-last_name_kana"></span></dd>
                                 </dl>
                                 <!-- mail -->
@@ -114,17 +114,17 @@
                                 </dl>
                                 <!-- 住所（市区町村） -->
                                 <dl>
-                                    <dt><label for="住所（市区町村）">住所（市区町村）<br>※ひらがな、漢字、数字、カタカナ、記号（-/スペース）のみ可</label></dt>
+                                    <dt><label for="住所（市区町村）">住所（市区町村）<br>※ひらがな、漢字、数字、全角カタカナ、記号（-/スペース）のみ可</label></dt>
                                     <dd><input type="text" class="text hira_change" size="35" name="address_1"id="address_1"
-                                               pattern="[\d\u30A1-\u30F6\u4E00-\u9FFF\u3040-\u309Fー]*" maxlength="10" title="ひらがな、漢字、数字、カタカナ、記号（-/スペース）でご入力ください"><br>
+                                               pattern="[\d\u30A1-\u30F6\u4E00-\u9FFF\u3040-\u309Fー\s　]*" maxlength="10" title="ひらがな、漢字、数字、カタカナ、記号（-/スペース）でご入力ください"><br>
                                         <span class="err-msg-address_1"></span>
                                     </dd>
                                 </dl>
                                 <!-- 住所（番地） -->
                                 <dl>
-                                    <dt> <label for="住所（番地）">住所（番地）<br>※ひらがな、漢字、数字、カタカナ、記号（-/スペース）のみ入力可</label></dt>
+                                    <dt> <label for="住所（番地）">住所（番地）<br>※ひらがな、漢字、数字、全角カタカナ、記号（-/スペース）のみ入力可</label></dt>
                                     <dd><input type="text" class="text" size="35" name="address_2"id="address_2"
-                                               pattern="[\d\u30A1-\u30F6\u4E00-\u9FFF\u3040-\u309Fー]*" maxlength="100" title="ひらがな、漢字、数字、カタカナ、記号（-/スペース）でご入力ください"><br>
+                                               pattern="[\d\u30A1-\u30F6\u4E00-\u9FFF\u3040-\u309Fー\s　]*" maxlength="100" title="ひらがな、漢字、数字、カタカナ、記号（-/スペース）でご入力ください"><br>
                                     <span class="err-msg-address_2"></span>
                                     </dd>
                                 </dl>
