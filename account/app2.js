@@ -7,6 +7,8 @@ window.addEventListener('DOMContentLoaded', () => {
     submit.addEventListener('click', (e) => {
         // デフォルトアクションをキャンセル
         // e.preventDefault();
+        //変数にerror_flag
+        let error_flag = false;
 
         // 「名前（姓）」入力欄の空欄チェック
         // フォームの要素を取得
@@ -21,6 +23,8 @@ window.addEventListener('DOMContentLoaded', () => {
             // クラスを追加(フォームの枠線を赤くする)
             family_name.classList.add('input-invalid');
             // 後続の処理を止める
+            //エラーが起きたところでerror_flag = true;を入力
+            error_flag = true;
             // e.preventDefault();
             // return;
         }else{
@@ -43,6 +47,7 @@ window.addEventListener('DOMContentLoaded', () => {
             // クラスを追加(フォームの枠線を赤くする)
             last_name.classList.add('input-invalid');
             // 後続の処理を止める
+            error_flag = true;
            
         }else{
             // エラーメッセージのテキストに空文字を代入
@@ -63,6 +68,7 @@ window.addEventListener('DOMContentLoaded', () => {
             // クラスを追加(フォームの枠線を赤くする)
             family_name_kana.classList.add('input-invalid');
             // 後続の処理を止める
+            error_flag = true;
            
         }else{
             // エラーメッセージのテキストに空文字を代入
@@ -84,6 +90,7 @@ window.addEventListener('DOMContentLoaded', () => {
             // クラスを追加(フォームの枠線を赤くする)
             last_name_kana.classList.add('input-invalid');
             // 後続の処理を止める
+            error_flag = true;
            
         }else{
             // エラーメッセージのテキストに空文字を代入
@@ -105,6 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
             // クラスを追加(フォームの枠線を赤くする)
             mail.classList.add('input-invalid');
             // 後続の処理を止める
+            error_flag = true;
            
         }else{
             // エラーメッセージのテキストに空文字を代入
@@ -128,6 +136,7 @@ window.addEventListener('DOMContentLoaded', () => {
             // クラスを追加(フォームの枠線を赤くする)
             password.classList.add('input-invalid');
             // 後続の処理を止める
+            error_flag = true;
            
         }else{
             // エラーメッセージのテキストに空文字を代入
@@ -149,6 +158,7 @@ window.addEventListener('DOMContentLoaded', () => {
             // クラスを追加(フォームの枠線を赤くする)
             postal_code.classList.add('input-invalid');
             // 後続の処理を止める
+            error_flag = true;
            
         }else{
             // エラーメッセージのテキストに空文字を代入
@@ -173,6 +183,7 @@ window.addEventListener('DOMContentLoaded', () => {
             // クラスを追加(フォームの枠線を赤くする)
             prefecture.classList.add('input-invalid');
             // 後続の処理を止める
+            error_flag = true;
            
         }else{
             // エラーメッセージのテキストに空文字を代入
@@ -195,6 +206,7 @@ window.addEventListener('DOMContentLoaded', () => {
             // クラスを追加(フォームの枠線を赤くする)
             address_1.classList.add('input-invalid');
             // 後続の処理を止める
+            error_flag = true;
            
         }else{
             // エラーメッセージのテキストに空文字を代入
@@ -217,13 +229,19 @@ window.addEventListener('DOMContentLoaded', () => {
             // クラスを追加(フォームの枠線を赤くする)
             address_2.classList.add('input-invalid');
             // 後続の処理を止める
-            e.preventDefault(); 
+            e.preventDefault();
            
         }else{
             // エラーメッセージのテキストに空文字を代入
             errMsgaddress_2.textContent ='';
             // クラスを削除
             address_2.classList.remove('input-invalid');
+        }
+        //error_flag = true;があるところにこの関数を実行
+        if (error_flag) {
+            // 後続の処理を止める
+            e.preventDefault();
+            
         }
         
     }, false);
