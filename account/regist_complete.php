@@ -31,8 +31,8 @@ $pdo ->exec("INSERT INTO diblog_account(family_name,last_name,family_name_kana,l
         $message = 'エラーが発生したためアカウント登録できません。';
             // $e->getMessage() でエラー内容を参照可能（デバッグ時のみ表示）
             // echo $e->getMessage();
-   
-}  
+            }
+header("Location:http://localhost/account/list.php");  
 ?>
 
 
@@ -62,6 +62,7 @@ $pdo ->exec("INSERT INTO diblog_account(family_name,last_name,family_name_kana,l
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="regist.php">アカウント登録フォーム</a></li>
+                <li><a href="list.php">アカウント一覧</a></li>
                 <li>問い合わせ</li>
                 <li>その他</li>
             </ul>
@@ -81,7 +82,7 @@ $pdo ->exec("INSERT INTO diblog_account(family_name,last_name,family_name_kana,l
 </main>
 <footer>
         <p class="footer-text">Copyright D.I.worksI D.I.blog is the one which provides A to Z about programming</p>
- </footer>
+</footer>
     
 </body>
 </html>
