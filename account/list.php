@@ -32,10 +32,37 @@
             </ul>
         </div>
     </header>
+    <div class="kizi">
+        <table>
+            <tr>
+                <th>id</th>
+                <th>名前（姓）</th>
+                <th>名前（名）</th>
+                <th>カナ（姓）</th>
+                <th>カナ（名）</th>
+                <th>メールアドレス</th>
+                <th>パスワード</th>
+                <th>性別</th>
+                <th>郵便番号</th>
+                <th>住所（都道府県）</th>
+                <th>住所（市区町村）</th>
+                <th>住所（番地）</th>
+                <th>アカウント権限</th>
+                <th>削除</th>
+                <th>更新日時</th>
+                <th>作成日時</th>
+            </tr>
+        </table>
+        <tr class="kizi">
+            <td></td>
+        </tr>
+    </div>
     <main>
     <?php
             while ($row = $stmt -> fetch()) {
-           
+
+            echo "<div class='kizi'>";
+            echo "<div class='kizikona'>";
             echo $row['id'];
             echo $row['family_name'];
             echo $row['last_name'];
@@ -52,6 +79,8 @@
             echo $row['delete_flag'];
             echo $row['registered_time'];
             echo $row['update_time'];
+            echo "</div>";
+            echo "</div>";
             }
     ?>
            <td>
