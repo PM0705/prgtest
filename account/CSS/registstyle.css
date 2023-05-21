@@ -130,8 +130,28 @@ h4{
 .kizi > p {
     margin-left: 10px;
 }
+
 .kizi{
     margin-top: 10px;
+    border-collapse: collapse;
+}
+.kizi table{
+    border-collapse: collapse;
+    margin: 20px 0;
+    width: 100%;
+}
+.kizi thead{
+    width: 100%;
+}
+.kizi th,
+.kizi td{
+    border:1px solid #a2aab0;
+    padding: 20px 10px;
+
+}
+.kizi th{
+    background-color: #ebeced;
+
 }
 .kizikona{
     margin-top: 20px;

@@ -16,8 +16,11 @@
     <?php
     mb_internal_encoding("utf8");
     $pdo= new PDO("mysql:dbname=lesson01;host=localhost;","root","root");
-    $stmt= $pdo->query("select*from diblog_account");
+    $stmt= $pdo->query("select*from diblog_account ORDER BY id DESC");
     ?>
+    
+
+
     <header>
         <img src="img/diblog_logo.jpg" alt="DIworksのロゴ" class="img">
         <div class="menu">
@@ -34,29 +37,48 @@
     </header>
     <div class="kizi">
         <table>
-            <tr>
-                <th>id</th>
-                <th>名前（姓）</th>
-                <th>名前（名）</th>
-                <th>カナ（姓）</th>
-                <th>カナ（名）</th>
-                <th>メールアドレス</th>
-                <th>パスワード</th>
-                <th>性別</th>
-                <th>郵便番号</th>
-                <th>住所（都道府県）</th>
-                <th>住所（市区町村）</th>
-                <th>住所（番地）</th>
-                <th>アカウント権限</th>
-                <th>削除</th>
-                <th>更新日時</th>
-                <th>作成日時</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>名前（姓）</th>
+                    <th>名前（名）</th>
+                    <th>カナ（姓）</th>
+                    <th>カナ（名）</th>
+                    <th>メールアドレス</th>
+                    <th>性別</th>
+                    <th>アカウント権限</th>
+                    <th>削除</th>
+                    <th>更新日時</th>
+                    <th>作成日時</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php while ($row = $stmt -> fetch()) : ?>
+                <tr>
+                    <td><?php print($row['id']); ?></td>
+                    <td><?php print($row['family_name']); ?></td>
+                    <td><?php print($row['last_name']); ?></td>
+                    <td><?php print($row['family_name_kana']); ?></td>
+                    <td><?php print($row['last_name_kana']); ?></td>
+                    <td><?php print($row['mail']); ?></td>
+                    <td><?php print($row['gender']); ?></td>
+                    <td><?php print($row['authority']); ?></td>
+                    <td><?php print($row['delete_flag']); ?></td>
+                    <td><?php print($row['registered_time']); ?></td>
+                    <td><?php print($row['update_time']); ?></td>
+                    <td>
+                    <button type="button" class="btn btn-green" onclick="location.href='update.php?id=<?php echo $row['id']; ?>'">編集</button>
+                    <button type="button" class="btn btn-red">削除</button>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+            </tbody>
         </table>
-        <tr class="kizi">
-            <td></td>
-        </tr>
     </div>
+
+
+
     <main>
     <?php
             while ($row = $stmt -> fetch()) {
@@ -69,12 +91,7 @@
             echo $row['family_name_kana'];
             echo $row['last_name_kana'];
             echo $row['mail'];
-            echo $row['password'];
             echo $row['gender'];
-            echo $row['postal_code'];
-            echo $row['prefecture'];
-            echo $row['address_1'];
-            echo $row['address_2'];
             echo $row['authority'];
             echo $row['delete_flag'];
             echo $row['registered_time'];
@@ -82,11 +99,8 @@
             echo "</div>";
             echo "</div>";
             }
+
     ?>
-           <td>
-               <button type="button" class="btn btn-green" onclick="location.href='update.php?id=<?php echo $new['id']; ?>'">編集</button>
-               <button type="button" class="btn btn-red">削除</button>
-           </td>
            
     
                                 
