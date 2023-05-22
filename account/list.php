@@ -62,9 +62,42 @@
                     <td><?php print($row['family_name_kana']); ?></td>
                     <td><?php print($row['last_name_kana']); ?></td>
                     <td><?php print($row['mail']); ?></td>
-                    <td><?php print($row['gender']); ?></td>
-                    <td><?php print($row['authority']); ?></td>
-                    <td><?php print($row['delete_flag']); ?></td>
+                    <td><?php 
+                            switch ($row['gender']) {
+                                    case '0':
+                                        echo "男";
+                                        break;
+                                    
+                                    default:
+                                        echo "女";
+                                        break;
+                            } 
+                        ?>
+                    </td>
+                    <td><?php 
+                            switch ($row['authority']) {
+                                    case '0':
+                                        echo "一般";
+                                        break;
+                                    
+                                    default:
+                                        echo "管理者";
+                                        break;
+                            } 
+                        ?>
+                    </td>
+                    <td><?php 
+                            switch ($row['delete_flag']) {
+                                    case '0':
+                                        echo "有効";
+                                        break;
+                                    
+                                    default:
+                                        echo "無効";
+                                        break;
+                            } 
+                        ?>
+                    </td>
                     <td><?php print($row['registered_time']); ?></td>
                     <td><?php print($row['update_time']); ?></td>
                     <td>

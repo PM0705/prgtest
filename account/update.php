@@ -27,6 +27,7 @@
             </ul>
         </div>
     </header>
+    
     <main>
     <?php foreach($news as $new): ?>
            <tr>
@@ -37,7 +38,15 @@
                <td><?php echo $new['last_name_kana']; ?></td>
                <td><?php echo $new['mail']; ?></td>
                <td><?php echo $new['password']; ?></td>
-               <td><?php echo $new['gender']; ?></td>
+               <td> <?php
+                        error_reporting(0);
+                        if ($gender == 0) {
+                            echo "男";
+                            }else{
+                                    echo "女";
+                            }
+                    ?>
+                </td>
                <td><?php echo $new['postal_code']; ?></td>
                <td><?php echo $new['prefecture']; ?></td>
                <td><?php echo $new['address_1']; ?></td>
