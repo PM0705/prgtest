@@ -7,7 +7,7 @@
     <title>アカウント登録画面</title>
     <meta name="description" content="sanple sanple sanple sanple sanple">
     <link rel="stylesheet" href="CSS/sanitize.css">
-    <link rel="stylesheet" href="CSS/registstyle.css">
+    <link rel="stylesheet" href="CSS/registstyle2.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
@@ -98,8 +98,17 @@
                             } 
                         ?>
                     </td>
-                    <td><?php print($row['registered_time']); ?></td>
-                    <td><?php print($row['update_time']); ?></td>
+                    <td>
+                        <?php
+                             error_reporting(0);
+                             echo date('Y/m/d', strtotime($row['registered_time']));
+                        ?>
+                    </td>
+                    <td>
+                        <?php 
+                             echo date('Y/m/d', strtotime($row['update_time']));
+                        ?>
+                    </td>
                     <td>
                     <button type="button" class="btn btn-green" onclick="location.href='update.php?id=<?php echo $row['id']; ?>'">編集</button>
                     <button type="button" class="btn btn-red">削除</button>
@@ -111,37 +120,6 @@
     </div>
 
 
-
-    <main>
-    <?php
-            while ($row = $stmt -> fetch()) {
-
-            echo "<div class='kizi'>";
-            echo "<div class='kizikona'>";
-            echo $row['id'];
-            echo $row['family_name'];
-            echo $row['last_name'];
-            echo $row['family_name_kana'];
-            echo $row['last_name_kana'];
-            echo $row['mail'];
-            echo $row['gender'];
-            echo $row['authority'];
-            echo $row['delete_flag'];
-            echo $row['registered_time'];
-            echo $row['update_time'];
-            echo "</div>";
-            echo "</div>";
-            }
-
-    ?>
-           
-    
-                                
-                                
-                             
-                      
-                    
-    </main>
     <footer>
         <p class="footer-text">Copyright D.I.worksI D.I.blog is the one which provides A to Z about programming</p>
     </footer>

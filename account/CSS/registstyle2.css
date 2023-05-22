@@ -1,0 +1,162 @@
+@charset "utf-8";
+
+body{
+    font-family:  "ヒラギノ角ゴ ProN W3", 
+                  HiraKakuProN-W3, 游ゴシック, "Yu Gothic",
+                   メイリオ, Meiryo, Verdana, Helvetica,
+                    Arial, sans-serif;
+    margin-left: 30px;   
+    margin: 0;
+    padding: 0;            
+}
+
+/* header */
+
+
+.img{
+    width: 200px;
+    margin-left: 20px;
+    
+}
+header ul{
+    
+    float: left;
+    margin-top: 5px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    list-style: none;
+    font-size: 15px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-top: 15px;
+}
+header ul li{
+    float: left;
+    background-color: black;
+    line-height: 60px;
+    margin-right: 20px;
+    line-height: 3;
+    
+
+    
+     
+     
+}
+/* left */
+
+.kizi{
+    width: 100%;
+}
+
+
+
+/* エラー */
+.form-invalid{
+    color: red;
+}
+
+
+/* アカウント一覧 */
+h3{
+    margin: 0out;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-left: 4px solid red;
+    margin-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    width: 500px;
+    font-size: 15px;
+}
+
+form, .kizi{
+    
+    margin: 0outo;
+    margin-left: 30px;
+    background-color: #fbfbfb;
+    border: 3px solid #ebebeb;
+    border-radius: 10px;
+    width: 100%;
+}
+h4{
+    border-bottom: 2px solid #ebebeb;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.kizi > p {
+    margin-left: 10px;
+}
+
+.kizi{
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+.kizi table{
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.kizi th,
+.kizi td{
+    border:1px solid #a2aab0;
+    padding: 20px 10px;
+
+}
+.kizi th{
+    background-color: #ebeced;
+
+}
+.kizikona{
+    margin-top: 20px;
+}
+
+.by{
+    font-weight: lighter;
+    font-size: 12px;
+}
+
+form div{
+    padding: 15px;
+}
+.text, textarea, .dropdown{
+    border: 1px solid #dfdfdf;
+    padding: 5px;
+    color: #999;
+    background: #fff; 
+
+}
+
+    
+.submit{
+    border: 1px solid lightgray; 
+    padding: 4px 10px;
+    color: white;
+    background-color: #bfbfbf;
+    border-radius: 5px;
+    border-bottom: 2px solid grey;
+}
+
+
+
+
+
+
+
+
+
+/* footer */
+footer{
+    width: 100%;
+    margin-top: 10px;
+    clear: both;
+    background-color: black;
+    color: white;
+    margin-bottom: 0;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+
+}
+
