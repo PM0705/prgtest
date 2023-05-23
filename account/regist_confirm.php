@@ -13,20 +13,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-        <img src="img/diblog_logo.jpg" alt="DIworksのロゴ" class="img">
-        <div class="menu">
-            <ul>
-                <li><a href="index.html">トップ</a></li>
-                <li>プロフィール</li>
-                <li>D .I .Bligについて</li>
-                <li><a href="regist.php">アカウント登録フォーム</a></li>
-                <li><a href="list.php">アカウント一覧</a></li>
-                <li>問い合わせ</li>
-                <li>その他</li>
-            </ul>
-        </div>
-</header>
+   <header>
+         <img src="img/diblog_logo.jpg" alt="DIworksのロゴ" class="img">
+         <div class="menu">
+               <ul>
+                  <li><a href="index.html">トップ</a></li>
+                  <li>プロフィール</li>
+                  <li>D .I .Bligについて</li>
+                  <li><a href="regist.php">アカウント登録フォーム</a></li>
+                  <li><a href="list.php">アカウント一覧</a></li>
+                  <li>問い合わせ</li>
+                  <li>その他</li>
+               </ul>
+         </div>
+   </header>
+
+   <main>
     <h1>アカウント登録確認画面</h1>
     <div class="confirm">
         <p>名前（姓）
@@ -139,10 +141,11 @@
             </form>
         </div> 
     </div>
-<footer>
-        <p class="footer-text">Copyright D.I.worksI D.I.blog is the one which provides A to Z about programming</p>
-</footer>
-<script type="text/javascript" src="app3.js"></script>   
+   </main>
+   <footer>
+         <p class="footer-text">Copyright D.I.worksI D.I.blog is the one which provides A to Z about programming</p>
+   </footer>
+   <script type="text/javascript" src="app3.js"></script>   
 </body>
 
 </html>
