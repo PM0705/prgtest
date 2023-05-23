@@ -7,7 +7,8 @@ body{
                     Arial, sans-serif;
     margin-left: 30px;   
     margin: 0;
-    padding: 0;            
+    padding: 0;
+    color: black;            
 }
 
 /* header */
@@ -37,12 +38,9 @@ header ul li{
     line-height: 60px;
     margin-right: 20px;
     line-height: 3;
-    
 
-    
-     
-     
 }
+
 /* left */
 
 .main-container{
@@ -55,12 +53,11 @@ h3{
     margin: 0out;
     margin-top: 50px;
     margin-bottom: 20px;
-    border-left: 4px solid red;
+    border-left: 4px solid blue;
     background-color: #f1f1f1;
-    
     padding-bottom: 5px;
     padding-left: 15px;
-    width: 500px;
+    width: 100%;
     font-size: 20px;
     margin-left: 30px;
 }
@@ -73,9 +70,7 @@ form{
     width: 500px;
     margin-left: 30px;
 }
-form div{
-    padding: 15px;
-}
+
 .text, textarea, .dropdown{
     border: 1px solid #dfdfdf;
     padding: 5px;
@@ -113,7 +108,7 @@ h3{
     font-size: 15px;
 }
 
-form, .kizi{
+.form, .kizi{
     
     margin: 0outo;
     margin-left: 30px;
@@ -162,9 +157,6 @@ h4{
     font-size: 12px;
 }
 
-form div{
-    padding: 15px;
-}
 .text, textarea, .dropdown{
     border: 1px solid #dfdfdf;
     padding: 5px;

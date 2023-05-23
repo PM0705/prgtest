@@ -42,39 +42,45 @@
                                     <dd><input type="text" name="family_name" id="family_name" maxlength="10" 
                                                pattern="[\u4E00-\u9FFF\u3040-\u309Fー]*"
                                                title="漢字・ひらがなでご入力ください"><br>
-                                        <span class="err-msg-family_name"></span></dd>
+                                        <span class="err-msg-family_name"></span>
+                                    </dd>
                                 </dl>
                                 <dl>
                                     <dt><label for="last_name">名前（名）※漢字・ひらがなのみ可</label></dt>
                                     <dd><input type="text" name="last_name" id="last_name" maxlength="10"
                                                pattern="[\u4E00-\u9FFF\u3040-\u309Fー]*" title="漢字・ひらがなでご入力ください"><br>
-                                        <span class="err-msg-last_name"></span></dd>
+                                        <span class="err-msg-last_name"></span>
+                                    </dd>
                                 </dl>
                                 <dl>
                                     <dt><label for="family_name_kana">カナ（姓）※全角カタカナのみ可</label></dt>
                                     <dd><input type="text" name="family_name_kana" id="family_name_kana" maxlength="10"
                                                pattern="^[\u30A0-\u30FF]+$" title="全角カタカナでご入力ください"><br>
-                                        <span class="err-msg-family_name_kana"></span></dd>
+                                        <span class="err-msg-family_name_kana"></span>
+                                    </dd>
                                 </dl>
                                 <dl>
                                     <dt><label for="last_name_kana">カナ（名）※全角カタカナのみ可</label></dt>
                                     <dd><input type="text" name="last_name_kana" id="last_name_kana" maxlength="10"
                                                pattern="^[\u30A0-\u30FF]+$" title="全角カタカナでご入力ください"><br>
-                                        <span class="err-msg-last_name_kana"></span></dd>
+                                        <span class="err-msg-last_name_kana"></span>
+                                    </dd>
                                 </dl>
                                 <!-- mail -->
                                 <dl>
                                     <dt><label for="mail">メールアドレス<br>※半角英数字、半角ハイフンのみ可</label></dt>
                                     <dd><input type="email" name="mail" id="mail" maxlength="100"
                                                pattern="^[a-z0-9\-@]+$" title="半角英数字、半角ハイフンでご入力ください"><br>
-                                        <span class="err-msg-mail"></span></dd>
+                                        <span class="err-msg-mail"></span>
+                                    </dd>
                                 </dl>
                                 <!-- パスワード -->
                                 <dl>
                                     <dt><label for="password">パスワード※半角英数字のみ入力可</label></dt>
                                     <dd><input type="password" name="password" id="password" maxlength="10"
                                                pattern="^[a-zA-Z0-9]+$" title="半角英数字でご入力ください"><br>
-                                        <span class="err-msg-password"></span></dd>
+                                        <span class="err-msg-password"></span>
+                                    </dd>
                                 </dl>
                                 <!-- 性別 -->
                                 <dl>
@@ -90,7 +96,8 @@
                                     <dt><label for="郵便番号">郵便番号※半角数字のみ</label></dt>
                                     <dd><input type=tel class="text" size="35" id="postal_code" name="postal_code" maxlength="7"
                                                pattern="^[\d]+$"title="半角数字でご入力ください"><br>
-                                    <span class="err-msg-postal_code"></span></dd>
+                                    <span class="err-msg-postal_code"></span>
+                                </dd>
                                 </dl>
                                 <!-- 住所（都道府県） -->
                                 <dl>
@@ -159,7 +166,7 @@
         <p class="footer-text">Copyright D.I.worksI D.I.blog is the one which provides A to Z about programming</p>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script type="text/javascript" src="app2.js"></script>   
+    <script type="text/javascript" src="app2.js"></script> 
 </body>
 </html>
 
