@@ -28,36 +28,7 @@
         </div>
     </header>
     <main>
-    <?php foreach($news as $new): ?>
-           <tr>
-               <td><?php echo $new['id']; ?></td>
-               <td><?php echo $new['family_name']; ?></td>
-               <td><?php echo $new['last_name']; ?></td>
-               <td><?php echo $new['family_name_kana']; ?></td>
-               <td><?php echo $new['last_name_kana']; ?></td>
-               <td><?php echo $new['mail']; ?></td>
-               <td><?php echo $new['password']; ?></td>
-               <td><?php echo $new['gender']; ?></td>
-               <td><?php echo $new['postal_code']; ?></td>
-               <td><?php echo $new['prefecture']; ?></td>
-               <td><?php echo $new['address_1']; ?></td>
-               <td><?php echo $new['address_2']; ?></td>
-               <td><?php echo $new['authority']; ?></td>
-               <td><?php echo $new['delete_flag']; ?></td>
-               <td><?php echo $new['registered_time']; ?></td>
-               <td><?php echo $new['update_time']; ?></td>
-               <td>
-                   <button type="button" class="btn btn-green" onclick="location.href='edit_news.php?id=<?php echo $new['id']; ?>'">編集</button>
-                   <button type="button" class="btn btn-red">削除</button>
-               </td>
-               
-           </tr>
-    <?php endforeach; ?>
-                                
-                                
-                             
-                      
-                    
+         
     </main>
     <footer>
         <p class="footer-text">Copyright D.I.worksI D.I.blog is the one which provides A to Z about programming</p>

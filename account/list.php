@@ -39,7 +39,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>ID</th>
                     <th>名前（姓）</th>
                     <th>名前（名）</th>
                     <th>カナ（姓）</th>
@@ -47,9 +47,9 @@
                     <th>メールアドレス</th>
                     <th>性別</th>
                     <th>アカウント権限</th>
-                    <th>削除</th>
+                    <th>削除フラグ</th>
+                    <th>登録日時</th>
                     <th>更新日時</th>
-                    <th>作成日時</th>
                     <th>操作</th>
                 </tr>
             </thead>
@@ -110,8 +110,8 @@
                         ?>
                     </td>
                     <td>
-                    <button type="button" class="btn btn-green" onclick="location.href='update.php?id=<?php echo $row['id']; ?>'">編集</button>
-                    <button type="button" class="btn btn-red">削除</button>
+                    <button type="button" class="btn btn-green" onclick="location.href='update.php'" value="遷移">編集</button>
+                    <button type="button" class="btn btn-red" onclick="location.href='delete.php'" value="遷移">削除</button>
                     </td>
                 </tr>
             <?php endwhile; ?>
