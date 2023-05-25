@@ -32,7 +32,7 @@ $pdo ->exec("INSERT INTO diblog_account(family_name,last_name,family_name_kana,l
             // $e->getMessage() でエラー内容を参照可能（デバッグ時のみ表示）
             // echo $e->getMessage();
             }
-header("Location:http://localhost/account/list.php");  
+// header("Location:http://localhost/account/list.php");  
 ?>
 
 

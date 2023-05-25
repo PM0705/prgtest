@@ -70,7 +70,7 @@
                                 <dl>
                                     <dt><label for="mail">メールアドレス<br>※半角英数字、半角ハイフンのみ可</label></dt>
                                     <dd><input type="email" name="mail" id="mail" maxlength="100"
-                                               pattern="^[a-z0-9\-@]+$" title="半角英数字、半角ハイフンでご入力ください"><br>
+                                               pattern="^[\w\d\-_-]+@[\w\d_-]+\.[\w\d._-]+$" title="半角英数字、半角ハイフンでご入力ください"><br>
                                         <span class="err-msg-mail"></span>
                                     </dd>
                                 </dl>
