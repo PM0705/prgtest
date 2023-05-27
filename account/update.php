@@ -31,7 +31,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>更新ページ</title>
+    <title>アカウント更新画面</title>
     <meta name="description" content="sanple sanple sanple sanple sanple">
     <link rel="stylesheet" href="CSS/sanitize.css">
     <link rel="stylesheet" href="CSS/registstyle.css">
@@ -60,10 +60,10 @@
 
         <div class="main-container">
                 <div class="left">
-                    <h3> 入入力フォーム</h3>
-                    <form method="post" action="regist_confirm.php" name="form" autocomplete="off" >
+                    <h3> アカウント更新画面</h3>
+                    <form method="post" action="update_confirm.php" name="form" autocomplete="off" >
                         <div class="contact-form errorMsg">
-                            <form action="update_confirm.php" method="post">
+                            
                                 <!-- ID -->
                                 <input type="hidden" name="id" value="<?php echo($member->id) ?>">
                                 <!-- お名前 -->
@@ -88,7 +88,7 @@
                                 <label for="last_name_kana">カナ（名）※全角カタカナのみ可</label>
                                 <input type="text" name="last_name_kana" id="last_name_kana" maxlength="10"
                                        pattern="^[\u30A0-\u30FF]+$" title="全角カタカナでご入力ください" 
-                                       value="<?php print($member->family_name_kana) ?>"><br>
+                                       value="<?php print($member->last_name_kana) ?>"><br>
                                 <span class="err-msg-last_name_kana"></span>
                                 <br>
                                 <!-- mail -->
@@ -115,7 +115,7 @@
                                  <label for="郵便番号">郵便番号※半角数字のみ</label>
                                 <input type=tel class="text" size="35" id="postal_code" name="postal_code" maxlength="7"
                                        pattern="^[\d]+$"title="半角数字でご入力ください" 
-                                       value="<?php print($member->family_name_kana) ?>"><br>
+                                       value="<?php print($member->postal_code) ?>"><br>
                                 <span class="err-msg-postal_code"></span>
                                 <br>
                                 <!-- 住所（都道府県） -->
@@ -145,7 +145,7 @@
                                 <span class="err-msg-address_1"></span>
                                 <!-- 住所（番地） -->
                                 <label for="住所（番地）">住所（番地）<br>※ひらがな、漢字、数字、全角カタカナ、記号（-/スペース）のみ入力可</label>
-                                <input type="text" name="family_name_kana" input type="text" class="text" size="35" name="address_2"id="address_2"
+                                <input input type="text" class="text" size="35" name="address_2"id="address_2"
                                        pattern="[\d\u30A1-\u30F6\u4E00-\u9FFF\u3040-\u309Fー\s　\-]*" maxlength="100" title="ひらがな、漢字、数字、カタカナ、記号（-/スペース）でご入力ください"
                                        value="<?php print($member->family_name_kana) ?>">
                                 <span class="err-msg-address_2"></span>
@@ -164,7 +164,7 @@
                                         <input type="submit" class="submit" value="確認する">
                                     </div>
                                 </div>
-                            </form>
+                            
                         </div>
                     </form>
                 </div>

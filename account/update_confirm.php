@@ -1,32 +1,10 @@
-<?php
-    require('list.php');
-
-    $id = $_GET['id'];
-
-    // 更新対象の投稿内容を取得
-    $pdo = db_connect();
-    try {
-        $sql = "SELECT * FROM diblog_account WHERE id = :id";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(":id", $id);
-        $stmt->execute();
-      } catch (PDOException $e) {
-        echo $e->getMessage();
-        die();
-      }
-
-    // 取得できたタイトルと本文を変数に入れておく
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    $id = $row['id'];
-    $mail = $row['mail'];
-?>
 <!DOCTYPE html>
 <html lang="jp">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アカウント登録画面</title>
+    <title>アカウント更新確認画面</title>
     <meta name="description" content="sanple sanple sanple sanple sanple">
     <link rel="stylesheet" href="CSS/sanitize.css">
     <link rel="stylesheet" href="CSS/registstyle.css">
@@ -35,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
+    <header>
         <img src="img/diblog_logo.jpg" alt="DIworksのロゴ" class="img">
         <div class="menu">
             <ul>
@@ -50,45 +28,121 @@
         </div>
     </header>
 
+    <main>
+        <h1>アカウント更新確認画面</h1>
+        <div class="confirm">
+            <p>名前（姓）
+            <br>
+            <?php
+            echo $_POST['family_name'];
+            ?>
+            </p>
+            <p>名前（名）
+            <br>
+            <?php
+            echo $_POST['last_name'];
+            ?>
+            </p>
+            <p>カナ（姓）
+            <br>
+            <?php
+            echo $_POST['family_name_kana'];
+            ?>
+            </p>
+            <p>カナ（名）
+            <br>
+            <?php
+            echo $_POST['last_name_kana'];
+            ?>
+            </p>
+            <p>メールアドレス
+            <br>
+            <?php
+            echo $_POST['mail'];
+            ?>
+            </p>
+            <p>パスワード
+            <br>
+            <?php
+            echo $_POST['password'];
+            ?>
+            
+            </p>
+            <p>性別
+            <br>
+            <?php
+            error_reporting(0);
+            if ($gender == 0) {
+                echo "男";
+                }else{
+                        echo "女";
+                }
+            ?>
+            </p>
+            <p>郵便番号
+            <br>
+            <?php
+            echo $_POST['postal_code'];
+            ?>
+            </p>
+            <p>住所（都道府県）
+            <br>
+            <?php
+            echo $_POST['prefecture'];
+            ?>
+            </p>
+            <p>住所（市区町村）
+            <br>
+            <?php
+            echo $_POST['address_1'];
+            ?>
+            </p>
+            <p>住所（番地）
+            <br>
+            <?php
+            echo $_POST['address_2'];
+            ?>
+            </p>
+            <p>アカウント権限
+            <br>
+            <?php
+            error_reporting(0);
+            if ($authority == 0) {
+                echo "一般";
+                }else{
+                        echo "管理者";
+                }
+            ?>
+            </p>
+            <div class="form">
+                <form action="update.php">
+                    <!-- <input type="submit" class="button1" value="前に戻る"> -->
+                    <button type="button" class="button1" value="前に戻る" onclick=history.back()>
+                            前に戻る
+                    </button>
+                </form>
+                <form action="update_complete.php" method="post">
+                
+                    <input type="submit" class="button2" value="登録する">
+                    <input type="hidden" value="<?php echo $_POST['family_name']; ?>" name="family_name">
+                    <input type="hidden" value="<?php echo $_POST['last_name']; ?>" name="last_name">
+                    <input type="hidden" value="<?php echo $_POST['family_name_kana']; ?>" name="family_name_kana">
+                    <input type="hidden" value="<?php echo $_POST['last_name_kana']; ?>" name="last_name_kana">
+                    <input type="hidden" value="<?php echo $_POST['mail']; ?>" name="mail">
+                    <input type="hidden" value="<?php echo $_POST['password']; ?>" name="password">
+                    <input type="hidden" value="<?php echo $_POST['gender']; ?>" name="gender">
+                    <input type="hidden" value="<?php echo $_POST['postal_code']; ?>" name="postal_code">
+                    <input type="hidden" value="<?php echo $_POST['prefecture']; ?>" name="prefecture">
+                    <input type="hidden" value="<?php echo $_POST['address_1']; ?>" name="address_1">
+                    <input type="hidden" value="<?php echo $_POST['address_2']; ?>" name="address_2">
+                    <input type="hidden" value="<?php echo $_POST['authority']; ?>" name="authority">
 
+                    
+                </form>
+            </div> 
+        </div>
+    </main>
 
-
-<body>
-<?php
-    if (isset($_POST['id'])) {
-        try {
- 
-            // 接続処理
-            $dsn = 'mysql:host=localhost;dbname=lesson01';
-            $user = 'root';
-            $password = 'root';
-            $dbh = new PDO($dsn, $user, $password);
- 
-            // UPDATE文を発行
-            $id = $_POST['id']; // UPDATEするレコードのID
- 
-            $family_name = isset($_POST['family_name']) ? $_POST['family_name'] : '';
-            $last_name= isset($_POST['last_name']) ? $_POST['last_name'] : '';
-            $family_name_kana = isset($_POST['family_name_kana']) ? $_POST['family_name_kana'] : '';
- 
-            $sql = "UPDATE diblog_account SET family_name = :family_name, last_name = :last_name, family_name_kana = :family_name_kana WHERE id = :id";
-            $stmt = $dbh->prepare($sql);
- 
-            $stmt->execute([":family_name" => $family_name, ":last_name" => $last_name, ":family_name_kana" => $family_name_kana, ":id" => $id ]); // 連想配列でバインド
- 
-            print("レコードを更新しました<br>");
-            print('<a href="update_complete.php">一覧表示へ</a>');
- 
-            // 接続切断
-            $dbh = null;
- 
- 
-        } catch (PDOException $e) {
-            print $e->getMessage() . "<br/>";
-            die();
-        }
-    }
-?>
 <!-- 更新する・前に戻る -->
     <div class="form">
             <form action="regist.php">
@@ -118,7 +172,7 @@
     </div> 
 </body>
 
-</html>
+
          
 
     <footer>

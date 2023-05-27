@@ -29,7 +29,7 @@
    </header>
 
    <main>
-    <h1>アカウント登録確認画面</h1>
+    <h1>アカウント更新確認画面</h1>
     <div class="confirm">
         <p>名前（姓）
            <br>

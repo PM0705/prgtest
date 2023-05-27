@@ -54,6 +54,41 @@
 
 
 <body>
+<?php
+    if (isset($_POST['id'])) {
+        try {
+ 
+            // 接続処理
+            $dsn = 'mysql:host=localhost;dbname=lesson01';
+            $user = 'root';
+            $password = 'root';
+            $dbh = new PDO($dsn, $user, $password);
+ 
+            // UPDATE文を発行
+            $id = $_POST['id']; // UPDATEするレコードのID
+ 
+            $family_name = isset($_POST['family_name']) ? $_POST['family_name'] : '';
+            $last_name= isset($_POST['last_name']) ? $_POST['last_name'] : '';
+            $family_name_kana = isset($_POST['family_name_kana']) ? $_POST['family_name_kana'] : '';
+ 
+            $sql = "UPDATE diblog_account SET family_name = :family_name, last_name = :last_name, family_name_kana = :family_name_kana WHERE id = :id";
+            $stmt = $dbh->prepare($sql);
+ 
+            $stmt->execute([":family_name" => $family_name, ":last_name" => $last_name, ":family_name_kana" => $family_name_kana, ":id" => $id ]); // 連想配列でバインド
+ 
+            print("レコードを更新しました<br>");
+            print('<a href="update_complete.php">一覧表示へ</a>');
+ 
+            // 接続切断
+            $dbh = null;
+ 
+ 
+        } catch (PDOException $e) {
+            print $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+?>
 
 <?php
 // エラーメッセージ、登録完了メッセージの初期化
