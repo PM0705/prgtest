@@ -130,7 +130,7 @@
                                 </dl>
                                 <!-- 住所（番地） -->
                                 <dl>
-                                    <dt> <label for="住所（番地）">住所（番地）<br>※ひらがな、漢字、数字、全角カタカナ、記号（-/スペース）のみ入力可</label></dt>
+                                    <dt><label for="住所（番地）">住所（番地）<br>※ひらがな、漢字、数字、全角カタカナ、記号（-/スペース）のみ入力可</label></dt>
                                     <dd><input type="text" class="text" size="35" name="address_2"id="address_2"
                                                pattern="[\d\u30A1-\u30F6\u4E00-\u9FFF\u3040-\u309Fー\s　\-]*" maxlength="100" title="ひらがな、漢字、数字、カタカナ、記号（-/スペース）でご入力ください"><br>
                                     <span class="err-msg-address_2"></span>
@@ -156,11 +156,7 @@
                 </form>
             </div>
         </div>
-                                
-                                
-                             
-                      
-                    
+       
     </main>
     <footer>
         <p class="footer-text">Copyright D.I.worksI D.I.blog is the one which provides A to Z about programming</p>
