@@ -110,8 +110,16 @@
                         ?>
                     </td>
                     <td>
-                    <button type="button" class="btn btn-green" onclick="location.href='update.php'" value="遷移">編集</button>
-                    <button type="button" class="btn btn-red" onclick="location.href='delete.php'" value="遷移">削除</button>
+                        <a href="update.php?id=<?php echo($row['id']) ?>">更新</a>
+                        <a href="delete.php?=<?php echo $value['id']; ?>">削除</a>
+                        <!-- ★追加：削除★ -->
+                        <?php if($_SESSION['id'] == $post['created_by']): ?>
+                            <button type="button" class="btn btn-red" onclick="location.href='update.php'<?php echo htmlspecialchars($post['id'], ENT_QUOTES); ?>">更新</button>
+                        <?php endif; ?>
+                    	<!-- ★追加：削除★ -->
+                        <?php if($_SESSION['id'] == $post['created_by']): ?>
+                            <button type="button" class="btn btn-red" onclick="location.href='delete.php'<?php echo htmlspecialchars($post['id'], ENT_QUOTES); ?>">削除</button>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endwhile; ?>

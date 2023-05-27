@@ -31,7 +31,7 @@
         
         <div class="main-container">
             <div class="left">
-                <h3>入力フォーム</h3>
+                <h3> 入入力フォーム</h3>
                 <form method="post" action="regist_confirm.php" name="form" autocomplete="off" >
                     <div class="contact-form errorMsg">
                         
