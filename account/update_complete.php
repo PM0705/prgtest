@@ -1,25 +1,64 @@
 <?php
-    require('list.php');
+// エラーメッセージ、登録完了メッセージの初期化
+//フォームから受け取った値を変数に代入
+// $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+// mb_internal_encoding("utf8");
 
-    $id = $_GET['id'];
+$message = "";
+    //CREATE_INFO(テーブル)の中身を初期値に入れ込む
+    $id = $_POST['id'];
+    $db = new PDO('mysql:host=localhost;dbname=lesson01','root','root');
+    $sql = 'SELECT * FROM diblog_account WHERE id = :id';
+    $stmt = $db->prepare($sql);
+    $stmt -> execute([':id' => $id]);
+    $result = $stmt->fetch(PDO::FETCH_OBJ);
 
-    // 更新対象の投稿内容を取得
-    $pdo = db_connect();
-    try {
-        $sql = "SELECT * FROM diblog_account WHERE id = :id";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(":id", $id);
-        $stmt->execute();
-      } catch (PDOException $e) {
+
+ //更新処理
+if(isset($_POST['family_name']) && ($_POST['last_name']) && ($_POST['family_name_kana']) && 
+         ($_POST['last_name_kana']) && ($_POST['mail']) && ($_POST['password']) && ($_POST['gender']) && ($_POST['postal_code'])
+         ($_POST['prefecture']) && ($_POST['address_1']) && ($_POST['address_2']) && ($_POST['authority'])
+  ){
+    $family_name = $_POST['family_name'];
+    $last_name = $_POST['last_name'];
+    $family_name_kana = $_POST['family_name_kana'];
+    $last_name_kana = $_POST['last_name_kana'];
+    $mail = $_POST['mail'];
+    $password = $_POST['password'];
+    $gender = $_POST['gender'];
+    $postal_code = $_POST['postal_code'];
+    $prefecture = $_POST['prefecture'];
+    $address_1 = $_POST['address_1'];
+    $address_2 = $_POST['address_2'];
+    $authority = $_POST['authority'];
+    try{
+        $db = new PDO('mysql:host=localhost;dbname=lesson01','root','root');
+        $sql = 'UPDATE diblog_account SET family_name = :family_name, last_name = :last_name,
+                       family_name_kana = :family_name_kana, last_name_kana = :last_name_kana,
+                       mail = :mail, password = :password,
+                       gender = :gender, postal_code = :postal_code,
+                       prefecture = :prefecture, postal_code = :postal_code,
+                       gender = :gender, address_1 = :address_1,
+                       address_2 = :address_2, authority = :authority,
+                       WHERE id=:id';
+        $stmt = $db->prepare($sql);
+        $stmt -> execute([':family_name'=> $family_name,':last_name'=> $last_name,'family_name_kana'=> $family_name_kana,':last_name_kana'=> $last_name_kana,
+                          ':mail'=> $mail,':password'=> $password,':gender'=> $gender,':postal_code'=> $postal_code,
+                          ':prefecture'=> $prefecture,':address_1'=> $address_1,':address_2'=> $address_2,':authority'=> $authority,
+                          ':id'=> $id ]);
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        // header('Location: http://192.168.33.10/AdjusTime/Schedule.php');
+        exit;
+        $message = '更新が完了しました。';   
+        }catch(PDOException $e){
         echo $e->getMessage();
-        die();
-      }
+        exit;
+        $message = 'エラーが発生したためアカウント登録できません。';
+          }
+    }
 
-    // 取得できたタイトルと本文を変数に入れておく
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    $id = $row['id'];
-    $mail = $row['mail'];
 ?>
+
 <!DOCTYPE html>
 <html lang="jp">
 <head>
@@ -54,80 +93,21 @@
 
 
 <body>
-<?php
-    if (isset($_POST['id'])) {
-        try {
- 
-            // 接続処理
-            $dsn = 'mysql:host=localhost;dbname=lesson01';
-            $user = 'root';
-            $password = 'root';
-            $dbh = new PDO($dsn, $user, $password);
- 
-            // UPDATE文を発行
-            $id = $_POST['id']; // UPDATEするレコードのID
- 
-            $family_name = isset($_POST['family_name']) ? $_POST['family_name'] : '';
-            $last_name= isset($_POST['last_name']) ? $_POST['last_name'] : '';
-            $family_name_kana = isset($_POST['family_name_kana']) ? $_POST['family_name_kana'] : '';
- 
-            $sql = "UPDATE diblog_account SET family_name = :family_name, last_name = :last_name, family_name_kana = :family_name_kana WHERE id = :id";
-            $stmt = $dbh->prepare($sql);
- 
-            $stmt->execute([":family_name" => $family_name, ":last_name" => $last_name, ":family_name_kana" => $family_name_kana, ":id" => $id ]); // 連想配列でバインド
- 
-            print("レコードを更新しました<br>");
-            print('<a href="update_complete.php">一覧表示へ</a>');
- 
-            // 接続切断
-            $dbh = null;
- 
- 
-        } catch (PDOException $e) {
-            print $e->getMessage() . "<br/>";
-            die();
-        }
-    }
-?>
 
-<?php
-// エラーメッセージ、登録完了メッセージの初期化
+<main>
+    <h1>アカウント登録完了画面</h1>
+    <div class="confirm">
+        <div><?php echo htmlspecialchars($message, ENT_QUOTES); ?></div>
+        <form action="index.html">
+        <button onclick="location.href='index.html'" class="button1" value="TOPページへ戻る" >
+                TOPページへ戻る          
+        </button>
+        </form>
+    </div>
 
-$message = "";
-try {
+</main>
 
-//フォームから受け取った値を変数に代入
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-mb_internal_encoding("utf8");
-$pdo=new PDO("mysql:dbname=lesson01;host=localhost;","root","root");
-$pdo ->exec("INSERT INTO diblog_account(family_name,last_name,family_name_kana,last_name_kana,
-                         mail,password,gender,postal_code,prefecture,address_1,address_2,authority) 
-      VALUES ('".$_POST['family_name']."',
-              '".$_POST['last_name']."',
-              '".$_POST['family_name_kana']."',
-              '".$_POST['last_name_kana']."',
-              '".$_POST['mail']."',
-              '$password',
-              '".$_POST['gender']."',
-              '".$_POST['postal_code']."',
-              '".$_POST['prefecture']."',
-              '".$_POST['address_1']."',
-              '".$_POST['address_2']."',
-              '".$_POST['authority']."'
-              
-      );");
-    $message = '更新が完了しました。';
-    } catch (PDOException $e) {
-        
-        $message = 'エラーが発生したためアカウント登録できません。';
-            // $e->getMessage() でエラー内容を参照可能（デバッグ時のみ表示）
-            // echo $e->getMessage();
-            }
-// header("Location:http://localhost/account/list.php");  
-?>
-</body>
 
-</html>
          
 
     <footer>
