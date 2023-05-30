@@ -1,62 +1,59 @@
 <?php
+// エラーメッセージ、登録完了メッセージの初期化
+$id = $_POST['id'];
+$message = "";
+try {
+
+//フォームから受け取った値を変数に代入
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+mb_internal_encoding("utf8");
+$pdo=new PDO("mysql:dbname=lesson01;host=localhost;","root","root");
+$sql='UPDATE diblog_account SET family_name = :family_name, last_name = :last_name,
+                    family_name_kana = :family_name_kana, last_name_kana = :last_name_kana,
+                    mail = :mail, password = :password,
+                    gender = :gender, postal_code = :postal_code,
+                    prefecture = :prefecture, postal_code = :postal_code,
+                    gender = :gender, address_1 = :address_1,
+                    address_2 = :address_2, authority = :authority
+                    WHERE id=:id';
+$stmt = $pdo->prepare($sql);
+//配列に格納
+$params = array(':family_name' => $_REQUEST['family_name'], 
+                ':last_name' => $_REQUEST['last_name'], 
+                ':family_name_kana' => $_REQUEST['family_name_kana'], 
+                ':last_name_kana' => $_REQUEST['last_name_kana'], 
+                ':mail' => $_REQUEST['mail'], 
+                ':password' => $_REQUEST['password'], 
+                ':gender' => $_REQUEST['gender'], 
+                ':postal_code' => $_REQUEST['postal_code'], 
+                ':prefecture' => $_REQUEST['prefecture'], 
+                ':address_1' => $_REQUEST['address_1'], 
+                ':address_2' => $_REQUEST['address_2'],
+                ':authority' => $_REQUEST['authority'],
+                ':id' => $_REQUEST['id']);
+$stmt->execute($params);
+
+$message = '登録が完了しました。';
+    } catch (PDOException $e) {
+        
+        $message = 'エラーが発生したためアカウント登録できません。';
+            // $e->getMessage() でエラー内容を参照可能（デバッグ時のみ表示）
+            // echo $e->getMessage();
+            }
+// header("Location:http://localhost/account/list.php");  
+?>
+<?php
             echo $_POST['family_name'];
             echo $_POST['id'];
             ?>
 
 
-<?php
-try{
-// エラーメッセージ、登録完了メッセージの初期化
-//フォームから受け取った値を変数に代入
-// $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-// mb_internal_encoding("utf8");
 
-    $message = "";
-    //CREATE_INFO(テーブル)の中身を初期値に入れ込む
-    $id = $_POST['id'];
-    $db = new PDO('mysql:host=localhost;dbname=lesson01','root','root');
-    $sql = 'SELECT * FROM diblog_account WHERE id = :id';
-    $stmt = $db->prepare($sql);
-    $stmt -> execute([':id' => $id]);
-    $result = $stmt->fetch(PDO::FETCH_OBJ);
-
-
-    //更新処理
-    
-    $family_name = $_POST['family_name'];
-    $last_name = $_POST['last_name'];
-    $family_name_kana = $_POST['family_name_kana'];
-    $last_name_kana = $_POST['last_name_kana'];
-    $mail = $_POST['mail'];
-    $password = $_POST['password'];
-    $gender = $_POST['gender'];
-    $postal_code = $_POST['postal_code'];
-    $prefecture = $_POST['prefecture'];
-    $address_1 = $_POST['address_1'];
-    $address_2 = $_POST['address_2'];
-    $authority = $_POST['authority'];
-
-        
-    $sql = 'UPDATE diblog_account SET family_name = :family_name, last_name = :last_name,
-                       family_name_kana = :family_name_kana, last_name_kana = :last_name_kana,
-                       mail = :mail, password = :password,
-                       gender = :gender, postal_code = :postal_code,
-                       prefecture = :prefecture, postal_code = :postal_code,
-                       gender = :gender, address_1 = :address_1,
-                       address_2 = :address_2, authority = :authority
-                       WHERE id=:id';
-
-        $message = '更新が完了しました。';   
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-        die();
-        $message = 'エラーが発生したためアカウント更新できません。';
-      }
         
           
     
 
-?>
+
 
 <!DOCTYPE html>
 <html lang="jp">
