@@ -35,12 +35,6 @@
             <p>名前（姓）
             <br>
             <?php
-            echo $_POST['id'];
-            ?>
-            </p>
-            <p>名前（姓）
-            <br>
-            <?php
             echo $_POST['family_name'];
             ?>
             </p>

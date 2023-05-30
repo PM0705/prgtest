@@ -33,7 +33,7 @@ $params = array(':family_name' => $_REQUEST['family_name'],
                 ':id' => $_REQUEST['id']);
 $stmt->execute($params);
 
-$message = '登録が完了しました。';
+$message = '更新が完了しました。';
     } catch (PDOException $e) {
         
         $message = 'エラーが発生したためアカウント登録できません。';
@@ -42,10 +42,7 @@ $message = '登録が完了しました。';
             }
 // header("Location:http://localhost/account/list.php");  
 ?>
-<?php
-            echo $_POST['family_name'];
-            echo $_POST['id'];
-            ?>
+
 
 
 

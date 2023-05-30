@@ -65,7 +65,7 @@
                         <div class="contact-form errorMsg">
                             
                                 <!-- ID -->
-                                <input type="text" name="id" value="<?php echo($member->id) ?>">
+                                <input type="hidden" name="id" value="<?php echo($member->id) ?>">
                                 
                                 <!-- お名前 -->
                                 <label for="family_name">名前（姓）※漢字・ひらがなのみ可</label>
