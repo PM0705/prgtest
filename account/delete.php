@@ -1,13 +1,29 @@
 <?php
-    mb_internal_encoding("utf8");
-    $pdo= new PDO("mysql:dbname=lesson01;host=localhost;","root","root");
-    $stmt= $pdo->query("select*from diblog_account ORDER BY id DESC");
-    ?>
-<?php
-
-// 登録データ取得
-$post_datas = $action->getDbPostData();
-
+    if (isset($_GET['id'])) {
+        try {
+ 
+            // 接続処理
+            $dsn = 'mysql:host=localhost;dbname=lesson01';
+            $user = 'root';
+            $password = 'root';
+            $dbh = new PDO($dsn, $user, $password);
+ 
+            // SELECT文を発行
+            $sql = "SELECT * FROM diblog_account WHERE id = :id";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+            $stmt->execute();
+            $member = $stmt->fetch(PDO::FETCH_OBJ); // 1件のレコードを取得
+ 
+            // 接続切断
+            $dbh = null;
+ 
+        } catch (PDOException $e) {
+            print $e->getMessage() . "<br/>";
+            die();
+        }
+ 
+    }
 ?>
 <!DOCTYPE html>
 <html lang="jp">
@@ -39,55 +55,47 @@ $post_datas = $action->getDbPostData();
         </div>
     </header>
     <main>
-
-
-
-    <h1>アカウント削除画面</h1>
-    <!-- 投稿表示エリア -->
-    <?php if (!empty($post_datas)) {?>
-        <table width="100%" border="1">
-            <tr>
-                <th>名前</th>
-                <th>内容</th>
-                <th>日付</th>
-                <th>編集</th>
-                <th>削除</th>
-            </tr>
-            <?php foreach ($post_datas as $post) { ?>
-                <tr>
-                    <td>
-                        <?php if (!empty($post["email"])) {?><a href="mailto:
-                            <?php echo $post["email"];?>"><?php } ?>
-                            <?php echo $post["family_name"];?>
-                            <?php if (!empty($post["email"])) {?></a><?php }
-                        ?>
-                    </td>
-                    <td><?php echo mb_substr($post["body"], 0,  15);?>..</td>
-                    <td><?php echo $post["created_at"];?></td>
-                    <td align="center" valign="middle">
-                        <form action="./index.php" method="post">
-                            <input type="hidden" name="eventId" value="edit">
-                            <input type="hidden" name="id" value="<?php echo $post["id"];?>">
-                            <input type="submit" value="変更">
-                        </form>
-                    </td>
-                    <td align="center" valign="middle">
-                        <form action="./index.php" method="post">
-                            <input type="hidden" name="eventId" value="delete">
-                            <input type="hidden" name="id" value="<?php echo $post["id"];?>">
-                            <input type="submit" value="削除">
-                        </form>
-                    </td>
-                </tr>
-            <?php } ?>
-        </table>
-    <?php } ?>
-    <!-- // 投稿表示エリア -->
-    <hr>
-    <p><a href="./">掲示板に戻る</a></p>
-</body>
-</html>
-         
+        <form method="post" action="delete_confirm.php" name="form" autocomplete="off" >
+            <div class="contact-form errorMsg">
+                <div class="left">
+                <h3> アカウント更新画面</h3>
+                <?php echo($member->id) ?><br>
+                <?php print($member->family_name) ?><br>
+                <?php print($member->last_name) ?><br>
+                <?php print($member->family_name_kana) ?><br>
+                <?php print($member->last_name_kana) ?><br>
+                <?php print($member->mail) ?><br>
+                <?php print($member->password) ?><br>
+                <?php
+                    error_reporting(0);
+                    if ($gender == 0) {
+                        echo "男";
+                        }else{
+                                echo "女";
+                        }
+                    ?><br>
+                <?php print($member->postal_code) ?><br>
+                <?php print('<option value="'.$member->prefecture.'">'.$member->prefecture.'</option>') ?><br>
+                <?php print($member->address_1) ?><br>
+                <?php print($member->address_2) ?><br>
+                <?php
+                    error_reporting(0);
+                    if ($authority == 0) {
+                        echo "一般";
+                        }else{
+                                echo "管理者";
+                        }
+                    ?>
+                    <!-- 送信ボタン -->
+                    <div class="contact-submit">
+                            <div>
+                                <input type="submit" class="submit" value="確認する">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </form> 
+    
     </main>
     <footer>
         <p class="footer-text">Copyright D.I.worksI D.I.blog is the one which provides A to Z about programming</p>
