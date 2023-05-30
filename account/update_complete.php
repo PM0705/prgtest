@@ -1,10 +1,17 @@
 <?php
+            echo $_POST['family_name'];
+            echo $_POST['id'];
+            ?>
+
+
+<?php
+try{
 // エラーメッセージ、登録完了メッセージの初期化
 //フォームから受け取った値を変数に代入
 // $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 // mb_internal_encoding("utf8");
 
-$message = "";
+    $message = "";
     //CREATE_INFO(テーブル)の中身を初期値に入れ込む
     $id = $_POST['id'];
     $db = new PDO('mysql:host=localhost;dbname=lesson01','root','root');
@@ -14,11 +21,8 @@ $message = "";
     $result = $stmt->fetch(PDO::FETCH_OBJ);
 
 
- //更新処理
-if(isset($_POST['family_name']) && ($_POST['last_name']) && ($_POST['family_name_kana']) && 
-         ($_POST['last_name_kana']) && ($_POST['mail']) && ($_POST['password']) && ($_POST['gender']) && ($_POST['postal_code'])
-         ($_POST['prefecture']) && ($_POST['address_1']) && ($_POST['address_2']) && ($_POST['authority'])
-  ){
+    //更新処理
+    
     $family_name = $_POST['family_name'];
     $last_name = $_POST['last_name'];
     $family_name_kana = $_POST['family_name_kana'];
@@ -31,31 +35,26 @@ if(isset($_POST['family_name']) && ($_POST['last_name']) && ($_POST['family_name
     $address_1 = $_POST['address_1'];
     $address_2 = $_POST['address_2'];
     $authority = $_POST['authority'];
-    try{
-        $db = new PDO('mysql:host=localhost;dbname=lesson01','root','root');
-        $sql = 'UPDATE diblog_account SET family_name = :family_name, last_name = :last_name,
+
+        
+    $sql = 'UPDATE diblog_account SET family_name = :family_name, last_name = :last_name,
                        family_name_kana = :family_name_kana, last_name_kana = :last_name_kana,
                        mail = :mail, password = :password,
                        gender = :gender, postal_code = :postal_code,
                        prefecture = :prefecture, postal_code = :postal_code,
                        gender = :gender, address_1 = :address_1,
-                       address_2 = :address_2, authority = :authority,
+                       address_2 = :address_2, authority = :authority
                        WHERE id=:id';
-        $stmt = $db->prepare($sql);
-        $stmt -> execute([':family_name'=> $family_name,':last_name'=> $last_name,'family_name_kana'=> $family_name_kana,':last_name_kana'=> $last_name_kana,
-                          ':mail'=> $mail,':password'=> $password,':gender'=> $gender,':postal_code'=> $postal_code,
-                          ':prefecture'=> $prefecture,':address_1'=> $address_1,':address_2'=> $address_2,':authority'=> $authority,
-                          ':id'=> $id ]);
-        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-        // header('Location: http://192.168.33.10/AdjusTime/Schedule.php');
-        exit;
+
         $message = '更新が完了しました。';   
-        }catch(PDOException $e){
+    } catch (PDOException $e) {
         echo $e->getMessage();
-        exit;
-        $message = 'エラーが発生したためアカウント登録できません。';
-          }
-    }
+        die();
+        $message = 'エラーが発生したためアカウント更新できません。';
+      }
+        
+          
+    
 
 ?>
 

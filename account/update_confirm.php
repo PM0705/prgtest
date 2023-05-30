@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="jp">
 <head>
@@ -31,6 +32,12 @@
     <main>
         <h1>アカウント更新確認画面</h1>
         <div class="confirm">
+            <p>名前（姓）
+            <br>
+            <?php
+            echo $_POST['id'];
+            ?>
+            </p>
             <p>名前（姓）
             <br>
             <?php
@@ -122,6 +129,8 @@
                     </button>
                 </form>
                 <!-- 更新する・前に戻る -->
+                
+
                 <form action="update_complete.php" method="post">
                 
                     <input type="submit" class="button2" value="登録する"href="update_complete.php<? $result['id'] ?>" name="btnSend">
