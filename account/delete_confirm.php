@@ -49,7 +49,7 @@
                 
                     <input type="submit" class="delete1"  id="delete1" value="削除する"href="delete_complete.php<? $result['id'] ?>" name="btnSend">
                     <input type="hidden" value="<?php echo $_POST['id']; ?>" name="id">
-                    <input type="hidden" value="<?php echo $_POST['delete_flag']; ?>" name="id">
+                    <input type="hidden" value="<?php echo $_POST['delete_flag']; ?>" name="delete_flag">
 
 
                     

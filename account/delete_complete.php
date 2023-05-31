@@ -1,20 +1,25 @@
-
 <?php
-// エラーメッセージ、登録完了メッセージの初期化
+            echo $_POST['id'];
+            ?>
+<?php
+
 $id = $_POST['id'];
-$delete_flag = $_POST['delete_flag'];
+// エラーメッセージ、登録完了メッセージの初期化
 $message = "";
 
 try {
 
 //フォームから受け取った値を変数に代入
-$del=filter_input(INPUT_GET,"del");
-$pdo=new PDO("mysql:dbname=lesson01;host=localhost;","root","root");
-$sql='UPDATE diblog_account SET delete_flag ='0'  WHERE id=:id';
-$stmt = $pdo->prepare($sql);
-//配列に格納
 
-$stmt->execute([$del]);
+$pdo=new PDO("mysql:dbname=lesson01;host=localhost;","root","root");
+$sql='UPDATE diblog_account SET delete_flag = :delete_flag  WHERE id=:id';
+$stmt = $pdo->prepare($sql);
+//  更新する値と該当のIDを配列に格納する
+$params = array(':delete_flag' => '0' ,
+                ':id' => $_POST['id']); 
+
+// 更新する値と該当のIDが入った変数をexecuteにセットしてSQLを実行
+$stmt->execute($params);
 
 $message = '削除が完了しました。';
     } catch (PDOException $e) {
@@ -69,10 +74,7 @@ $message = '削除が完了しました。';
 
 
 <body>
-<?php
-    echo $_POST['id'];
-    echo $_POST['delete_flag'];
-?>
+
 <main>
     <h1>アカウント登録完了画面</h1>
     <div class="confirm">
