@@ -31,7 +31,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アカウント登録画面</title>
+    <title>アカウント削除画面</title>
     <meta name="description" content="sanple sanple sanple sanple sanple">
     <link rel="stylesheet" href="CSS/sanitize.css">
     <link rel="stylesheet" href="CSS/registstyle.css">
@@ -59,13 +59,32 @@
             <div class="contact-form errorMsg">
                 <div class="left">
                 <h3> アカウント更新画面</h3>
+                <!-- ID -->
+                <input type="hidden" name="id" value="<?php echo($member->id) ?>">
+                <input type="hidden" name="delete_flag" value="<?php echo($member->delete_flag) ?>">
+                <label for="family_name">削除</label>
+                <?php echo($member->delete_flag) ?><br>
+
+                <label for="family_name">ID</label>
                 <?php echo($member->id) ?><br>
-                <?php print($member->family_name) ?><br>
-                <?php print($member->last_name) ?><br>
-                <?php print($member->family_name_kana) ?><br>
-                <?php print($member->last_name_kana) ?><br>
-                <?php print($member->mail) ?><br>
-                <?php print($member->password) ?><br>
+
+                <label for="family_name">名前（姓）</label>
+                <?php echo($member->family_name) ?><br>
+
+                <label for="last_name">名前（名）</label>
+                <?php echo($member->last_name) ?><br>
+
+                <label for="family_name_kana">カナ（姓）</label>
+                <?php echo($member->family_name_kana) ?><br>
+                
+                <label for="last_name_kana">カナ（名）</label>
+                <?php echo($member->last_name_kana) ?><br>
+
+                <label for="mail">メールアドレス<br>※半角英数字、半角ハイフンのみ可</label>
+                <?php echo($member->mail) ?><br>
+
+                <label for="password">パスワード</label>
+                <?php echo($member->password) ?><br>
                 <?php
                     error_reporting(0);
                     if ($gender == 0) {
@@ -74,10 +93,20 @@
                                 echo "女";
                         }
                     ?><br>
+
+                <label for="郵便番号">郵便番号※半角数字のみ</label>
                 <?php print($member->postal_code) ?><br>
-                <?php print('<option value="'.$member->prefecture.'">'.$member->prefecture.'</option>') ?><br>
+                
+                <div class="prefecture1">
+                    <label for="住所（都道府県）">住所（都道府県）</label>
+                    <?php print('<option value="'.$member->prefecture.'">'.$member->prefecture.'</option>') ?><br>
+                </div>
+                <label for="住所（市区町村）">住所（市区町村）</label>
                 <?php print($member->address_1) ?><br>
+                <label for="住所（市区町村）">住所（番地）</label>
                 <?php print($member->address_2) ?><br>
+
+                <label for="アカウント権限">アカウント権限</label>
                 <?php
                     error_reporting(0);
                     if ($authority == 0) {

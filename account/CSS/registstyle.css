@@ -109,3 +109,8 @@ footer{
 
 }
 
+/* prefecture1 */
+
+.prefecture1{
+    display: flex;
+}

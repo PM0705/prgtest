@@ -113,29 +113,35 @@
                                 <span class="err-msg-gender"></span>                              
                                 <br>
                                  <!-- 郵便番号 -->
-                                 <label for="郵便番号">郵便番号※半角数字のみ</label>
+                                <label for="郵便番号">郵便番号</label>
                                 <input type=tel class="text" size="35" id="postal_code" name="postal_code" maxlength="7"
                                        pattern="^[\d]+$"title="半角数字でご入力ください" 
                                        value="<?php print($member->postal_code) ?>"><br>
                                 <span class="err-msg-postal_code"></span>
                                 <br>
                                 <!-- 住所（都道府県） -->
+                                
                                 <label for="住所（都道府県）">住所（都道府県）</label>
-                                <select name="prefecture"id="prefecture">
-                                                <?php
-                                                    $prefs = array ('','北海道','青森県','岩手県','宮城県','秋田県','山形県',
-                                                                        '福島県','茨城県','栃木県','群馬県','埼玉県','千葉県',
-                                                                        '東京都','神奈川県','山梨県','新潟県','富山県','石川県',
-                                                                        '福井県','長野県','岐阜県','静岡県','愛知県','三重県',
-                                                                        '滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県',
-                                                                        '鳥取県','島根県','岡山県','広島県','山口県','徳島県',
-                                                                        '香川県','愛媛県','高知県','福岡県','佐賀県','長崎県',
-                                                                        '熊本県','大分県','宮崎県','鹿児島県','沖縄県');
-                                                            foreach($prefs as $pref){
-                                                                    print('<option value="'.$member->prefecture.'">'.$member->prefecture.'</option>');
-                                                            }
-                                                ?>
-                                </select><br>
+                                    <select name="prefecture"id="prefecture" >
+                                    <option value="" selected><?php print($member->prefecture) ?></option>
+
+                                                    <?php
+                                                        $prefs = array ('北海道','青森県','岩手県','宮城県','秋田県','山形県',
+                                                                            '福島県','茨城県','栃木県','群馬県','埼玉県','千葉県',
+                                                                            '東京都','神奈川県','山梨県','新潟県','富山県','石川県',
+                                                                            '福井県','長野県','岐阜県','静岡県','愛知県','三重県',
+                                                                            '滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県',
+                                                                            '鳥取県','島根県','岡山県','広島県','山口県','徳島県',
+                                                                            '香川県','愛媛県','高知県','福岡県','佐賀県','長崎県',
+                                                                            '熊本県','大分県','宮崎県','鹿児島県','沖縄県');
+                                                                foreach($prefs as $prefs){
+                                                                        print('<option value="'.$prefs.'">'.$prefs.'</option>');
+                                                                }
+                                                    ?>
+                                    
+                                    </select>
+                                
+                                <br>
                                 <span class="err-msg-prefecture"></span>
                                 <br>
                                 <!-- 住所（市区町村） -->

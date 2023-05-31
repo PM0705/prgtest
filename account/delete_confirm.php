@@ -29,10 +29,14 @@
         </div>
     </header>
     <main>
+    <?php
+            echo $_POST['id'];
+            echo $_POST['delete_flag'];
+    ?>
     <h3>  アアカウント削除画面</h3>
     <p class="delete">本当に削除してよろしいですか?</p>
     <div class="form">
-                <form action="update.php">
+                <form action="delete.php">
                     <!-- <input type="submit" class="button1" value="前に戻る"> -->
                     <button type="button" class="button1" value="前に戻る" onclick=history.back()>
                             前に戻る
@@ -41,22 +45,12 @@
                 <!-- 更新する・前に戻る -->
                 
 
-                <form action="update_complete.php" method="post">
+                <form action="delete_complete.php" method="post">
                 
-                    <input type="submit" class="button2" value="登録する"href="update_complete.php<? $result['id'] ?>" name="btnSend">
+                    <input type="submit" class="delete1"  id="delete1" value="削除する"href="delete_complete.php<? $result['id'] ?>" name="btnSend">
                     <input type="hidden" value="<?php echo $_POST['id']; ?>" name="id">
-                    <input type="hidden" value="<?php echo $_POST['family_name']; ?>" name="family_name">
-                    <input type="hidden" value="<?php echo $_POST['last_name']; ?>" name="last_name">
-                    <input type="hidden" value="<?php echo $_POST['family_name_kana']; ?>" name="family_name_kana">
-                    <input type="hidden" value="<?php echo $_POST['last_name_kana']; ?>" name="last_name_kana">
-                    <input type="hidden" value="<?php echo $_POST['mail']; ?>" name="mail">
-                    <input type="hidden" value="<?php echo $_POST['password']; ?>" name="password">
-                    <input type="hidden" value="<?php echo $_POST['gender']; ?>" name="gender">
-                    <input type="hidden" value="<?php echo $_POST['postal_code']; ?>" name="postal_code">
-                    <input type="hidden" value="<?php echo $_POST['prefecture']; ?>" name="prefecture">
-                    <input type="hidden" value="<?php echo $_POST['address_1']; ?>" name="address_1">
-                    <input type="hidden" value="<?php echo $_POST['address_2']; ?>" name="address_2">
-                    <input type="hidden" value="<?php echo $_POST['authority']; ?>" name="authority">
+                    <input type="hidden" value="<?php echo $_POST['delete_flag']; ?>" name="id">
+
 
                     
                 </form>
@@ -68,7 +62,7 @@
         <p class="footer-text">Copyright D.I.worksI D.I.blog is the one which provides A to Z about programming</p>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script type="text/javascript" src="app2.js"></script>   
+<script type="text/javascript" src="app3.js"></script>   
 </body>
 </html>
 
