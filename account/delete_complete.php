@@ -19,7 +19,7 @@ $params = array(':delete_flag' => '0' ,
 // 更新する値と該当のIDが入った変数をexecuteにセットしてSQLを実行
 $stmt->execute($params);
 
-$message = '削除が完了しました。';
+$message = '削除完了しました。';
     } catch (PDOException $e) {
         
         $errmessage = 'エラーが発生したためアカウント削除できません。';

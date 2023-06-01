@@ -53,7 +53,7 @@ h1{
     width: 100%;
     font-size: 23px;
 }
-.noerror{
+.confirm{
     margin: 0outo;
     background-color: #fbfbfb;
     border: 3px solid #ebebeb;
@@ -63,17 +63,28 @@ h1{
     padding-left: 20px;
     
     padding-bottom: 60px;
-    
+    font-size: 150px;
     height: 750px;
     text-align:center ;
     display:table-cell;
     vertical-align:middle;
 }
 /* errorメッセージ */
-.error{
-
+.confirm > .error{
+    margin: 0outo;
+    background-color: #fbfbfb;
+    border: 3px solid #ebebeb;
+    border-radius: 10px;
+    width:   1900px;
+    padding-top: 20px;
+    padding-left: 20px;
     color: red;
-
+    padding-bottom: 60px;
+    font-size: 150px;
+    height: 750px;
+    text-align:center ;
+    display:table-cell;
+    vertical-align:middle;
 
 }
 form{

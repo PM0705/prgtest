@@ -60,6 +60,7 @@ header ul li{
 
 
 
+
 /* エラー */
 .form-invalid{
     color: red;
@@ -154,4 +155,9 @@ footer{
 
     color: red;
 
+}
+
+/* 空白 */
+span{
+    margin-left: 25px;
 }

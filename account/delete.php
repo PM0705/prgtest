@@ -58,28 +58,28 @@
         <form method="post" action="delete_confirm.php" name="form" autocomplete="off" >
             <div class="contact-form errorMsg">
                 
-                <h3> アカウント更新画面</h3>
+                <h3> アカウント削除画面</h3>
                 <div class="confirm">
                 <!-- ID -->
                 <input type="hidden" name="id" value="<?php echo($member->id) ?>">
                 <input type="hidden" name="delete_flag" value="<?php echo($member->delete_flag) ?>">
 
-                <label for="family_name">名前（姓）</label>
+                <label for="family_name">名前（姓）</label><span></span>
                 <?php echo($member->family_name) ?><br>
 
-                <label for="last_name">名前（名）</label>
+                <label for="last_name">名前（名）</label><span></span>
                 <?php echo($member->last_name) ?><br>
 
-                <label for="family_name_kana">カナ（姓）</label>
+                <label for="family_name_kana">カナ（姓）</label><span></span>
                 <?php echo($member->family_name_kana) ?><br>
                 
-                <label for="last_name_kana">カナ（名）</label>
+                <label for="last_name_kana">カナ（名）</label><span></span>
                 <?php echo($member->last_name_kana) ?><br>
 
-                <label for="mail">メールアドレス</label>
+                <label for="mail">メールアドレス</label><span></span>
                 <?php echo($member->mail) ?><br>
 
-                <label for="password">パスワード</label>
+                <label for="password">パスワード</label><span></span>
                 <?php
                 $pw = ($member->password) ;
                 echo str_repeat('⚫︎', mb_strlen($pw, 'UTF8'));
@@ -87,7 +87,7 @@
                 
                 <br>
 
-                <label for="gender">性別</label>
+                <label for="gender">性別</label><span></span>
                 <?php
                     error_reporting(0);
                     if ($gender == 0) {
@@ -97,19 +97,19 @@
                         }
                     ?><br>
 
-                <label for="郵便番号">郵便番号</label>
+                <label for="郵便番号">郵便番号</label><span></span>
                 <?php print($member->postal_code) ?><br>
                 
                 <div class="prefecture1">
-                    <label for="住所（都道府県）">住所（都道府県）</label>
+                    <label for="住所（都道府県）">住所（都道府県）</label><span></span>
                     <?php print('<option value="'.$member->prefecture.'">'.$member->prefecture.'</option>') ?><br>
                 </div><br>
-                <label for="住所（市区町村）">住所（市区町村）</label>
+                <label for="住所（市区町村）">住所（市区町村）</label><span></span>
                 <?php print($member->address_1) ?><br>
-                <label for="住所（市区町村）">住所（番地）</label>
+                <label for="住所（市区町村）">住所（番地）</label><span></span>
                 <?php print($member->address_2) ?><br>
 
-                <label for="アカウント権限">アカウント権限</label>
+                <label for="アカウント権限">アカウント権限</label><span></span>
                 <?php
                     error_reporting(0);
                     if ($authority == 0) {

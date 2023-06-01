@@ -44,7 +44,7 @@ header ul li{
 /* left */
 
 .main-container{
-    height: 1800px;
+    height: 1200px;
 }
 
 
@@ -66,9 +66,11 @@ form{
     background-color: #fbfbfb;
     border: 3px solid #ebebeb;
     border-radius: 10px;
-    width: 500px;
+    width: 1500px;
     margin-left: 30px;
+    height: 1000px;
 }
+
 
 .text, textarea, .dropdown{
     border: 1px solid #dfdfdf;
@@ -108,16 +110,5 @@ footer{
 
 }
 
-/* prefecture1 */
 
-.prefecture1{
-    display: flex;
-}
-
-/* 削除項目 */
-.delete{
-    font-size: 100px;
-
-
-}
 

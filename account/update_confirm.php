@@ -32,37 +32,37 @@
     <main>
         <h1>アカウント更新確認画面</h1>
         <div class="confirm">
-            <p>名前（姓）
+            <p>名前（姓）<span></span>
             
             <?php
             echo $_POST['family_name'];
             ?>
             </p>
-            <p>名前（名）
+            <p>名前（名） <span></span>
             
             <?php
             echo $_POST['last_name'];
             ?>
             </p>
-            <p>カナ（姓）
+            <p>カナ（姓）<span></span>
             
             <?php
             echo $_POST['family_name_kana'];
             ?>
             </p>
-            <p>カナ（名）
+            <p>カナ（名）<span></span>
             
             <?php
             echo $_POST['last_name_kana'];
             ?>
             </p>
-            <p>メールアドレス
+            <p>メールアドレス<span></span>
             
             <?php
             echo $_POST['mail'];
             ?>
             </p>
-            <p>パスワード
+            <p>パスワード<span></span>
             
             <?php
             $pw = $_POST['password'];
@@ -71,7 +71,7 @@
             ?>
             
             </p>
-            <p>性別
+            <p>性別<span></span>
             
             <?php
             error_reporting(0);
@@ -82,31 +82,31 @@
                 }
             ?>
             </p>
-            <p>郵便番号
+            <p>郵便番号<span></span>
             
             <?php
             echo $_POST['postal_code'];
             ?>
             </p>
-            <p>住所（都道府県）
+            <p>住所（都道府県）<span></span>
             
             <?php
             echo $_POST['prefecture'];
             ?>
             </p>
-            <p>住所（市区町村）
+            <p>住所（市区町村）<span></span>
             
             <?php
             echo $_POST['address_1'];
             ?>
             </p>
-            <p>住所（番地）
+            <p>住所（番地）<span></span>
             
             <?php
             echo $_POST['address_2'];
             ?>
             </p>
-            <p>アカウント権限
+            <p>アカウント権限<span></span>
             
             <?php
             error_reporting(0);
@@ -129,7 +129,7 @@
 
                 <form action="update_complete.php" method="post">
                 
-                    <input type="submit" class="button2" value="登録する"href="update_complete.php<? $result['id'] ?>" name="btnSend">
+                    <input type="submit" class="button2" value="更新する"href="update_complete.php<? $result['id'] ?>" name="btnSend">
                     <input type="hidden" value="<?php echo $_POST['id']; ?>" name="id">
                     <input type="hidden" value="<?php echo $_POST['family_name']; ?>" name="family_name">
                     <input type="hidden" value="<?php echo $_POST['last_name']; ?>" name="last_name">
