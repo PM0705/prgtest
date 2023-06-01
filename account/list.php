@@ -16,7 +16,7 @@
     <?php
     mb_internal_encoding("utf8");
     $pdo= new PDO("mysql:dbname=lesson01;host=localhost;","root","root");
-    $stmt= $pdo->query("select*from diblog_account ORDER BY id DESC");
+    $stmt= $pdo->query("select*from diblog_account  where delete_flag = '1' ORDER BY id DESC");
     ?>
     
 
@@ -110,16 +110,10 @@
                         ?>
                     </td>
                     <td>
+                        <!-- ★追加：削除★ -->
                         <a href="update.php?id=<?php echo($row['id']) ?>">更新</a>
                         <a href="delete.php?id=<?php echo($row['id']) ?>">削除</a>
-                        <!-- ★追加：削除★ -->
-                        <?php if($_SESSION['id'] == $post['created_by']): ?>
-                            <button type="button" class="btn btn-red" onclick="location.href='update.php'<?php echo htmlspecialchars($post['id'], ENT_QUOTES); ?>">更新</button>
-                        <?php endif; ?>
-                    	<!-- ★追加：削除★ -->
-                        <?php if($_SESSION['id'] == $post['created_by']): ?>
-                            <button type="button" class="btn btn-red" onclick="location.href='delete.php'<?php echo htmlspecialchars($post['id'], ENT_QUOTES); ?>">削除</button>
-                        <?php endif; ?>
+                        
                     </td>
                 </tr>
             <?php endwhile; ?>
