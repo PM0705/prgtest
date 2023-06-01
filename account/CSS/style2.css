@@ -53,7 +53,7 @@ h1{
     width: 100%;
     font-size: 23px;
 }
-.confirm{
+.noerror{
     margin: 0outo;
     background-color: #fbfbfb;
     border: 3px solid #ebebeb;
@@ -63,11 +63,18 @@ h1{
     padding-left: 20px;
     
     padding-bottom: 60px;
-    font-size: 150px;
+    
     height: 750px;
     text-align:center ;
     display:table-cell;
     vertical-align:middle;
+}
+/* errorメッセージ */
+.error{
+
+    color: red;
+
+
 }
 form{
    float: left;

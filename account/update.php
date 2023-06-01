@@ -60,7 +60,7 @@
 
         <div class="main-container">
                 <div class="left">
-                    <h3> アカウント更新画面</h3>
+                    <h3> aアカウント更新画面</h3>
                     <form method="post" action="update_confirm.php" name="form" autocomplete="off" >
                         <div class="contact-form errorMsg">
                             

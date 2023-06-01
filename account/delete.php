@@ -62,11 +62,6 @@
                 <!-- ID -->
                 <input type="hidden" name="id" value="<?php echo($member->id) ?>">
                 <input type="hidden" name="delete_flag" value="<?php echo($member->delete_flag) ?>">
-                <label for="family_name">削除</label>
-                <?php echo($member->delete_flag) ?><br>
-
-                <label for="family_name">ID</label>
-                <?php echo($member->id) ?><br>
 
                 <label for="family_name">名前（姓）</label>
                 <?php echo($member->family_name) ?><br>

@@ -1,6 +1,4 @@
-<?php
-            echo $_POST['id'];
-            ?>
+
 <?php
 
 $id = $_POST['id'];
@@ -24,7 +22,7 @@ $stmt->execute($params);
 $message = '削除が完了しました。';
     } catch (PDOException $e) {
         
-        $message = 'エラーが発生したためアカウント削除できません。';
+        $errmessage = 'エラーが発生したためアカウント削除できません。';
             // $e->getMessage() でエラー内容を参照可能（デバッグ時のみ表示）
             // echo $e->getMessage();
             }
@@ -49,7 +47,7 @@ $message = '削除が完了しました。';
     <title>アカウント更新完了画面</title>
     <meta name="description" content="sanple sanple sanple sanple sanple">
     <link rel="stylesheet" href="CSS/sanitize.css">
-    <link rel="stylesheet" href="CSS/registstyle.css">
+    <link rel="stylesheet" href="CSS/confirm.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
@@ -77,13 +75,14 @@ $message = '削除が完了しました。';
 
 <main>
     <h1>アカウント登録完了画面</h1>
-    <div class="confirm">
-        <div><?php echo htmlspecialchars($message, ENT_QUOTES); ?></div>
-        <form action="index.html">
-        <button onclick="location.href='index.html'" class="button1" value="TOPページへ戻る" >
-                TOPページへ戻る          
-        </button>
-        </form>
+    <div class="confirm1">
+        <p class="noerror"><?php error_reporting(0);echo htmlspecialchars($message, ENT_QUOTES); ?></p>
+        <p class="error"><?php  error_reporting(0); echo htmlspecialchars($errmessage, ENT_QUOTES); ?></p>
+            <form action="index.html">
+            <button onclick="location.href='index.html'" class="button1" value="TOPページへ戻る" >
+                    TOPページへ戻る          
+            </button>
+            </form>
     </div>
 
 </main>

@@ -8,7 +8,7 @@
     <title>アカウント更新確認画面</title>
     <meta name="description" content="sanple sanple sanple sanple sanple">
     <link rel="stylesheet" href="CSS/sanitize.css">
-    <link rel="stylesheet" href="CSS/registstyle.css">
+    <link rel="stylesheet" href="CSS/confirm.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
@@ -33,44 +33,44 @@
         <h1>アカウント更新確認画面</h1>
         <div class="confirm">
             <p>名前（姓）
-            <br>
+            
             <?php
             echo $_POST['family_name'];
             ?>
             </p>
             <p>名前（名）
-            <br>
+            
             <?php
             echo $_POST['last_name'];
             ?>
             </p>
             <p>カナ（姓）
-            <br>
+            
             <?php
             echo $_POST['family_name_kana'];
             ?>
             </p>
             <p>カナ（名）
-            <br>
+            
             <?php
             echo $_POST['last_name_kana'];
             ?>
             </p>
             <p>メールアドレス
-            <br>
+            
             <?php
             echo $_POST['mail'];
             ?>
             </p>
             <p>パスワード
-            <br>
+            
             <?php
             echo $_POST['password'];
             ?>
             
             </p>
             <p>性別
-            <br>
+            
             <?php
             error_reporting(0);
             if ($gender == 0) {
@@ -81,31 +81,31 @@
             ?>
             </p>
             <p>郵便番号
-            <br>
+            
             <?php
             echo $_POST['postal_code'];
             ?>
             </p>
             <p>住所（都道府県）
-            <br>
+            
             <?php
             echo $_POST['prefecture'];
             ?>
             </p>
             <p>住所（市区町村）
-            <br>
+            
             <?php
             echo $_POST['address_1'];
             ?>
             </p>
             <p>住所（番地）
-            <br>
+            
             <?php
             echo $_POST['address_2'];
             ?>
             </p>
             <p>アカウント権限
-            <br>
+            
             <?php
             error_reporting(0);
             if ($authority == 0) {
@@ -115,7 +115,7 @@
                 }
             ?>
             </p>
-            <div class="form">
+            <div class="form1">
                 <form action="update.php">
                     <!-- <input type="submit" class="button1" value="前に戻る"> -->
                     <button type="button" class="button1" value="前に戻る" onclick=history.back()>
