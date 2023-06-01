@@ -31,7 +31,7 @@
     <main>
 
      <h3>  アカウント削除画面</h3>
-        <p class="delete">本当に削除してよろしいですか?</p>
+        <p class="delete">本当に削除して<br>よろしいですか?</p>
         <div class="form1">
             <form action="delete.php">
                 <!-- <input type="submit" class="button1" value="前に戻る"> -->

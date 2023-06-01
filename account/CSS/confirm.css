@@ -50,6 +50,9 @@ header ul li{
     margin-left: 30px;
     text-align: center;
     font-size: 20px;
+    height: 1000px;
+    line-height: 50px;
+    
 }
 
 
@@ -81,7 +84,8 @@ footer{
 /* prefecture1 */
 
 .prefecture1{
-    display: flex;
+    display: inline-flex;
+    text-align: center;
 }
 
 /* 削除項目 */
@@ -91,7 +95,7 @@ footer{
 
 }
 /* ボタン */
-.button1 .button1{
+.button1, .button1{
     font-size: 50px;
 
 }
@@ -111,12 +115,18 @@ footer{
     font-size: 30px;
 
 }
+.submit{
+    height:130px;
+    width:300px;
+    font-size: 30px;
+}
+
 .form1{
     display: flex;
     margin-left: 600px;
 }
 /* メッセージ */
-.confirm1{
+.confirm1, .delete{
     margin: 0outo;
     background-color: #fbfbfb;
     border: 3px solid #ebebeb;
@@ -135,6 +145,8 @@ footer{
 }
 .noerror{
     color: black;
+    text-align: center;
+    
  
 }
 /* errorメッセージ */

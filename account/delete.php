@@ -34,7 +34,7 @@
     <title>アカウント削除画面</title>
     <meta name="description" content="sanple sanple sanple sanple sanple">
     <link rel="stylesheet" href="CSS/sanitize.css">
-    <link rel="stylesheet" href="CSS/registstyle.css">
+    <link rel="stylesheet" href="CSS/confirm.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
@@ -57,8 +57,9 @@
     <main>
         <form method="post" action="delete_confirm.php" name="form" autocomplete="off" >
             <div class="contact-form errorMsg">
-                <div class="left">
+                
                 <h3> アカウント更新画面</h3>
+                <div class="confirm">
                 <!-- ID -->
                 <input type="hidden" name="id" value="<?php echo($member->id) ?>">
                 <input type="hidden" name="delete_flag" value="<?php echo($member->delete_flag) ?>">
@@ -75,11 +76,18 @@
                 <label for="last_name_kana">カナ（名）</label>
                 <?php echo($member->last_name_kana) ?><br>
 
-                <label for="mail">メールアドレス<br>※半角英数字、半角ハイフンのみ可</label>
+                <label for="mail">メールアドレス</label>
                 <?php echo($member->mail) ?><br>
 
                 <label for="password">パスワード</label>
-                <?php echo($member->password) ?><br>
+                <?php
+                $pw = ($member->password) ;
+                echo str_repeat('⚫︎', mb_strlen($pw, 'UTF8'));
+                ?>
+                
+                <br>
+
+                <label for="gender">性別</label>
                 <?php
                     error_reporting(0);
                     if ($gender == 0) {
@@ -89,13 +97,13 @@
                         }
                     ?><br>
 
-                <label for="郵便番号">郵便番号※半角数字のみ</label>
+                <label for="郵便番号">郵便番号</label>
                 <?php print($member->postal_code) ?><br>
                 
                 <div class="prefecture1">
                     <label for="住所（都道府県）">住所（都道府県）</label>
                     <?php print('<option value="'.$member->prefecture.'">'.$member->prefecture.'</option>') ?><br>
-                </div>
+                </div><br>
                 <label for="住所（市区町村）">住所（市区町村）</label>
                 <?php print($member->address_1) ?><br>
                 <label for="住所（市区町村）">住所（番地）</label>
