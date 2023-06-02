@@ -64,7 +64,9 @@
         <p>パスワード
            <br>
            <?php
-           echo $_POST['password'];
+           $pw = $_POST['password'];
+           echo str_repeat('⚫︎', mb_strlen($pw, 'UTF8'));
+           
            ?>
            
         </p>

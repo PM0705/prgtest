@@ -100,11 +100,12 @@
                                 <span class="err-msg-mail"></span>
                                 <br>
                                 <!-- パスワード -->
-                                <label for="password">パスワード※半角英数字のみ入力可</label>
-                                <input type="password" name="password" id="password" maxlength="10"
+                                <label for="password">パスワード</label>
+                                <p class="pwmsg">※パスワードはこちらでは変更できません</p>
+                                <!-- <input type="password" name="password" id="password" maxlength="10"
                                        pattern="^[a-zA-Z0-9]+$" title="半角英数字でご入力ください"
-                                       value="<?php print($member->password) ?>"><br>
-                                <span class="err-msg-password"></span>
+                                       value="print($member->password"><br>
+                                <span class="err-msg-password"></span> -->
                                 <br>
                                 <!-- 性別 -->
                                 <label for="性別">性別</label>

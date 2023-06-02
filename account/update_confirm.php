@@ -62,13 +62,13 @@
             echo $_POST['mail'];
             ?>
             </p>
-            <p>パスワード<span></span>
+            <!-- <p>パスワード<span></span> -->
             
             <?php
-            $pw = $_POST['password'];
-            echo str_repeat('⚫︎', mb_strlen($pw, 'UTF8'));
+            // $pw = $_POST['password'];
+            // echo str_repeat('⚫︎', mb_strlen($pw, 'UTF8'));
             
-            ?>
+            // ?>
             
             </p>
             <p>性別<span></span>

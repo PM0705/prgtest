@@ -79,13 +79,13 @@
                 <label for="mail">メールアドレス</label><span></span>
                 <?php echo($member->mail) ?><br>
 
-                <label for="password">パスワード</label><span></span>
-                <?php
-                $pw = ($member->password) ;
-                echo str_repeat('⚫︎', mb_strlen($pw, 'UTF8'));
-                ?>
+                <p class="pwmsg">パスワード<span></span>安全のため表示されません</p><span></span>
                 
-                <br>
+                
+                <?php
+                // $pw = ($member->password) ;
+                // echo str_repeat('⚫︎', mb_strlen($pw, 'UTF8'));
+                ?>
 
                 <label for="gender">性別</label><span></span>
                 <?php
