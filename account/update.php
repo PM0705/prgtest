@@ -108,7 +108,7 @@
                                 <br>
                                 <!-- 性別 -->
                                 <label for="性別">性別</label>
-                                <label><input type="radio" name="gender" value="0"<?php print($member->gender == "0" ? ' checked' : ''); ?>>男</label>
+                                <label><input type="radio" name="gender" value="0"<?php print( $member->gender == "0" ? ' checked' : ''); ?>>男</label>
                                 <label><input type="radio" name="gender" value="1"<?php print($member->gender == "1" ? ' checked' : ''); ?>>女</label><br>
                                 <span class="err-msg-gender"></span>                              
                                 <br>

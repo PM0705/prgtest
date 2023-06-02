@@ -29,7 +29,7 @@
    </header>
 
    <main>
-    <h1>アカウント更新確認画面</h1>
+    <h1>アカウント確認画面</h1>
     <div class="confirm">
         <p>名前（姓）
            <br>
@@ -72,7 +72,7 @@
            <br>
            <?php
            error_reporting(0);
-           if ($gender == 0) {
+           if ($_POST['gender'] == 0) {
                echo "男";
                }else{
                     echo "女";
@@ -107,7 +107,7 @@
            <br>
            <?php
            error_reporting(0);
-           if ($authority == 0) {
+           if ($_POST['authority'] == 0) {
                echo "一般";
                }else{
                     echo "管理者";

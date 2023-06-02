@@ -139,7 +139,7 @@
                                 <!-- アカウント権限 -->
                                 <dl>
                                     <dt><label for="アカウント権限">アカウント権限</label></dt>
-                                    <dd><select name="authority"id="authority" value=array()>
+                                    <dd><select name="authority" id="authority" value=array()>
                                             <option value="0">一般</option>
                                             <option value="1">管理者</option>
                                         </select><br>
