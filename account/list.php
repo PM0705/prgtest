@@ -16,7 +16,8 @@
     <?php
     mb_internal_encoding("utf8");
     $pdo= new PDO("mysql:dbname=lesson01;host=localhost;","root","root");
-    $stmt= $pdo->query("select*from diblog_account  where delete_flag = '1' ORDER BY id DESC");
+    $stmt= $pdo->query("select*from diblog_account ORDER BY id DESC");
+    // 無効のみ表示する時$stmt= $pdo->query("select*from diblog_account  where delete_flag = '1' ORDER BY id DESC");
     ?>
     
 
@@ -86,8 +87,7 @@
                             } 
                         ?>
                     </td>
-                    <td><?php 
-                            switch ($row['delete_flag']) {
+                    <td><?php switch ($row['delete_flag']) {
                                     case '0':
                                         echo "有効";
                                         break;
@@ -96,6 +96,15 @@
                                         echo "無効";
                                         break;
                             } 
+                            // switch ($row['delete_flag']) {
+                            //         case '0':
+                            //             echo "有効";
+                            //             break;
+                                    
+                            //         default:
+                            //             echo "無効";
+                            //             break;
+                            // } 
                         ?>
                     </td>
                     <td>

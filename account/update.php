@@ -124,7 +124,7 @@
                                 
                                 <label for="住所（都道府県）">住所（都道府県）</label>
                                     <select name="prefecture"id="prefecture" >
-                                    <option value="" selected><?php print($member->prefecture) ?></option>
+                                    <option value="<?php print($member->prefecture) ?>" selected><?php print($member->prefecture) ?></option>
 
                                                     <?php
                                                         $prefs = array ('北海道','青森県','岩手県','宮城県','秋田県','山形県',

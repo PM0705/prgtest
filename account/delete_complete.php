@@ -13,7 +13,7 @@ $pdo=new PDO("mysql:dbname=lesson01;host=localhost;","root","root");
 $sql='UPDATE diblog_account SET delete_flag = :delete_flag  WHERE id=:id';
 $stmt = $pdo->prepare($sql);
 //  更新する値と該当のIDを配列に格納する
-$params = array(':delete_flag' => '0' ,
+$params = array(':delete_flag' => '1' ,
                 ':id' => $_POST['id']); 
 
 // 更新する値と該当のIDが入った変数をexecuteにセットしてSQLを実行
