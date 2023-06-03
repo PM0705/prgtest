@@ -122,6 +122,7 @@
                         <!-- ★追加：削除★ -->
                         <a href="update.php?id=<?php echo($row['id']) ?>">更新</a>
                         <a href="delete.php?id=<?php echo($row['id']) ?>">削除</a>
+                        <a href="pw.php?id=<?php echo($row['id']) ?>">パスワード変更</a>
                         
                     </td>
                 </tr>

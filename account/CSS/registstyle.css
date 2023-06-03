@@ -114,3 +114,9 @@ footer{
     color: red;
 }
 
+span{
+    margin-left: 20px;
+}
+.pw2{
+    font-weight: bold;
+}
