@@ -69,6 +69,7 @@ h3{
     padding-left: 5px;
     width: 500px;
     font-size: 15px;
+    font-size: 20px;
 }
 
 form, .kizi{
@@ -139,7 +140,15 @@ form div{
 }
 
 
-
+.dl{
+    font-weight: normal;
+    color: red;
+    margin-top: -3px;
+   
+}
+.dl_sousa{
+    color: lightgrey;
+}
 
 
 

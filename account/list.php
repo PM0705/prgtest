@@ -16,7 +16,7 @@
     <?php
     mb_internal_encoding("utf8");
     $pdo= new PDO("mysql:dbname=lesson01;host=localhost;","root","root");
-    $stmt= $pdo->query("select*from diblog_account ORDER BY id DESC");
+    $stmt= $pdo->query("select*from diblog_account where delete_flag = '0' ORDER BY id DESC");
     // 無効のみ表示する時$stmt= $pdo->query("select*from diblog_account  where delete_flag = '1' ORDER BY id DESC");
     ?>
     
@@ -36,7 +36,9 @@
             </ul>
         </div>
     </header>
+    
     <div class="kizi">
+    <h3> アカウント一覧</h3>
         <table>
             <thead>
                 <tr>
@@ -52,6 +54,102 @@
                     <th>登録日時</th>
                     <th>更新日時</th>
                     <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php while ($row = $stmt -> fetch()) : ?>
+                <tr>
+                    <td><?php print($row['id']); ?></td>
+                    <td><?php print($row['family_name']); ?></td>
+                    <td><?php print($row['last_name']); ?></td>
+                    <td><?php print($row['family_name_kana']); ?></td>
+                    <td><?php print($row['last_name_kana']); ?></td>
+                    <td><?php print($row['mail']); ?></td>
+                    <td><?php 
+                            switch ($row['gender']) {
+                                    case '0':
+                                        echo "男";
+                                        break;
+                                    
+                                    default:
+                                        echo "女";
+                                        break;
+                            } 
+                        ?>
+                    </td>
+                    <td><?php 
+                            switch ($row['authority']) {
+                                    case '0':
+                                        echo "一般";
+                                        break;
+                                    
+                                    default:
+                                        echo "管理者";
+                                        break;
+                            } 
+                        ?>
+                    </td>
+                    <td><?php switch ($row['delete_flag']) {
+                                    case '0':
+                                        echo "有効";
+                                        break;
+                                    
+                                    default:
+                                        echo "無効";
+                                        break;
+                            } 
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                             error_reporting(0);
+                             echo date('Y/m/d', strtotime($row['registered_time']));
+                        ?>
+                    </td>
+                    <td>
+                        <?php 
+                             echo date('Y/m/d', strtotime($row['update_time']));
+                        ?>
+                    </td>
+                    <td>
+                        <!-- ★追加：削除★ -->
+                        <a href="update.php?id=<?php echo($row['id']) ?>">更新</a>
+                        <a href="delete.php?id=<?php echo($row['id']) ?>">削除</a>
+                        <a href="pw.php?id=<?php echo($row['id']) ?>">パスワード変更</a>
+                        
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
+
+
+    <?php
+    mb_internal_encoding("utf8");
+    $pdo= new PDO("mysql:dbname=lesson01;host=localhost;","root","root");
+    $stmt= $pdo->query("select*from diblog_account where delete_flag = '1' ORDER BY id DESC");
+    // 無効のみ表示する時$stmt= $pdo->query("select*from diblog_account  where delete_flag = '1' ORDER BY id DESC");
+    ?>
+   
+    <div class="kizi">
+    <h3> こちらのアカウントは削除済みです</h3>
+        <table>
+            <thead >
+                <tr >
+                    <th>ID</th>
+                    <th>名前（姓）</th>
+                    <th>名前（名）</th>
+                    <th>カナ（姓）</th>
+                    <th>カナ（名）</th>
+                    <th>メールアドレス</th>
+                    <th>性別</th>
+                    <th>アカウント権限</th>
+                    <th>削除フラグ</th>
+                    <th>登録日時</th>
+                    <th>更新日時</th>
+                    <th ><br>操作<br><p class="dl">※削除済みの為操作できません</p></th>
+                   
                 </tr>
             </thead>
             <tbody>
@@ -120,9 +218,7 @@
                     </td>
                     <td>
                         <!-- ★追加：削除★ -->
-                        <a href="update.php?id=<?php echo($row['id']) ?>">更新</a>
-                        <a href="delete.php?id=<?php echo($row['id']) ?>">削除</a>
-                        <a href="pw.php?id=<?php echo($row['id']) ?>">パスワード変更</a>
+                        <p class="dl_sousa">更新 削除 パスワード変更</p>
                         
                     </td>
                 </tr>
