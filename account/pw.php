@@ -31,7 +31,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アカウント更新画面</title>
+    <title>パスワード更新画面</title>
     <meta name="description" content="sanple sanple sanple sanple sanple">
     <link rel="stylesheet" href="CSS/sanitize.css">
     <link rel="stylesheet" href="CSS/registstyle.css">
@@ -60,13 +60,16 @@
 
         <div class="main-container">
                 <div class="left">
-                    <h3> aアカウント更新画面</h3>
+                    <h3> パスワード更新画面</h3>
                         <form method="post" action="pw_confirm.php" name="form" autocomplete="off" >
                             <div class="contact-form errorMsg">
                                             <!-- ID -->
+                                            
                                             <input type="hidden" name="id" value="<?php echo($member->id) ?>">
-                                            <p class="pwmsg">ここではパスワードの変更のみ行えます</p>
-                                            <a href="update.php?id=<?php echo($row['id']) ?>">パスワード以外の更新はこちらからお願いします</a><br><br>
+                                            <p class="pwmsg1">ここではパスワードの変更のみ行えます</p>
+                                            
+                                            <a href="update.php?id=<?php echo($member->id) ?>">パスワード以外の更新はこちらからお願いします</a><br><br>
+                                            
                                             
                                             <label for="family_name">名前（姓）</label><span></span>
                                             <?php echo($member->family_name) ?><br>
@@ -83,7 +86,7 @@
                                             <label for="mail">メールアドレス</label><span></span>
                                             <?php echo($member->mail) ?><br>
 
-                                            <p class="pw2">パスワード<br>新しいパスワードを入力してください</p>
+                                            <p class="pw2">パスワード※半角英数字のみ入力可<br>新しいパスワードを入力してください</p>
                                             <input type="password" name="password" id="password" maxlength="10"
                                             pattern="^[a-zA-Z0-9]+$" title="半角英数字でご入力ください"
                                             value=><br>
@@ -143,7 +146,8 @@
         <p class="footer-text">Copyright D.I.worksI D.I.blog is the one which provides A to Z about programming</p>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script type="text/javascript" src="app2.js"></script>   
+   
+    <script type="text/javascript" src="app3.js"></script>   
 </body>
 </html>
 

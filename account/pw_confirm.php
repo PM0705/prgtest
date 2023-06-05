@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アカウント更新確認画面</title>
+    <title>パスワード変更確認画面</title>
     <meta name="description" content="sanple sanple sanple sanple sanple">
     <link rel="stylesheet" href="CSS/sanitize.css">
     <link rel="stylesheet" href="CSS/confirm.css">
@@ -30,7 +30,7 @@
     </header>
 
     <main>
-        <h1>アカウント更新確認画面</h1>
+        <h1>パスワード変更確認画面</h1>
         <div class="confirm">
             
             <p>新しいパスワード<span></span>
@@ -55,7 +55,7 @@
 
                 <form action="pw_complete.php" method="post">
                 
-                    <input type="submit" class="button2" value="更新する"href="update_complete.php<? $result['id'] ?>" name="btnSend">
+                    <input type="submit" class="button2" value="更新する"href="pw_complete.php<? $result['id'] ?>" name="btnSend">
                     <input type="hidden" value="<?php echo $_POST['id']; ?>" name="id">
                     
                     <input type="hidden" value="<?php echo $_POST['password']; ?>" name="password">

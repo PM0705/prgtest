@@ -16,10 +16,10 @@ $params = array(':password' => $password,
                 ':id' => $_REQUEST['id']);
 $stmt->execute($params);
 
-$message = '更新が完了しました。';
+$message = 'パスワードの変更が完了しました。';
     } catch (PDOException $e) {
         
-        $errmessage = 'エラーが発生したためアカウント更新できません。';
+        $errmessage = 'エラーが発生したためパスワードが変更できません。';
             // $e->getMessage() でエラー内容を参照可能（デバッグ時のみ表示）
             // echo $e->getMessage();
             }
@@ -41,7 +41,7 @@ $message = '更新が完了しました。';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アカウント更新完了画面</title>
+    <title>パスワード変更完了画面</title>
     <meta name="description" content="sanple sanple sanple sanple sanple">
     <link rel="stylesheet" href="CSS/sanitize.css">
     <link rel="stylesheet" href="CSS/confirm.css">
@@ -71,7 +71,7 @@ $message = '更新が完了しました。';
 <body>
 
 <main>
-    <h1>アカウント登録完了画面</h1>
+    <h1>パスワード変更完了画面</h1>
     <div class="confirm1">
         <p class="noerror"><?php error_reporting(0);echo htmlspecialchars($message, ENT_QUOTES); ?></p>
         <p class="error"><?php  error_reporting(0); echo htmlspecialchars($errmessage, ENT_QUOTES); ?></p>

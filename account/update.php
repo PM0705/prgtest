@@ -100,7 +100,7 @@
                                 <span class="err-msg-mail"></span>
                                 <br>
                                 <!-- パスワード -->
-                                <label for="password">パスワード</label>
+                                <label for="password" class=pw >パスワード</label>
                                 <p class="pwmsg">※パスワードはこちらでは変更できません</p>
                                 <!-- <input type="password" name="password" id="password" maxlength="10"
                                        pattern="^[a-zA-Z0-9]+$" title="半角英数字でご入力ください"
@@ -155,7 +155,7 @@
                                 <label for="住所（番地）">住所（番地）<br>※ひらがな、漢字、数字、全角カタカナ、記号（-/スペース）のみ入力可</label>
                                 <input input type="text" class="text" size="35" name="address_2"id="address_2"
                                        pattern="[\d\u30A1-\u30F6\u4E00-\u9FFF\u3040-\u309Fー\s　\-]*" maxlength="100" title="ひらがな、漢字、数字、カタカナ、記号（-/スペース）でご入力ください"
-                                       value="<?php print($member->family_name_kana) ?>">
+                                       value="<?php print($member->family_name_kana) ?>"><br>
                                 <span class="err-msg-address_2"></span>
                                 <br>
                                 <!-- アカウント権限 -->
@@ -183,7 +183,7 @@
         <p class="footer-text">Copyright D.I.worksI D.I.blog is the one which provides A to Z about programming</p>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script type="text/javascript" src="app2.js"></script>   
+    <script type="text/javascript" src="app4.js"></script>   
 </body>
 </html>
 
