@@ -13,13 +13,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
 <body>
-    <?php
-    mb_internal_encoding("utf8");
-    $pdo= new PDO("mysql:dbname=lesson01;host=localhost;","root","root");
-    $stmt= $pdo->query("select*from diblog_account where delete_flag = '0' ORDER BY id DESC");
-    // 無効のみ表示する時$stmt= $pdo->query("select*from diblog_account  where delete_flag = '1' ORDER BY id DESC");
-    ?>
+<?php
+    //データベースへ接続
+    $dsn = "mysql:dbname=lesson01; host=localhost; charset=utf8mb4";
+    $username = "root";
+    $password = "root";
     
+    
+    if ($_POST) {
+        try {
+            $dbh = new PDO($dsn, $username, $password);
+            $search_word = $_POST['family_name'];
+            if($search_word==""){
+              echo "input search word";
+            }
+            else{
+                $sql ="select * from diblog_account where family_name like '".$search_word."%' ORDER BY id DESC";
+                $sth = $dbh->prepare($sql);
+                $sth->execute();
+                $result = $sth->fetchAll();
+                if($result){
+                    foreach ($result as $row) {
+                        echo $row['family_name']." ";
+                        
+                        echo "<br />";
+                    }
+                }
+                else{
+                    echo "not found";
+                }
+            }
+        }catch (PDOException $e) {
+            echo  "<p>Failed : " . $e->getMessage()."</p>";
+            exit();
+        }
+    }
+    ?>
 
 
     <header>
@@ -36,196 +65,119 @@
             </ul>
         </div>
     </header>
+
+    <div class="kizi1">
+        <h3> アカウント一覧</h3>
+        <form action="list.php" method="post">
+            <table>
+                <thead>
+                    <tr>
+                
+                        <th>名前（姓）</th>
+                        <td>
+                        <input type="text" name="family_name" id="family_name" maxlength="10" 
+                            pattern="[\u4E00-\u9FFF\u3040-\u309Fー]*"
+                            title="漢字・ひらがなでご入力ください"><br>
+                        
+                        <th>名前（名）</th>
+                        <td>
+                        <input type="text" name="last_name" id="last_name" maxlength="10"
+                            pattern="[\u4E00-\u9FFF\u3040-\u309Fー]*" title="漢字・ひらがなでご入力ください"><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                        <th>カナ（姓）</th>
+                        <td>
+                        <input type="text" name="family_name_kana" id="family_name_kana" maxlength="10"
+                            pattern="^[\u30A0-\u30FF]+$" title="全角カタカナでご入力ください"><br>
+                        </td>
+                        <th>カナ（名）</th>
+                        <td>
+                        <input type="text" name="last_name_kana" id="last_name_kana" maxlength="10"
+                            pattern="^[\u30A0-\u30FF]+$" title="全角カタカナでご入力ください"><br>
+                        </td>
+
+
     
-    <div class="kizi">
-    <h3> アカウント一覧</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>名前（姓）</th>
-                    <th>名前（名）</th>
-                    <th>カナ（姓）</th>
-                    <th>カナ（名）</th>
-                    <th>メールアドレス</th>
-                    <th>性別</th>
-                    <th>アカウント権限</th>
-                    <th>削除フラグ</th>
-                    <th>登録日時</th>
-                    <th>更新日時</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php while ($row = $stmt -> fetch()) : ?>
-                <tr>
-                    <td><?php print($row['id']); ?></td>
-                    <td><?php print($row['family_name']); ?></td>
-                    <td><?php print($row['last_name']); ?></td>
-                    <td><?php print($row['family_name_kana']); ?></td>
-                    <td><?php print($row['last_name_kana']); ?></td>
-                    <td><?php print($row['mail']); ?></td>
-                    <td><?php 
-                            switch ($row['gender']) {
-                                    case '0':
-                                        echo "男";
-                                        break;
-                                    
-                                    default:
-                                        echo "女";
-                                        break;
-                            } 
-                        ?>
-                    </td>
-                    <td><?php 
-                            switch ($row['authority']) {
-                                    case '0':
-                                        echo "一般";
-                                        break;
-                                    
-                                    default:
-                                        echo "管理者";
-                                        break;
-                            } 
-                        ?>
-                    </td>
-                    <td><?php switch ($row['delete_flag']) {
-                                    case '0':
-                                        echo "有効";
-                                        break;
-                                    
-                                    default:
-                                        echo "無効";
-                                        break;
-                            } 
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                             error_reporting(0);
-                             echo date('Y/m/d', strtotime($row['registered_time']));
-                        ?>
-                    </td>
-                    <td>
-                        <?php 
-                             echo date('Y/m/d', strtotime($row['update_time']));
-                        ?>
-                    </td>
-                    <td>
-                        <!-- ★追加：削除★ -->
-                        <a href="update.php?id=<?php echo($row['id']) ?>">更新</a>
-                        <a href="delete.php?id=<?php echo($row['id']) ?>">削除</a>
-                        <a href="pw.php?id=<?php echo($row['id']) ?>">パスワード変更</a>
-                        
-                    </td>
-                </tr>
-            <?php endwhile; ?>
-            </tbody>
-        </table>
-    </div>
+                    </tr>
+                    <tr>
+                        <th>メールアドレス</th>
+                        <td>
+                        <input type="text" name="mail" id="mail" maxlength="100"
+                            pattern="^[\w\d\-_-]+@[\w\d_-]+\.[\w\d._-]+$" title="半角英数字、半角ハイフンでご入力ください">
+                        </td>
+                        <th>性別</th>
+                        <td>
+                        <div class="radiogender">
+                        <input type="radio" name="gender" value="0" checked>男
+                        <input type="radio" name="gender" value="1">女
+                        </div>
+                        </td>
 
-
-    <?php
-    mb_internal_encoding("utf8");
-    $pdo= new PDO("mysql:dbname=lesson01;host=localhost;","root","root");
-    $stmt= $pdo->query("select*from diblog_account where delete_flag = '1' ORDER BY id DESC");
-    // 無効のみ表示する時$stmt= $pdo->query("select*from diblog_account  where delete_flag = '1' ORDER BY id DESC");
-    ?>
-   
-    <div class="kizi">
-    <h3> こちらのアカウントは削除済みです</h3>
-        <table>
-            <thead >
-                <tr >
-                    <th>ID</th>
-                    <th>名前（姓）</th>
-                    <th>名前（名）</th>
-                    <th>カナ（姓）</th>
-                    <th>カナ（名）</th>
-                    <th>メールアドレス</th>
-                    <th>性別</th>
-                    <th>アカウント権限</th>
-                    <th>削除フラグ</th>
-                    <th>登録日時</th>
-                    <th>更新日時</th>
-                    <th ><br>操作<br><p class="dl">※削除済みの為操作できません</p></th>
-                   
-                </tr>
-            </thead>
-            <tbody>
-            <?php while ($row = $stmt -> fetch()) : ?>
-                <tr>
-                    <td><?php print($row['id']); ?></td>
-                    <td><?php print($row['family_name']); ?></td>
-                    <td><?php print($row['last_name']); ?></td>
-                    <td><?php print($row['family_name_kana']); ?></td>
-                    <td><?php print($row['last_name_kana']); ?></td>
-                    <td><?php print($row['mail']); ?></td>
-                    <td><?php 
-                            switch ($row['gender']) {
-                                    case '0':
-                                        echo "男";
-                                        break;
-                                    
-                                    default:
-                                        echo "女";
-                                        break;
-                            } 
-                        ?>
-                    </td>
-                    <td><?php 
-                            switch ($row['authority']) {
-                                    case '0':
-                                        echo "一般";
-                                        break;
-                                    
-                                    default:
-                                        echo "管理者";
-                                        break;
-                            } 
-                        ?>
-                    </td>
-                    <td><?php switch ($row['delete_flag']) {
-                                    case '0':
-                                        echo "有効";
-                                        break;
-                                    
-                                    default:
-                                        echo "無効";
-                                        break;
-                            } 
-                            // switch ($row['delete_flag']) {
-                            //         case '0':
-                            //             echo "有効";
-                            //             break;
-                                    
-                            //         default:
-                            //             echo "無効";
-                            //             break;
-                            // } 
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                             error_reporting(0);
-                             echo date('Y/m/d', strtotime($row['registered_time']));
-                        ?>
-                    </td>
-                    <td>
-                        <?php 
-                             echo date('Y/m/d', strtotime($row['update_time']));
-                        ?>
-                    </td>
-                    <td>
-                        <!-- ★追加：削除★ -->
-                        <p class="dl_sousa">更新 削除 パスワード変更</p>
+                    </tr>
+                    <tr>
                         
-                    </td>
-                </tr>
-            <?php endwhile; ?>
-            </tbody>
+                        <th>アカウント権限</th>
+                        <td>
+                        <select name="authority" id="authority" value=array()>
+                            <option value="0">一般</option>
+                            <option value="1">管理者</option>
+                        </select><br>
+                        </td>
+    
+                    </tr>
+                </thead>
+
+            </table>
+            <div class="contact-submit">
+                <div>
+                    <input type="submit" class="submit" value="検索する">
+                </div>
+            </div>
+    
+        </form>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>名前（姓）</th>
+                <th>名前（名）</th>
+                <th>カナ（姓）</th>
+                <th>メールアドレス</th>
+                <th>性別</th>
+                <th>アカウント権限</th>
+                
+            </tr>
+            <!-- ここでPHPのforeachを使って結果をループさせる -->
+            <?php foreach ($result as $row): ?>
+            <tr>
+                <td><?php echo $row['id']." ";?></td>
+                <td><?php echo $row['family_name']." ";?></td>
+                <td><?php echo $row['last_name']." ";?></td>
+                <td><?php echo $row['family_name_kana']." ";?></td>
+                <td><?php echo $row['last_name_kana']." ";?></td>
+                <td><?php error_reporting(0);
+                        if ($row['gender'] == 0) {
+                            echo "男";
+                            }else{
+                                    echo "女";
+                            }?>
+                </td>
+                <td><?php error_reporting(0);
+                        if ($row['authority'] == 0) {
+                            echo "一般";
+                            }else{
+                                    echo "管理者";
+                            }?>
+                </td>
+
+            </tr>
+
+                <?php endforeach; ?>
         </table>
+
     </div>
+    
 
 
     <footer>

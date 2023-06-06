@@ -72,11 +72,11 @@ h3{
     font-size: 20px;
 }
 
-form, .kizi{
+form, .kizi, .kizi1{
     
     margin: 0outo;
     margin-left: 30px;
-    background-color: #fbfbfb;
+    background-color: white;
     border: 3px solid #ebebeb;
     border-radius: 10px;
     width: 100%;
@@ -86,26 +86,29 @@ h4{
     margin-left: 10px;
     margin-right: 10px;
 }
-.kizi > p {
+.kizi > p, .kizi1 > p {
     margin-left: 10px;
 }
 
-.kizi{
+.kizi, .kizi1{
     margin-top: 10px;
     border-collapse: collapse;
 }
-.kizi table{
+.kizi table, .kizi1 table{
     border-collapse: collapse;
     margin: 20px 0;
 }
 
 .kizi th,
-.kizi td{
+.kizi td,
+.kizi1 th,
+.kizi1 td{
     border:1px solid #a2aab0;
     padding: 20px 10px;
 
 }
-.kizi th{
+.kizi th,
+.kizi1 th{
     background-color: #ebeced;
 
 }
@@ -150,6 +153,26 @@ form div{
     color: lightgrey;
 }
 
+/* アカウント検索 */
+.kizi1 input,
+.kizi1 select{
+    border: none;
+    width: 500px;
+    text-align: center;
+}
+.radiogender{
+    display: flex;
+    vertical-align: top;
+    text-align: center;
+    margin-left: -220px;
+    
+    
+}
+input[type="radio"] {
+    margin-right: -150px;
+
+  }
+  
 
 
 
