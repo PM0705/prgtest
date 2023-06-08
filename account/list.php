@@ -21,9 +21,17 @@
     $password = "root";
     $options = [];
     $pdo = new PDO($dsn, $username, $password, $options);
-        if($_POST["family_name"] != "" || @$_POST["last_name"] != ""){ //IDおよびユーザー名の入力有無を確認
-            $stmt = $pdo->query("SELECT * FROM diblog_account WHERE  last_name LIKE  '%".$_POST["last_name"]."%' ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
+        if (empty($_POST["family_name"])){
+            $stmt = $pdo->query("SELECT * FROM diblog_account ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
         }
+        error_reporting(0);
+        if($_POST["family_name"] != "" ){ //IDおよびユーザー名の入力有無を確認
+            $stmt = $pdo->query("SELECT * FROM diblog_account WHERE family_name LIKE  '%".$_POST["family_name"]."%'"); //SQL文を実行して、結果を$stmtに代入する。
+        }
+        if($_POST["last_name"] != "" ){ //IDおよびユーザー名の入力有無を確認
+            $stmt = $pdo->query("SELECT * FROM diblog_account WHERE last_name LIKE  '%".$_POST["last_name"]."%'"); //SQL文を実行して、結果を$stmtに代入する。
+        }
+
         ?>
 
 
