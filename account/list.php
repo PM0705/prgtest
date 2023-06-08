@@ -21,16 +21,20 @@
     $password = "root";
     $options = [];
     $pdo = new PDO($dsn, $username, $password, $options);
-        if (empty($_POST["family_name"])){
+        if ((empty($_POST["family_name"])) && (empty($_POST["last_name"])) && (empty($_POST["family_name_kana"])) && (empty($_POST["last_name_kana"]))){
             $stmt = $pdo->query("SELECT * FROM diblog_account ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
         }
         error_reporting(0);
-        if($_POST["family_name"] != "" ){ //IDおよびユーザー名の入力有無を確認
-            $stmt = $pdo->query("SELECT * FROM diblog_account WHERE family_name LIKE  '%".$_POST["family_name"]."%'"); //SQL文を実行して、結果を$stmtに代入する。
+        if($_POST["family_name"] != "" || $_POST["last_name"] != "" || $_POST["family_name_kana"] != "" || $_POST["last_name_kana"] != "" || $_POST["gender"] != "" || $_POST["authority"] != "" ){ //IDおよびユーザー名の入力有無を確認
+            $stmt = $pdo->query("SELECT * FROM diblog_account WHERE family_name LIKE  '%".$_POST["family_name"]."%' 
+                                                                    AND last_name LIKE  '%".$_POST["last_name"]."%' 
+                                                                    AND family_name_kana LIKE  '%".$_POST["family_name_kana"]."%' 
+                                                                    AND last_name_kana LIKE  '%".$_POST["last_name_kana"]."%' 
+                                                                    AND gender LIKE  '%".$_POST["gender"]."%' 
+                                                                    AND authority LIKE  '%".$_POST["authority"]."%' 
+                                                                    ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
         }
-        if($_POST["last_name"] != "" ){ //IDおよびユーザー名の入力有無を確認
-            $stmt = $pdo->query("SELECT * FROM diblog_account WHERE last_name LIKE  '%".$_POST["last_name"]."%'"); //SQL文を実行して、結果を$stmtに代入する。
-        }
+      
 
         ?>
 
@@ -129,6 +133,7 @@
                 <th>名前（姓）</th>
                 <th>名前（名）</th>
                 <th>カナ（姓）</th>
+                <th>カナ（名）</th>
                 <th>メールアドレス</th>
                 <th>性別</th>
                 <th>アカウント権限</th>
@@ -144,6 +149,15 @@
                 </td>
                 <td>
                     <?php echo $row['last_name']?>
+                </td>
+                <td>
+                    <?php echo $row['family_name_kana']?>
+                </td>
+                <td>
+                    <?php echo $row['last_name_kana']?>
+                </td>
+                <td>
+                    <?php echo $row['mail']?>
                 </td>
                 <td>
                     <?php error_reporting(0);
