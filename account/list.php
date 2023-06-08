@@ -14,41 +14,19 @@
 </head>
 <body>
 <?php
+   
     //データベースへ接続
-    $dsn = "mysql:dbname=lesson01; host=localhost; charset=utf8mb4";
+    $dsn = "mysql:dbname=lesson01;host=localhost;charset=utf8mb4";
     $username = "root";
     $password = "root";
-    
-    
-    if ($_POST) {
-        try {
-            $dbh = new PDO($dsn, $username, $password);
-            $search_word = $_POST['family_name'];
-            if($search_word==""){
-              echo "input search word";
-            }
-            else{
-                $sql ="select * from diblog_account where family_name like '".$search_word."%' ORDER BY id DESC";
-                $sth = $dbh->prepare($sql);
-                $sth->execute();
-                $result = $sth->fetchAll();
-                if($result){
-                    foreach ($result as $row) {
-                        echo $row['family_name']." ";
-                        
-                        echo "<br />";
-                    }
-                }
-                else{
-                    echo "not found";
-                }
-            }
-        }catch (PDOException $e) {
-            echo  "<p>Failed : " . $e->getMessage()."</p>";
-            exit();
+    $options = [];
+    $pdo = new PDO($dsn, $username, $password, $options);
+        if($_POST["family_name"] != "" || @$_POST["last_name"] != ""){ //IDおよびユーザー名の入力有無を確認
+            $stmt = $pdo->query("SELECT * FROM diblog_account WHERE  last_name LIKE  '%".$_POST["last_name"]."%' ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
         }
-    }
-    ?>
+        ?>
+
+
 
 
     <header>
@@ -135,8 +113,8 @@
                     <input type="submit" class="submit" value="検索する">
                 </div>
             </div>
-    
         </form>
+
         <table>
             <tr>
                 <th>ID</th>
@@ -149,31 +127,34 @@
                 
             </tr>
             <!-- ここでPHPのforeachを使って結果をループさせる -->
-            <?php foreach ($result as $row): ?>
-            <tr>
-                <td><?php echo $row['id']." ";?></td>
-                <td><?php echo $row['family_name']." ";?></td>
-                <td><?php echo $row['last_name']." ";?></td>
-                <td><?php echo $row['family_name_kana']." ";?></td>
-                <td><?php echo $row['last_name_kana']." ";?></td>
-                <td><?php error_reporting(0);
-                        if ($row['gender'] == 0) {
-                            echo "男";
-                            }else{
-                                    echo "女";
-                            }?>
+            <?php foreach ($stmt as $row): ?>
+            <tr><td>
+                    <?php echo $row['id']?>
                 </td>
-                <td><?php error_reporting(0);
+                <td>
+                    <?php echo $row['family_name']?>
+                </td>
+                <td>
+                    <?php echo $row['last_name']?>
+                </td>
+                <td>
+                    <?php error_reporting(0);
+                            if ($row['gender'] == 0) {
+                                echo "男";
+                                }else{
+                                        echo "女";
+                                }?>
+                </td>
+                <td>
+                    <?php error_reporting(0);
                         if ($row['authority'] == 0) {
                             echo "一般";
                             }else{
                                     echo "管理者";
                             }?>
                 </td>
-
             </tr>
-
-                <?php endforeach; ?>
+        <?php endforeach; ?>
         </table>
 
     </div>
