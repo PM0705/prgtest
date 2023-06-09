@@ -62,6 +62,7 @@ $message = '削除完了しました。';
                 <li>D .I .Bligについて</li>
                 <li><a href="regist.php">アカウント登録フォーム</a></li>
                 <li><a href="list.php">アカウント一覧</a></li>
+                <li><a href="login.php">ログイン</a></li>
                 <li>問い合わせ</li>
                 <li>その他</li>
             </ul>
