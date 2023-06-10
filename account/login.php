@@ -1,71 +1,50 @@
 <?php
-
-// セッション開始
+error_reporting(0);
+//セッションの開始
 session_start();
 
-$db['host'] = "localhost";  // DBサーバのURL
-$db['user'] = "root";  // ユーザー名
-$db['pass'] = "root";  // ユーザー名のパスワード
-$db['dbname'] = "lesson01";  // データベース名
+//フォームから受け取った値を変数に代入
+$mail = $_POST['mail'];;
+$password = $_POST['password'];;
 
-// エラーメッセージの初期化
-$errorMessage = "";
+//データベース接続情報
+$dbuser = 'root';
+$dbpass = 'root';
+$dsn = 'mysql:host=localhost;dbname=lesson01;';
 
-// ログインボタンが押された場合
+//MySQL接続
+try {
+  $dbh = new PDO($dsn, $dbuser, $dbpass);
+} catch (PDOException $e) {
+  exit('データベース接続失敗: ' . $e->getMessage());
+}
+
+//DBからユーザ情報を取得
+$sql = 'SELECT * FROM diblog_account WHERE mail = :mail';
+$sth = $dbh->prepare($sql);
+$sth->bindValue(':mail', $mail);
+$sth->execute();
+$result = $sth->fetch(PDO::FETCH_ASSOC);
 if (isset($_POST["login"])) {
-    // 1. ユーザIDの入力チェック
-    if (empty($_POST["mail"])) {  // emptyは値が空のとき
-        $errorMessage = 'メールアドレスが未入力です。';
+    // １．ユーザIDの入力チェック
+    if (empty($_POST["mail"])) {
+      $errorMessage = "メールアドレスが未入力です。";
     } else if (empty($_POST["password"])) {
-        $errorMessage = 'パスワードが未入力です。';
-    }
-
-    if (!empty($_POST["mail"]) && !empty($_POST["password"])) {
-        // 入力したユーザIDを格納
-        $mail = $_POST["mail"];
-
-        // 2. ユーザIDとパスワードが入力されていたら認証する
-        $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
-
-        // 3. エラー処理
-        try {
-            $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
-
-            $stmt = $pdo->prepare('SELECT * FROM diblog_account WHERE mail = ?');
-            $stmt->execute(array($mail));
-
-            $password = $_POST["password"];
-
-            if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                if (password_verify($password, $row['password'])) {
-                    session_regenerate_id(true);
-
-                    // 入力したIDのユーザー名を取得
-                    $id = $row['mail'];
-                    $sql = "SELECT * FROM diblog_account WHERE mail = $mail";  //入力したIDからユーザー名を取得
-                    $stmt = $pdo->query($sql);
-                    foreach ($stmt as $row) {
-                        $row['mail'];  // ユーザー名
-                    }
-                    $_SESSION["mail"] = $row['mail'];
-                    header("Location: index.html");  // メイン画面へ遷移
-                    exit();  // 処理終了
-                } else {
-                    // 認証失敗
-                    $errorMessage = 'ユーザーIDあるいはパスワードに誤りがあります。';
-                }
-            } else {
-                // 4. 認証成功なら、セッションIDを新規に発行する
-                // 該当データなし
-                $errorMessage = 'ユーザーIDあるいはパスワードに誤りがあります。';
-            }
-        } catch (PDOException $e) {
-            $errorMessage = 'エラーが発生したためログインできませんでした';
-            //$errorMessage = $sql;
-            // $e->getMessage() でエラー内容を参照可能（デバッグ時のみ表示）
-            // echo $e->getMessage();
-        }
-    }
+      $errorMessage = "パスワードが未入力です。";
+    } 
+   
+//パスワードが正しいかチェック
+//パスワードが正しい場合
+if (password_verify($password, $result['password'])) {
+  //情報をセッション変数に登録
+  $_SESSION['mail'] = $result['mail'];
+  header("Location: index.html");
+      exit;
+} else {
+  //パスワードが間違っている場合
+  
+  $errorMessage = 'メールアドレスまたはパスワードが間違っています';
+}
 }
 ?>
 
