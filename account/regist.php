@@ -1,3 +1,21 @@
+<?php echo "family_name"; ?>
+
+
+<?php
+//セッションを使うことを宣言
+session_start();
+
+//ログインされていない場合は強制的にログインページにリダイレクト
+if (!isset($_SESSION["family_name"])) {
+  header("Location: login.php");
+  exit();
+}
+
+//ログインされている場合は表示用メッセージを編集
+$message = $_SESSION['family_name']."さんようこそ";
+$message = htmlspecialchars($message);
+
+?>
 <!DOCTYPE html>
 <html lang="jp">
 <head>
@@ -22,7 +40,7 @@
                 <li>D .I .Bligについて</li>
                 <li><a href="regist.php">アカウント登録フォーム</a></li>
                 <li><a href="list.php">アカウント一覧</a></li>
-                <li><a href="list.php">ログイン</a></li>
+                <li><a href="login.php">ログイン</a></li>
                 <li>問い合わせ</li>
                 <li>その他</li>
             </ul>

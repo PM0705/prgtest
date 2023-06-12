@@ -1,11 +1,21 @@
 <?php
-error_reporting(0);
+session_start();//セッションスタート
+$_SESSION['mail'] = 'support@wepicks.net';//セッション変数に登録
+$_SESSION['mail'] = $_POST['mail'];//セッション変数に登録
+$_SESSION["family_name"] = $_POST['family_name'];
+echo $_SESSION['mail'];//セッション変数の呼び出し
+echo $_SESSION['family_name'];//セッション変数の呼び出し
+
+?>
+
+<?php
+
 //セッションの開始
 session_start();
 
 //フォームから受け取った値を変数に代入
-$mail = $_POST['mail'];;
-$password = $_POST['password'];;
+$mail = $_POST['mail'];
+$password = $_POST['password'];
 
 //データベース接続情報
 $dbuser = 'root';
@@ -37,8 +47,9 @@ if (isset($_POST["login"])) {
 //パスワードが正しい場合
 if (password_verify($password, $result['password'])) {
   //情報をセッション変数に登録
+  $_SESSION["family_name"] = $_POST['family_name']; //セッションにログイン情報を登録
   $_SESSION['mail'] = $result['mail'];
-  header("Location: index.html");
+  header("Location: login.php");
       exit;
 } else {
   //パスワードが間違っている場合
@@ -47,6 +58,7 @@ if (password_verify($password, $result['password'])) {
 }
 }
 ?>
+
 
 
 
@@ -72,7 +84,7 @@ if (password_verify($password, $result['password'])) {
                 <li><a href="index.html">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
-                <li><a href="regist.php">アカウント登録フォーム</a></li>
+                <li><a href="list.php">アカウント一覧</a></li>
                 <li><a href="login.php">ログイン</a></li>
                 <li>問い合わせ</li>
                 <li>その他</li>
