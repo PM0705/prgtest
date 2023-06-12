@@ -1,19 +1,28 @@
-
 <?php
+session_start();
+var_dump($_SESSION);
+
+
 //セッションを使うことを宣言
 session_start();
 
 //ログインされていない場合は強制的にログインページにリダイレクト
-if (!isset($_SESSION["family_name"])) {
+if (!isset($_SESSION["mail"])) {
   header("Location: login.php");
   exit();
 }
 
 //ログインされている場合は表示用メッセージを編集
-$message = $_SESSION['family_name']."さんようこそ";
-$message = htmlspecialchars($message);
+$message = $_SESSION['mail']."さんようこそ";
+$message1 = $_SESSION['family_name']."さんようこそ";
+$authority = $_SESSION['authority']."さんようこそ";
+
+
 
 ?>
+<div><?php echo htmlspecialchars($message, ENT_QUOTES); ?></div>
+
+
 <!DOCTYPE html>
 <html lang="jp">
 <head>
@@ -69,6 +78,9 @@ $message = htmlspecialchars($message);
                 <li><a href="login.php">ログイン</a></li>
                 <li>問い合わせ</li>
                 <li>その他</li>
+                <li><div><?php echo htmlspecialchars($message, ENT_QUOTES); ?></div></li>
+                <li><div><?php echo htmlspecialchars($message1, ENT_QUOTES); ?></div></li>
+                <li><div><?php echo htmlspecialchars($authority, ENT_QUOTES); ?></div></li>
             </ul>
         </div>
     </header>

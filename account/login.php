@@ -1,21 +1,12 @@
 <?php
-session_start();//セッションスタート
-$_SESSION['mail'] = 'support@wepicks.net';//セッション変数に登録
-$_SESSION['mail'] = $_POST['mail'];//セッション変数に登録
-$_SESSION["family_name"] = $_POST['family_name'];
-echo $_SESSION['mail'];//セッション変数の呼び出し
-echo $_SESSION['family_name'];//セッション変数の呼び出し
 
-?>
 
-<?php
 
 //セッションの開始
 session_start();
+var_dump($_SESSION);
 
-//フォームから受け取った値を変数に代入
-$mail = $_POST['mail'];
-$password = $_POST['password'];
+
 
 //データベース接続情報
 $dbuser = 'root';
@@ -32,30 +23,41 @@ try {
 //DBからユーザ情報を取得
 $sql = 'SELECT * FROM diblog_account WHERE mail = :mail';
 $sth = $dbh->prepare($sql);
-$sth->bindValue(':mail', $mail);
-$sth->execute();
-$result = $sth->fetch(PDO::FETCH_ASSOC);
+
 if (isset($_POST["login"])) {
+    
     // １．ユーザIDの入力チェック
     if (empty($_POST["mail"])) {
       $errorMessage = "メールアドレスが未入力です。";
     } else if (empty($_POST["password"])) {
       $errorMessage = "パスワードが未入力です。";
     } 
+        //フォームから受け取った値を変数に代入
+    $mail = $_POST['mail'];
+    $password = $_POST['password'];
+    $sth->bindValue(':mail', $mail);
+    $sth->execute();
+    $result = $sth->fetch(PDO::FETCH_ASSOC);
    
-//パスワードが正しいかチェック
-//パスワードが正しい場合
-if (password_verify($password, $result['password'])) {
-  //情報をセッション変数に登録
-  $_SESSION["family_name"] = $_POST['family_name']; //セッションにログイン情報を登録
-  $_SESSION['mail'] = $result['mail'];
-  header("Location: login.php");
-      exit;
-} else {
-  //パスワードが間違っている場合
-  
-  $errorMessage = 'メールアドレスまたはパスワードが間違っています';
-}
+    //パスワードが正しいかチェック
+    //パスワードが正しい場合
+    if (password_verify($password, $result['password'])) {
+    //情報をセッション変数に登録
+    $_SESSION["family_name"] = $result['family_name']; //セッションにログイン情報を登録
+    $_SESSION["authority"] = $result['authority']; //セッションにログイン情報を登録
+    $_SESSION['mail'] = $result['mail'];
+    var_dump($_SESSION);
+
+
+    
+    header("Location: list.php");
+    
+        exit;
+    } else {
+    //パスワードが間違っている場合
+    
+    $errorMessage = 'メールアドレスまたはパスワードが間違っています';
+    }
 }
 ?>
 
@@ -97,22 +99,23 @@ if (password_verify($password, $result['password'])) {
         <div class="confirm">  
             
                 <form  id="loginForm" name="loginForm" action="login.php" method="POST">
-                <div><?php echo htmlspecialchars($errorMessage, ENT_QUOTES); ?></div>
+                <div><?php error_reporting(0); echo htmlspecialchars($errorMessage, ENT_QUOTES); ?></div>
                     <dl>
                         <dt><label for="mail">メールアドレス<br>※半角英数字、半角ハイフンのみ可</label></dt>
                         <dd><input type="text" name="mail" id="mail" maxlength="100"
-                                    pattern="^[\w\d\-_-]+@[\w\d_-]+\.[\w\d._-]+$" title="半角英数字、半角ハイフンでご入力ください"><br>
+                                   title="半角英数字、半角ハイフンでご入力ください"><br>
                             <span class="err-msg-mail"></span>
                         </dd>
                     </dl>
                     <!-- パスワード -->
                     <dl>
-                        <dt><label for="password">パスワード※半角英数字のみ入力可</label></dt>
+                        <dt><label for="password">パスワード<br>※半角英数字のみ入力可</label></dt>
                         <dd><input type="password" name="password" id="password" maxlength="10"
-                                    pattern="^[a-zA-Z0-9]+$" title="半角英数字でご入力ください"><br>
+                                   title="半角英数字でご入力ください"><br>
                             <span class="err-msg-password"></span>
                         </dd>
                     </dl>
+
                     <!-- ログインボタン -->
 
                     <div class="form1">

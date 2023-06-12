@@ -1,21 +1,6 @@
-<?php echo "family_name"; ?>
 
 
-<?php
-//セッションを使うことを宣言
-session_start();
 
-//ログインされていない場合は強制的にログインページにリダイレクト
-if (!isset($_SESSION["family_name"])) {
-  header("Location: login.php");
-  exit();
-}
-
-//ログインされている場合は表示用メッセージを編集
-$message = $_SESSION['family_name']."さんようこそ";
-$message = htmlspecialchars($message);
-
-?>
 <!DOCTYPE html>
 <html lang="jp">
 <head>
