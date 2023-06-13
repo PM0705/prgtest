@@ -16,11 +16,12 @@ if (!isset($_SESSION["mail"])) {
 $message = $_SESSION['mail']."さんようこそ";
 $message1 = $_SESSION['family_name']."さんようこそ";
 $authority = $_SESSION['authority']."さんようこそ";
+$coution = "権限がないので操作できません";
 
 
 
 ?>
-<div><?php echo htmlspecialchars($message, ENT_QUOTES); ?></div>
+
 
 
 <!DOCTYPE html>
@@ -63,13 +64,25 @@ $authority = $_SESSION['authority']."さんようこそ";
 
         ?>
 
-
-
+        
 
     <header>
         <img src="img/diblog_logo.jpg" alt="DIworksのロゴ" class="img">
         <div class="menu">
             <ul>
+                <?php if ($_SESSION['authority'] == 0):?>
+
+                <li><a href="index.html">トップ</a></li>
+                <li>プロフィール</li>
+                <li>D .I .Bligについて</li>
+                <li><a href="login.php">ログイン</a></li>
+                <li>問い合わせ</li>
+                <li>その他</li>
+                <li><div><?php echo htmlspecialchars($message, ENT_QUOTES); ?></div></li>
+                <li><div><?php echo htmlspecialchars($message1, ENT_QUOTES); ?></div></li>
+                <li><div><?php echo htmlspecialchars($authority, ENT_QUOTES); ?></div></li>
+
+                <?php else :?>
                 <li><a href="index.html">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
@@ -81,6 +94,9 @@ $authority = $_SESSION['authority']."さんようこそ";
                 <li><div><?php echo htmlspecialchars($message, ENT_QUOTES); ?></div></li>
                 <li><div><?php echo htmlspecialchars($message1, ENT_QUOTES); ?></div></li>
                 <li><div><?php echo htmlspecialchars($authority, ENT_QUOTES); ?></div></li>
+                // endifとセミコロンで閉じる
+                <?php endif; ?>
+
             </ul>
         </div>
     </header>
@@ -158,14 +174,18 @@ $authority = $_SESSION['authority']."さんようこそ";
 
         <table>
             <tr>
-                <th>ID</th>
-                <th>名前（姓）</th>
-                <th>名前（名）</th>
-                <th>カナ（姓）</th>
-                <th>カナ（名）</th>
-                <th>メールアドレス</th>
-                <th>性別</th>
-                <th>アカウント権限</th>
+            <th>ID</th>
+                    <th>名前（姓）</th>
+                    <th>名前（名）</th>
+                    <th>カナ（姓）</th>
+                    <th>カナ（名）</th>
+                    <th>メールアドレス</th>
+                    <th>性別</th>
+                    <th>アカウント権限</th>
+                    <th>削除フラグ</th>
+                    <th>登録日時</th>
+                    <th>更新日時</th>
+                    <th ><br>操作<br><p class="dl">※削除済みの為操作できません</p></th>
                 
             </tr>
             <!-- ここでPHPのforeachを使って結果をループさせる -->
@@ -204,6 +224,54 @@ $authority = $_SESSION['authority']."さんようこそ";
                                     echo "管理者";
                             }?>
                 </td>
+                <td><?php switch ($row['delete_flag']) {
+                                    case '0':
+                                        echo "有効";
+                                        break;
+                                    
+                                    default:
+                                        echo "無効";
+                                        break;
+                            } 
+                            // switch ($row['delete_flag']) {
+                            //         case '0':
+                            //             echo "有効";
+                            //             break;
+                                    
+                            //         default:
+                            //             echo "無効";
+                            //             break;
+                            // } 
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                             error_reporting(0);
+                             echo date('Y/m/d', strtotime($row['registered_time']));
+                        ?>
+                    </td>
+                    <td>
+                        <?php 
+                             echo date('Y/m/d', strtotime($row['update_time']));
+                        ?>
+                    </td>
+                    <td>
+                    
+                        <!-- ★追加：削除★ -->
+                        <?php if ($_SESSION["authority"] == 1) : ?>
+                       
+                        <button type="button"  onclick="location.href='update.php?id=<?php echo($row['id']) ?>'">更新</button>
+                        <button type="button"  onclick="location.href='delete.php?id=<?php echo($row['id']) ?>'">削除</button>
+                        <button type="button"  onclick="location.href='pw.php?id=<?php echo($row['id']) ?>'">パスワード変更</button>
+                        <?php else : ?>
+                       
+                        <button type="button"  onclick="clickDisplayAlert()">更新</button>
+                        <button type="button"  onclick="clickDisplayAlert()">削除</button>
+                        <button type="button"  onclick="clickDisplayAlert()">パスワード変更</button>
+                        <?php endif; ?>
+                        
+                        
+                    </td>
             </tr>
         <?php endforeach; ?>
         </table>
@@ -216,7 +284,7 @@ $authority = $_SESSION['authority']."さんようこそ";
         <p class="footer-text">Copyright D.I.worksI D.I.blog is the one which provides A to Z about programming</p>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script type="text/javascript" src="app2.js"></script>   
+<script type="text/javascript" src="app5.js"></script>   
 </body>
 </html>
 
