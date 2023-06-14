@@ -48,7 +48,7 @@ $coution = "権限がないので操作できません";
     $options = [];
     $pdo = new PDO($dsn, $username, $password, $options);
         if ((empty($_POST["family_name"])) && (empty($_POST["last_name"])) && (empty($_POST["family_name_kana"])) && (empty($_POST["last_name_kana"]))){
-            $stmt = $pdo->query("SELECT * FROM diblog_account ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
+            $stmt = $pdo->query("SELECT * FROM diblog_account where delete_flag = '0' ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
         }
         error_reporting(0);
         if($_POST["family_name"] != "" || $_POST["last_name"] != "" || $_POST["family_name_kana"] != "" || $_POST["last_name_kana"] != "" || $_POST["gender"] != "" || $_POST["authority"] != "" ){ //IDおよびユーザー名の入力有無を確認
@@ -94,7 +94,7 @@ $coution = "権限がないので操作できません";
                 <li><div><?php echo htmlspecialchars($message, ENT_QUOTES); ?></div></li>
                 <li><div><?php echo htmlspecialchars($message1, ENT_QUOTES); ?></div></li>
                 <li><div><?php echo htmlspecialchars($authority, ENT_QUOTES); ?></div></li>
-                // endifとセミコロンで閉じる
+                <!-- endifとセミコロンで閉じる -->
                 <?php endif; ?>
 
             </ul>
@@ -102,7 +102,7 @@ $coution = "権限がないので操作できません";
     </header>
 
     <div class="kizi1">
-        <h3> アカウント一覧</h3>
+        <h3>アカウント一覧</h3>
         <form action="list.php" method="post">
             <table>
                 <thead>
@@ -171,6 +171,142 @@ $coution = "権限がないので操作できません";
                 </div>
             </div>
         </form>
+
+        <table>
+            <tr>
+            <th>ID</th>
+                    <th>名前（姓）</th>
+                    <th>名前（名）</th>
+                    <th>カナ（姓）</th>
+                    <th>カナ（名）</th>
+                    <th>メールアドレス</th>
+                    <th>性別</th>
+                    <th>アカウント権限</th>
+                    <th>削除フラグ</th>
+                    <th>登録日時</th>
+                    <th>更新日時</th>
+                    <th ><br>操作<br><p class="dl">※管理者の方のみ操作可能</p></th>
+                
+            </tr>
+            <!-- ここでPHPのforeachを使って結果をループさせる -->
+            <?php foreach ($stmt as $row): ?>
+            <tr><td>
+                    <?php echo $row['id']?>
+                </td>
+                <td>
+                    <?php echo $row['family_name']?>
+                </td>
+                <td>
+                    <?php echo $row['last_name']?>
+                </td>
+                <td>
+                    <?php echo $row['family_name_kana']?>
+                </td>
+                <td>
+                    <?php echo $row['last_name_kana']?>
+                </td>
+                <td>
+                    <?php echo $row['mail']?>
+                </td>
+                <td>
+                    <?php error_reporting(0);
+                            if ($row['gender'] == 0) {
+                                echo "男";
+                                }else{
+                                        echo "女";
+                                }?>
+                </td>
+                <td>
+                    <?php error_reporting(0);
+                        if ($row['authority'] == 0) {
+                            echo "一般";
+                            }else{
+                                    echo "管理者";
+                            }?>
+                </td>
+                <td><?php switch ($row['delete_flag']) {
+                                    case '0':
+                                        echo "有効";
+                                        break;
+                                    
+                                    default:
+                                        echo "無効";
+                                        break;
+                            } 
+                            // switch ($row['delete_flag']) {
+                            //         case '0':
+                            //             echo "有効";
+                            //             break;
+                                    
+                            //         default:
+                            //             echo "無効";
+                            //             break;
+                            // } 
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                             error_reporting(0);
+                             echo date('Y/m/d', strtotime($row['registered_time']));
+                        ?>
+                    </td>
+                    <td>
+                        <?php 
+                             echo date('Y/m/d', strtotime($row['update_time']));
+                        ?>
+                    </td>
+                    <td>
+                    
+                        <!-- ★追加：削除★ -->
+                        <?php if ($_SESSION["authority"] == 1) : ?>
+                       
+                        <button type="button"  onclick="location.href='update.php?id=<?php echo($row['id']) ?>'">更新</button>
+                        <button type="button"  onclick="location.href='delete.php?id=<?php echo($row['id']) ?>'">削除</button>
+                        <button type="button"  onclick="location.href='pw.php?id=<?php echo($row['id']) ?>'">パスワード変更</button>
+                        <?php else : ?>
+                       
+                        <button type="button"  onclick="clickDisplayAlert()">更新</button>
+                        <button type="button"  onclick="clickDisplayAlert()">削除</button>
+                        <button type="button"  onclick="clickDisplayAlert()">パスワード変更</button>
+                        <?php endif; ?>
+                        
+                        
+                    </td>
+            </tr>
+        <?php endforeach; ?>
+        </table>
+
+    </div>
+
+
+
+
+    <?php
+   
+    //データベースへ接続
+    $dsn = "mysql:dbname=lesson01;host=localhost;charset=utf8mb4";
+    $username = "root";
+    $password = "root";
+    $options = [];
+    $pdo = new PDO($dsn, $username, $password, $options);
+        if ((empty($_POST["family_name"])) && (empty($_POST["last_name"])) && (empty($_POST["family_name_kana"])) && (empty($_POST["last_name_kana"]))){
+            $stmt = $pdo->query("SELECT * FROM diblog_account where delete_flag = '1' ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
+        }
+        error_reporting(0);
+        if($_POST["family_name"] != "" || $_POST["last_name"] != "" || $_POST["family_name_kana"] != "" || $_POST["last_name_kana"] != "" || $_POST["gender"] != "" || $_POST["authority"] != "" ){ //IDおよびユーザー名の入力有無を確認
+            $stmt = $pdo->query("SELECT * FROM diblog_account WHERE family_name LIKE  '%".$_POST["family_name"]."%' 
+                                                                    AND last_name LIKE  '%".$_POST["last_name"]."%' 
+                                                                    AND family_name_kana LIKE  '%".$_POST["family_name_kana"]."%' 
+                                                                    AND last_name_kana LIKE  '%".$_POST["last_name_kana"]."%' 
+                                                                    AND gender LIKE  '%".$_POST["gender"]."%' 
+                                                                    AND authority LIKE  '%".$_POST["authority"]."%' 
+                                                                    ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
+        }
+      
+
+        ?>
+    <div class="kizi1">
+        <h3>削除済みアカウント一覧</h3>
 
         <table>
             <tr>
@@ -256,20 +392,8 @@ $coution = "権限がないので操作できません";
                         ?>
                     </td>
                     <td>
-                    
                         <!-- ★追加：削除★ -->
-                        <?php if ($_SESSION["authority"] == 1) : ?>
-                       
-                        <button type="button"  onclick="location.href='update.php?id=<?php echo($row['id']) ?>'">更新</button>
-                        <button type="button"  onclick="location.href='delete.php?id=<?php echo($row['id']) ?>'">削除</button>
-                        <button type="button"  onclick="location.href='pw.php?id=<?php echo($row['id']) ?>'">パスワード変更</button>
-                        <?php else : ?>
-                       
-                        <button type="button"  onclick="clickDisplayAlert()">更新</button>
-                        <button type="button"  onclick="clickDisplayAlert()">削除</button>
-                        <button type="button"  onclick="clickDisplayAlert()">パスワード変更</button>
-                        <?php endif; ?>
-                        
+                        <p class="dl_sousa">更新 削除 パスワード変更</p>
                         
                     </td>
             </tr>
