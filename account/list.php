@@ -47,7 +47,7 @@ $coution = "権限がないので操作できません";
     $password = "root";
     $options = [];
     $pdo = new PDO($dsn, $username, $password, $options);
-        if ((empty($_POST["family_name"])) && (empty($_POST["last_name"])) && (empty($_POST["family_name_kana"])) && (empty($_POST["last_name_kana"]))){
+        if ((isset($_POST["family_name"])) && (isset($_POST["last_name"])) && (isset($_POST["family_name_kana"])) && (isset($_POST["last_name_kana"]))){
             $stmt = $pdo->query("SELECT * FROM diblog_account where delete_flag = '0' ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
         }
         error_reporting(0);
@@ -102,7 +102,7 @@ $coution = "権限がないので操作できません";
     </header>
 
     <div class="kizi1">
-        <h3>アカウント一覧</h3>
+        <h3>アカウント検索</h3>
         <form action="list.php" method="post">
             <table>
                 <thead>
@@ -171,7 +171,7 @@ $coution = "権限がないので操作できません";
                 </div>
             </div>
         </form>
-
+        <h3>アカウント一覧</h3>
         <table>
             <tr>
             <th>ID</th>
@@ -289,7 +289,7 @@ $coution = "権限がないので操作できません";
     $password = "root";
     $options = [];
     $pdo = new PDO($dsn, $username, $password, $options);
-        if ((empty($_POST["family_name"])) && (empty($_POST["last_name"])) && (empty($_POST["family_name_kana"])) && (empty($_POST["last_name_kana"]))){
+        if ((isset($_POST["family_name"])) && (isset($_POST["last_name"])) && (isset($_POST["family_name_kana"])) && (isset($_POST["last_name_kana"]))){
             $stmt = $pdo->query("SELECT * FROM diblog_account where delete_flag = '1' ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
         }
         error_reporting(0);
