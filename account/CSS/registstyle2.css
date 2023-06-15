@@ -160,16 +160,14 @@ form div{
     width: 500px;
     text-align: center;
 }
-.radiogender{
-    display: flex;
-    vertical-align: top;
-    text-align: center;
-    margin-left: -220px;
+
     
-    
-}
+
 input[type="radio"] {
-    margin-right: -150px;
+    width: 30px;
+    height: 20px;
+    top: 4px;
+    position: relative;
 
   }
   

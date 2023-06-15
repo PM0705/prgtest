@@ -1,30 +1,10 @@
 <?php
-session_start();
-var_dump($_SESSION);
-
-
 //セッションを使うことを宣言
 session_start();
-
-//ログインされていない場合は強制的にログインページにリダイレクト
-if (!isset($_SESSION["mail"])) {
-  header("Location: login.php");
-  exit();
-}
-
-//ログインされている場合は表示用メッセージを編集
-$message = $_SESSION['mail']."さんようこそ";
-$message1 = $_SESSION['family_name']."さんようこそ";
-$authority = $_SESSION['authority']."さんようこそ";
-$coution = "権限がないので操作できません";
-?>
-<?php
-
-//セッションの開始
-session_start();
 var_dump($_SESSION);
 
-
+?>
+<?php
 
 //データベース接続情報
 $dbuser = 'root';
@@ -43,6 +23,11 @@ $sql = 'SELECT * FROM diblog_account WHERE mail = :mail';
 $sth = $dbh->prepare($sql);
 
 if (isset($_POST["login"])) {
+    //ログインされている場合は表示用メッセージを編集
+    $message = $_SESSION['mail']."さんようこそ";
+    $message1 = $_SESSION['family_name']."さんようこそ";
+    $authority = $_SESSION['authority']."さんようこそ";
+    $coution = "権限がないので操作できません";
     
     // １．ユーザIDの入力チェック
     if (empty($_POST["mail"])) {
@@ -64,11 +49,11 @@ if (isset($_POST["login"])) {
     $_SESSION["family_name"] = $result['family_name']; //セッションにログイン情報を登録
     $_SESSION["authority"] = $result['authority']; //セッションにログイン情報を登録
     $_SESSION['mail'] = $result['mail'];
-    var_dump($_SESSION);
+ 
 
 
     
-    header("Location: list.php");
+    header("Location: index.html");
     
         exit;
     } else {
@@ -101,32 +86,12 @@ if (isset($_POST["login"])) {
         <img src="img/diblog_logo.jpg" alt="DIworksのロゴ" class="img">
         <div class="menu">
             <ul>
-            <?php if ($_SESSION['authority'] == 0):?>
-
+                <!-- ログインしていない -->
                 <li><a href="index.html">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="login.php">ログイン</a></li>
-                <li>問い合わせ</li>
-                <li>その他</li>
-                <li><div><?php echo htmlspecialchars($message, ENT_QUOTES); ?></div></li>
-                <li><div><?php echo htmlspecialchars($message1, ENT_QUOTES); ?></div></li>
-                <li><div><?php echo htmlspecialchars($authority, ENT_QUOTES); ?></div></li>
 
-                <?php else :?>
-                <li><a href="index.html">トップ</a></li>
-                <li>プロフィール</li>
-                <li>D .I .Bligについて</li>
-                <li><a href="regist.php">アカウント登録フォーム</a></li>
-                <li><a href="list.php">アカウント一覧</a></li>
-                <li><a href="login.php">ログイン</a></li>
-                <li>問い合わせ</li>
-                <li>その他</li>
-                <li><div><?php echo htmlspecialchars($message, ENT_QUOTES); ?></div></li>
-                <li><div><?php echo htmlspecialchars($message1, ENT_QUOTES); ?></div></li>
-                <li><div><?php echo htmlspecialchars($authority, ENT_QUOTES); ?></div></li>
-                // endifとセミコロンで閉じる
-                <?php endif; ?>
             </ul>
         </div>
     </header>

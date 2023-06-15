@@ -1,4 +1,9 @@
+<?php
+//セッションを使うことを宣言
+session_start();
+var_dump($_SESSION);
 
+?>
 <?php
 
 $id = $_POST['id'];
@@ -57,14 +62,37 @@ $message = '削除完了しました。';
         <img src="img/diblog_logo.jpg" alt="DIworksのロゴ" class="img">
         <div class="menu">
             <ul>
+                <!-- ログインしていない -->
+                <?php if (empty($_SESSION["mail"])) :?>
+                <li><a href="index.html">トップ</a></li>
+                <li>プロフィール</li>
+                <li>D .I .Bligについて</li>
+                <li><a href="login.php">ログイン</a></li>
+
+                <!-- 一般 -->
+                <?php elseif ($_SESSION['authority'] == 0):?>
+                <!-- //ログインされている場合は表示用メッセージを編集 -->
+                <?php $message1 = $_SESSION['family_name']."さんようこそ";?>
+                <li><a href="index.html">トップ</a></li>
+                <li>プロフィール</li>
+                <li>D .I .Bligについて</li>
+                <li>問い合わせ</li>
+                <li><div><?php echo htmlspecialchars($message1, ENT_QUOTES); ?></div></li>
+                <li><a href="logout.php">ログアウト</a></li>
+
+                <!-- 管理者 -->
+                <?php else :?>
                 <li><a href="index.html">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="regist.php">アカウント登録フォーム</a></li>
                 <li><a href="list.php">アカウント一覧</a></li>
-                <li><a href="login.php">ログイン</a></li>
                 <li>問い合わせ</li>
                 <li>その他</li>
+                <li><div><?php error_reporting(0); echo htmlspecialchars($message1, ENT_QUOTES); ?></div></li>
+                <li><a href="logout.php">ログアウト</a></li>
+
+                <?php endif; ?>
             </ul>
         </div>
     </header>

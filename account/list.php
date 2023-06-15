@@ -8,7 +8,7 @@ session_start();
 
 //ログインされていない場合は強制的にログインページにリダイレクト
 if (!isset($_SESSION["mail"])) {
-  header("Location: login.php");
+  header("Location: index.html");
   exit();
 }
 
@@ -57,7 +57,8 @@ $coution = "権限がないので操作できません";
                                                                     AND family_name_kana LIKE  '%".$_POST["family_name_kana"]."%' 
                                                                     AND last_name_kana LIKE  '%".$_POST["last_name_kana"]."%' 
                                                                     AND gender LIKE  '%".$_POST["gender"]."%' 
-                                                                    AND authority LIKE  '%".$_POST["authority"]."%' 
+                                                                    AND authority LIKE  '%".$_POST["authority"]."%'
+                                                                    AND delete_flag = '0' 
                                                                     ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
         }
       
@@ -70,31 +71,36 @@ $coution = "権限がないので操作できません";
         <img src="img/diblog_logo.jpg" alt="DIworksのロゴ" class="img">
         <div class="menu">
             <ul>
-                <?php if ($_SESSION['authority'] == 0):?>
-
+                <!-- ログインしていない -->
+                <?php if (empty($_SESSION["mail"])) :?>
                 <li><a href="index.html">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="login.php">ログイン</a></li>
-                <li>問い合わせ</li>
-                <li>その他</li>
-                <li><div><?php echo htmlspecialchars($message, ENT_QUOTES); ?></div></li>
-                <li><div><?php echo htmlspecialchars($message1, ENT_QUOTES); ?></div></li>
-                <li><div><?php echo htmlspecialchars($authority, ENT_QUOTES); ?></div></li>
 
+                <!-- 一般 -->
+                <?php elseif ($_SESSION['authority'] == 0):?>
+                <!-- //ログインされている場合は表示用メッセージを編集 -->
+                <?php $message1 = $_SESSION['family_name']."さんようこそ";?>
+                <li><a href="index.html">トップ</a></li>
+                <li>プロフィール</li>
+                <li>D .I .Bligについて</li>
+                <li>問い合わせ</li>
+                <li><div><?php echo htmlspecialchars($message1, ENT_QUOTES); ?></div></li>
+                <li><a href="logout.php">ログアウト</a></li>
+
+                <!-- 管理者 -->
                 <?php else :?>
                 <li><a href="index.html">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="regist.php">アカウント登録フォーム</a></li>
                 <li><a href="list.php">アカウント一覧</a></li>
-                <li><a href="login.php">ログイン</a></li>
                 <li>問い合わせ</li>
                 <li>その他</li>
-                <li><div><?php echo htmlspecialchars($message, ENT_QUOTES); ?></div></li>
-                <li><div><?php echo htmlspecialchars($message1, ENT_QUOTES); ?></div></li>
-                <li><div><?php echo htmlspecialchars($authority, ENT_QUOTES); ?></div></li>
-                <!-- endifとセミコロンで閉じる -->
+                <li><div><?php error_reporting(0); echo htmlspecialchars($message1, ENT_QUOTES); ?></div></li>
+                <li><a href="logout.php">ログアウト</a></li>
+
                 <?php endif; ?>
 
             </ul>
@@ -147,6 +153,8 @@ $coution = "権限がないので操作できません";
                         <div class="radiogender">
                         <input type="radio" name="gender" value="0" checked>男
                         <input type="radio" name="gender" value="1">女
+                        <input type="radio" name="gender" value="">男女指定無し
+                        
                         </div>
                         </td>
 
@@ -156,8 +164,10 @@ $coution = "権限がないので操作できません";
                         <th>アカウント権限</th>
                         <td>
                         <select name="authority" id="authority" value=array()>
-                            <option value="0">一般</option>
+                            <option value=""></option>
+                            <option value="0"selected>一般</option>
                             <option value="1">管理者</option>
+                            
                         </select><br>
                         </td>
     
@@ -212,8 +222,9 @@ $coution = "権限がないので操作できません";
                     <?php error_reporting(0);
                             if ($row['gender'] == 0) {
                                 echo "男";
+                                
                                 }else{
-                                        echo "女";
+                                    echo "女";
                                 }?>
                 </td>
                 <td>
@@ -300,6 +311,7 @@ $coution = "権限がないので操作できません";
                                                                     AND last_name_kana LIKE  '%".$_POST["last_name_kana"]."%' 
                                                                     AND gender LIKE  '%".$_POST["gender"]."%' 
                                                                     AND authority LIKE  '%".$_POST["authority"]."%' 
+                                                                    AND delete_flag = '1' 
                                                                     ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
         }
       
