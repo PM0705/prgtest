@@ -8,7 +8,7 @@ session_start();
 
 //ログインされていない場合は強制的にログインページにリダイレクト
 if ($_SESSION["authority"] == 0){
-    header("Location: index.html");
+    header("Location: index.php");
     exit();
 }
 
@@ -44,7 +44,7 @@ $coution = "権限がないので操作できません";
             <ul>
                 <!-- ログインしていない -->
                 <?php if (empty($_SESSION["mail"])) :?>
-                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="login.php">ログイン</a></li>
@@ -53,7 +53,7 @@ $coution = "権限がないので操作できません";
                 <?php elseif ($_SESSION['authority'] == 0):?>
                 <!-- //ログインされている場合は表示用メッセージを編集 -->
                 <?php $message1 = $_SESSION['family_name']."さんようこそ";?>
-                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li>問い合わせ</li>
@@ -62,7 +62,7 @@ $coution = "権限がないので操作できません";
 
                 <!-- 管理者 -->
                 <?php else :?>
-                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="regist.php">アカウント登録フォーム</a></li>

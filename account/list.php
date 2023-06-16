@@ -8,7 +8,7 @@ session_start();
 
 //ログインされていない場合は強制的にログインページにリダイレクト
 if ($_SESSION["authority"] == 0){
-    header("Location: index.html");
+    header("Location: index.php");
     exit();
 }
 
@@ -73,7 +73,7 @@ $coution = "権限がないので操作できません";
             <ul>
                 <!-- ログインしていない -->
                 <?php if (empty($_SESSION["mail"])) :?>
-                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="login.php">ログイン</a></li>
@@ -82,7 +82,7 @@ $coution = "権限がないので操作できません";
                 <?php elseif ($_SESSION['authority'] == 0):?>
                 <!-- //ログインされている場合は表示用メッセージを編集 -->
                 <?php $message1 = $_SESSION['family_name']."さんようこそ";?>
-                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li>問い合わせ</li>
@@ -91,7 +91,7 @@ $coution = "権限がないので操作できません";
 
                 <!-- 管理者 -->
                 <?php else :?>
-                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="regist.php">アカウント登録フォーム</a></li>
@@ -117,12 +117,12 @@ $coution = "権限がないので操作できません";
                         <th>名前（姓）</th>
                         <td>
                         <input type="text" name="family_name" id="family_name" maxlength="10" 
-                            pattern="[\u4E00-\u9FFF\u3040-\u309Fー]*"
+                            pattern="[\u4E00-\u9FFF\u3040-\u309Fー]*" value="<?= $_POST['family_name'] ?>"
                             title="漢字・ひらがなでご入力ください"><br>
                         
                         <th>名前（名）</th>
                         <td>
-                        <input type="text" name="last_name" id="last_name" maxlength="10"
+                        <input type="text" name="last_name" id="last_name" maxlength="10" value="<?= $_POST['last_name'] ?>"
                             pattern="[\u4E00-\u9FFF\u3040-\u309Fー]*" title="漢字・ひらがなでご入力ください"><br>
                         </td>
                     </tr>
@@ -130,12 +130,12 @@ $coution = "権限がないので操作できません";
                         
                         <th>カナ（姓）</th>
                         <td>
-                        <input type="text" name="family_name_kana" id="family_name_kana" maxlength="10"
+                        <input type="text" name="family_name_kana" id="family_name_kana" maxlength="10" value="<?= $_POST['family_name_kana'] ?>"
                             pattern="^[\u30A0-\u30FF]+$" title="全角カタカナでご入力ください"><br>
                         </td>
                         <th>カナ（名）</th>
                         <td>
-                        <input type="text" name="last_name_kana" id="last_name_kana" maxlength="10"
+                        <input type="text" name="last_name_kana" id="last_name_kana" maxlength="10" value="<?= $_POST['last_name_kana'] ?>"
                             pattern="^[\u30A0-\u30FF]+$" title="全角カタカナでご入力ください"><br>
                         </td>
 
@@ -145,15 +145,15 @@ $coution = "権限がないので操作できません";
                     <tr>
                         <th>メールアドレス</th>
                         <td>
-                        <input type="text" name="mail" id="mail" maxlength="100"
+                        <input type="text" name="mail" id="mail" maxlength="100" value="<?= $_POST['mail'] ?>"
                             pattern="^[\w\d\-_-]+@[\w\d_-]+\.[\w\d._-]+$" title="半角英数字、半角ハイフンでご入力ください">
                         </td>
                         <th>性別</th>
                         <td>
                         <div class="radiogender">
                         <input type="radio" name="gender" value="0" checked>男
-                        <input type="radio" name="gender" value="1">女
-                        <input type="radio" name="gender" value="">男女指定無し
+                        <input type="radio" name="gender" value="1" <?php if (isset($_POST['gender']) && $_POST['gender'] == "1") echo 'checked'; ?>>女
+                        <input type="radio" name="gender" value="" <?php if (isset($_POST['gender']) && $_POST['gender'] == "") echo 'checked'; ?> >選択無し
                         
                         </div>
                         </td>
@@ -164,9 +164,9 @@ $coution = "権限がないので操作できません";
                         <th>アカウント権限</th>
                         <td>
                         <select name="authority" id="authority" value=array()>
-                            <option value=""></option>
-                            <option value="0"selected>一般</option>
-                            <option value="1">管理者</option>
+                            <option value=""selected>選択無し</option>
+                            <option value="0" <?php if (isset($_POST['authority']) && $_POST['authority'] == "0") echo 'selected'; ?>>一般</option>
+                            <option value="1" <?php if (isset($_POST['authority']) && $_POST['authority'] == "1") echo 'selected'; ?>>管理者</option>
                             
                         </select><br>
                         </td>

@@ -53,7 +53,7 @@ if (isset($_POST["login"])) {
 
 
     
-    header("Location: index.html");
+    header("Location: index.php");
     
         exit;
     } else {
@@ -87,7 +87,7 @@ if (isset($_POST["login"])) {
         <div class="menu">
             <ul>
                 <!-- ログインしていない -->
-                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="login.php">ログイン</a></li>

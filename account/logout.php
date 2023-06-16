@@ -27,7 +27,7 @@ $logout = 'ログアウト完了しました。';
         <img src="img/diblog_logo.jpg" alt="DIworksのロゴ" class="img">
         <div class="menu">
             <ul>
-            <li><a href="index.html">トップ</a></li>
+            <li><a href="index.php">トップ</a></li>
             <li>プロフィール</li>
             <li>D .I .Bligについて</li>
             <li><a href="login.php">ログイン</a></li>
@@ -41,8 +41,8 @@ $logout = 'ログアウト完了しました。';
     <div class="confirm1">
         <p class="noerror"><?php error_reporting(0);echo htmlspecialchars($logout, ENT_QUOTES); ?></p>
 
-            <form action="index.html">
-            <button onclick="location.href='index.html'" class="button1" value="TOPページへ戻る" >
+            <form action="index.php">
+            <button onclick="location.href='index.php'" class="button1" value="TOPページへ戻る" >
                     TOPページへ戻る          
             </button>
             </form>

@@ -4,7 +4,7 @@ session_start();
 var_dump($_SESSION);
 //ログインされていない場合は強制的にログインページにリダイレクト
 if ($_SESSION["authority"] == 0){
-    header("Location: index.html");
+    header("Location: index.php");
     exit();
 }
 ?>
@@ -69,7 +69,7 @@ $pdo ->exec("INSERT INTO diblog_account(family_name,last_name,family_name_kana,l
             <ul>
                 <!-- ログインしていない -->
                 <?php if (empty($_SESSION["mail"])) :?>
-                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="login.php">ログイン</a></li>
@@ -78,7 +78,7 @@ $pdo ->exec("INSERT INTO diblog_account(family_name,last_name,family_name_kana,l
                 <?php elseif ($_SESSION['authority'] == 0):?>
                 <!-- //ログインされている場合は表示用メッセージを編集 -->
                 <?php $message1 = $_SESSION['family_name']."さんようこそ";?>
-                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li>問い合わせ</li>
@@ -87,7 +87,7 @@ $pdo ->exec("INSERT INTO diblog_account(family_name,last_name,family_name_kana,l
 
                 <!-- 管理者 -->
                 <?php else :?>
-                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="regist.php">アカウント登録フォーム</a></li>
@@ -105,8 +105,8 @@ $pdo ->exec("INSERT INTO diblog_account(family_name,last_name,family_name_kana,l
     <h1>アカウント登録完了画面</h1>
     <div class="confirm">
         <div><?php echo htmlspecialchars($message, ENT_QUOTES); ?></div>
-        <form action="index.html">
-        <button onclick="location.href='index.html'" class="button1" value="TOPページへ戻る" >
+        <form action="index.php">
+        <button onclick="location.href='index.php'" class="button1" value="TOPページへ戻る" >
                 TOPページへ戻る          
         </button>
         </form>

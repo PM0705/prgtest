@@ -4,7 +4,7 @@ session_start();
 var_dump($_SESSION);
 //ログインされていない場合は強制的にログインページにリダイレクト
 if ($_SESSION["authority"] == 0){
-    header("Location: index.html");
+    header("Location: index.php");
     exit();
 }
 ?>
@@ -83,7 +83,7 @@ $message = '更新が完了しました。';
             <ul>
                 <!-- ログインしていない -->
                 <?php if (empty($_SESSION["mail"])) :?>
-                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="login.php">ログイン</a></li>
@@ -92,7 +92,7 @@ $message = '更新が完了しました。';
                 <?php elseif ($_SESSION['authority'] == 0):?>
                 <!-- //ログインされている場合は表示用メッセージを編集 -->
                 <?php $message1 = $_SESSION['family_name']."さんようこそ";?>
-                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li>問い合わせ</li>
@@ -101,7 +101,7 @@ $message = '更新が完了しました。';
 
                 <!-- 管理者 -->
                 <?php else :?>
-                <li><a href="index.html">トップ</a></li>
+                <li><a href="index.php">トップ</a></li>
                 <li>プロフィール</li>
                 <li>D .I .Bligについて</li>
                 <li><a href="regist.php">アカウント登録フォーム</a></li>
@@ -126,8 +126,8 @@ $message = '更新が完了しました。';
     <div class="confirm1">
         <p class="noerror"><?php error_reporting(0);echo htmlspecialchars($message, ENT_QUOTES); ?></p>
         <p class="error"><?php  error_reporting(0); echo htmlspecialchars($errmessage, ENT_QUOTES); ?></p>
-            <form action="index.html">
-            <button onclick="location.href='index.html'" class="button1" value="TOPページへ戻る" >
+            <form action="index.php">
+            <button onclick="location.href='index.php'" class="button1" value="TOPページへ戻る" >
                     TOPページへ戻る          
             </button>
             </form>
