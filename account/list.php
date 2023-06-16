@@ -48,7 +48,8 @@ $coution = "権限がないので操作できません";
     $options = [];
     $pdo = new PDO($dsn, $username, $password, $options);
         if ((isset($_POST["family_name"])) && (isset($_POST["last_name"])) && (isset($_POST["family_name_kana"])) && (isset($_POST["last_name_kana"]))){
-            $stmt = $pdo->query("SELECT * FROM diblog_account where delete_flag = '0' ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
+            $stmt = $pdo->query("SELECT * FROM diblog_account where delete_flag = '0' ORDER BY id DESC");
+            //SQL文を実行して、結果を$stmtに代入する。
         }
         error_reporting(0);
         if($_POST["family_name"] != "" || $_POST["last_name"] != "" || $_POST["family_name_kana"] != "" || $_POST["last_name_kana"] != "" || $_POST["gender"] != "" || $_POST["authority"] != "" ){ //IDおよびユーザー名の入力有無を確認
@@ -60,8 +61,15 @@ $coution = "権限がないので操作できません";
                                                                     AND authority LIKE  '%".$_POST["authority"]."%'
                                                                     AND delete_flag = '0' 
                                                                     ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
+            if($row==0){
+                $errmessage= '検索結果はありません';
+                
+                }
+                                                                
         }
-      
+
+
+
 
         ?>
 
@@ -151,9 +159,10 @@ $coution = "権限がないので操作できません";
                         <th>性別</th>
                         <td>
                         <div class="radiogender">
-                        <input type="radio" name="gender" value="0" checked>男
+                        <input type="radio" name="gender" value="" checked>選択無し
+                        <input type="radio" name="gender" value="0" <?php if (isset($_POST['gender']) && $_POST['gender'] == "0") echo 'checked'; ?>>男
                         <input type="radio" name="gender" value="1" <?php if (isset($_POST['gender']) && $_POST['gender'] == "1") echo 'checked'; ?>>女
-                        <input type="radio" name="gender" value="" <?php if (isset($_POST['gender']) && $_POST['gender'] == "") echo 'checked'; ?> >選択無し
+                        
                         
                         </div>
                         </td>
@@ -164,16 +173,17 @@ $coution = "権限がないので操作できません";
                         <th>アカウント権限</th>
                         <td>
                         <select name="authority" id="authority" value=array()>
-                            
-                            <option value="0" selected>一般</option>
+                            <option value=""selected>選択無し</option>
+                            <option value="0" <?php if (isset($_POST['authority']) && $_POST['authority'] == "0") echo 'selected'; ?>>一般</option>
                             <option value="1" <?php if (isset($_POST['authority']) && $_POST['authority'] == "1") echo 'selected'; ?>>管理者</option>
-                            <option value=""<?php if (isset($_POST['authority']) && $_POST['authority'] == "") echo 'selected'; ?>>選択無し</option>
+                            
                             
                         </select><br>
                         </td>
     
                     </tr>
                 </thead>
+                
 
             </table>
             <div class="contact-submit">
@@ -199,6 +209,8 @@ $coution = "権限がないので操作できません";
                     <th ><br>操作<br><p class="dl">※管理者の方のみ操作可能</p></th>
                 
             </tr>
+            
+
             <!-- ここでPHPのforeachを使って結果をループさせる -->
             <?php foreach ($stmt as $row): ?>
             <tr><td>
@@ -286,7 +298,11 @@ $coution = "権限がないので操作できません";
                     </td>
             </tr>
         <?php endforeach; ?>
+        
+        
         </table>
+        <p class="nodate"><?php  error_reporting(0); echo htmlspecialchars($errmessage, ENT_QUOTES); ?></p>
+    
 
     </div>
 
@@ -314,6 +330,10 @@ $coution = "権限がないので操作できません";
                                                                     AND authority LIKE  '%".$_POST["authority"]."%' 
                                                                     AND delete_flag = '1' 
                                                                     ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
+            if($row==0){
+                $errmessage= '検索結果はありません';
+                
+                }
         }
       
 
@@ -412,6 +432,7 @@ $coution = "権限がないので操作できません";
             </tr>
         <?php endforeach; ?>
         </table>
+        <p class="nodate"><?php  error_reporting(0); echo htmlspecialchars($errmessage, ENT_QUOTES); ?></p>
 
     </div>
     
