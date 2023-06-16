@@ -7,9 +7,9 @@ var_dump($_SESSION);
 session_start();
 
 //ログインされていない場合は強制的にログインページにリダイレクト
-if (!isset($_SESSION["mail"])) {
-  header("Location: index.html");
-  exit();
+if ($_SESSION["authority"] == 0){
+    header("Location: index.html");
+    exit();
 }
 
 //ログインされている場合は表示用メッセージを編集
