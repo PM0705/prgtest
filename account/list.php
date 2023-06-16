@@ -164,9 +164,10 @@ $coution = "権限がないので操作できません";
                         <th>アカウント権限</th>
                         <td>
                         <select name="authority" id="authority" value=array()>
-                            <option value=""selected>選択無し</option>
-                            <option value="0" <?php if (isset($_POST['authority']) && $_POST['authority'] == "0") echo 'selected'; ?>>一般</option>
+                            
+                            <option value="0" selected>一般</option>
                             <option value="1" <?php if (isset($_POST['authority']) && $_POST['authority'] == "1") echo 'selected'; ?>>管理者</option>
+                            <option value=""<?php if (isset($_POST['authority']) && $_POST['authority'] == "") echo 'selected'; ?>>選択無し</option>
                             
                         </select><br>
                         </td>
