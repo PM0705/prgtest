@@ -2,11 +2,12 @@
 //セッションを使うことを宣言
 session_start();
 var_dump($_SESSION);
+
 //ログインされていない場合は強制的にログインページにリダイレクト
 
 if ($_SESSION["authority"] == 0){
     header("Location: index.php");
-    exit();
+    
 }
   
 ?>
@@ -32,7 +33,7 @@ if ($_SESSION["authority"] == 0){
  
         } catch (PDOException $e) {
             print $e->getMessage() . "<br/>";
-            die();
+            
         }
  
     }
@@ -97,7 +98,7 @@ if ($_SESSION["authority"] == 0){
         <div class="main-container">
                 <div class="left">
                     <h3> アカウント更新画面</h3>
-                    <form method="post" action="update_confirm.php" name="form" autocomplete="off" >
+                    <form method="post" action="update_confirm.php" name="form" >
                         <div class="contact-form errorMsg">
                             
                                 <!-- ID -->

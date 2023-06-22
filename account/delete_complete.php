@@ -5,7 +5,7 @@ var_dump($_SESSION);
 //ログインされていない場合は強制的にログインページにリダイレクト
 if ($_SESSION["authority"] == 0){
     header("Location: index.php");
-    exit();
+    
 }
 ?>
 <?php

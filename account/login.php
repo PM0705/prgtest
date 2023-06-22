@@ -55,7 +55,7 @@ if (isset($_POST["login"])) {
     
     header("Location: index.php");
     
-        exit;
+        
     } else {
     //パスワードが間違っている場合
     

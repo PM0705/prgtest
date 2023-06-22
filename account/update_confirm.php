@@ -5,7 +5,7 @@ var_dump($_SESSION);
 //ログインされていない場合は強制的にログインページにリダイレクト
 if ($_SESSION["authority"] == 0){
     header("Location: index.php");
-    exit();
+    
 }
 ?>
 <!DOCTYPE html>
@@ -151,9 +151,9 @@ if ($_SESSION["authority"] == 0){
             ?>
             </p>
             <div class="form1">
-                <form action="update.php">
+                <form action="update.php" method="post">
                     <!-- <input type="submit" class="button1" value="前に戻る"> -->
-                    <button type="button" class="button1" value="前に戻る" onclick=history.back()>
+                    <button type="button" class="button1" value="前に戻る" onclick="history.back()">
                             前に戻る
                     </button>
                 </form>

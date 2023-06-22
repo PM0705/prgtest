@@ -5,7 +5,7 @@ var_dump($_SESSION);
 //ログインされていない場合は強制的にログインページにリダイレクト
 if ($_SESSION["authority"] == 0){
    header("Location: index.php");
-   exit();
+   
 }
 ?>
 <!DOCTYPE html>
@@ -97,12 +97,12 @@ if ($_SESSION["authority"] == 0){
         </p>
         <p>パスワード
            <br>
+          
            <?php
-           $pw = $_POST['password'];
-           echo str_repeat('⚫︎', mb_strlen($pw, 'UTF8'));
-           
-           ?>
-           
+             $pw = $_POST['password'];
+             echo str_repeat('⚫︎', mb_strlen($pw, 'UTF8'));
+            
+            ?>
         </p>
         <p>性別
            <br>
@@ -151,11 +151,26 @@ if ($_SESSION["authority"] == 0){
            ?>
         </p>
         <div class="form">
-            <form action="regist.php">
-                  <!-- <input type="submit" class="button1" value="前に戻る"> -->
-                  <button type="button" class="button1" value="前に戻る" onclick=history.back()>
+            <form action="regist.php" method="post">  
+                  <input type="submit" class="button1" value="前に戻る" onclick="window.history.back()">
+                  <input type="hidden" value="<?php echo $_POST['family_name']; ?>" name="family_name">
+                  <input type="hidden" value="<?php echo $_POST['last_name']; ?>" name="last_name">
+                  <input type="hidden" value="<?php echo $_POST['family_name_kana']; ?>" name="family_name_kana">
+                  <input type="hidden" value="<?php echo $_POST['last_name_kana']; ?>" name="last_name_kana">
+                  <input type="hidden" value="<?php echo $_POST['mail']; ?>" name="mail">
+                  <input type="hidden" value="<?php echo $_POST['password']; ?>" name="password">
+                  <input type="hidden" value="<?php echo $_POST['gender']; ?>" name="gender">
+                  <input type="hidden" value="<?php echo $_POST['postal_code']; ?>" name="postal_code">
+                  <input type="hidden" value="<?php echo $_POST['prefecture']; ?>" name="prefecture">
+                  <input type="hidden" value="<?php echo $_POST['address_1']; ?>" name="address_1">
+                  <input type="hidden" value="<?php echo $_POST['address_2']; ?>" name="address_2">
+                  <input type="hidden" value="<?php echo $_POST['authority']; ?>" name="authority">
+                
+                  <!-- <button type="button" class="button1"  value="前に戻る" onclick="window.history.back()">
                           前に戻る
-                  </button>
+                  </button> -->
+                
+
             </form>
             <form action="regist_complete.php" method="post">
             

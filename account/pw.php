@@ -4,8 +4,7 @@ session_start();
 var_dump($_SESSION);
 //ログインされていない場合は強制的にログインページにリダイレクト
 if ($_SESSION["authority"] == 0){
-    header("Location: index.php");
-    exit();
+    header("Location: index.php");  
 }
 ?>
 <?php
@@ -30,7 +29,7 @@ if ($_SESSION["authority"] == 0){
  
         } catch (PDOException $e) {
             print $e->getMessage() . "<br/>";
-            die();
+            
         }
  
     }
@@ -95,7 +94,7 @@ if ($_SESSION["authority"] == 0){
         <div class="main-container">
                 <div class="left">
                     <h3> パスワード更新画面</h3>
-                        <form method="post" action="pw_confirm.php" name="form" autocomplete="off" >
+                        <form method="post" action="pw_confirm.php" name="form"  >
                             <div class="contact-form errorMsg">
                                             <!-- ID -->
                                             
@@ -121,9 +120,10 @@ if ($_SESSION["authority"] == 0){
                                             <?php echo($member->mail) ?><br>
 
                                             <p class="pw2">パスワード※半角英数字のみ入力可<br>新しいパスワードを入力してください</p>
-                                            <input type="password" name="password" id="password" maxlength="10"
+                                            <input type="password" name="password" id="password" maxlength="10" value="<?= $_POST['password'] ?>"
                                             pattern="^[a-zA-Z0-9]+$" title="半角英数字でご入力ください"
                                             value=><br>
+          
                                             <span class="err-msg-password"></span>
                                              <br>
                                             

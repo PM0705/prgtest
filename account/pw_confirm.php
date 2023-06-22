@@ -5,7 +5,7 @@ var_dump($_SESSION);
 //ログインされていない場合は強制的にログインページにリダイレクト
 if ($_SESSION["authority"] == 0){
     header("Location: index.php");
-    exit();
+    
 }
 ?>
 <!DOCTYPE html>
@@ -68,6 +68,7 @@ if ($_SESSION["authority"] == 0){
             
             <p>新しいパスワード<span></span>
             
+            
             <?php
              $pw = $_POST['password'];
              echo str_repeat('⚫︎', mb_strlen($pw, 'UTF8'));
@@ -77,11 +78,11 @@ if ($_SESSION["authority"] == 0){
             </p>
             
             <div class="form1">
-                <form action="update.php">
+                <form action="pw.php" method="post">
                     <!-- <input type="submit" class="button1" value="前に戻る"> -->
-                    <button type="button" class="button1" value="前に戻る" onclick=history.back()>
-                            前に戻る
-                    </button>
+                    <input type="submit" class="button1" value="前に戻る" onclick="history.back()">
+                    <input type="hidden" value="<?php echo $_POST['password']; ?>" name="password">
+
                 </form>
                 <!-- 更新する・前に戻る -->
                 
