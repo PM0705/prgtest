@@ -132,7 +132,7 @@ if ($_SESSION["authority"] == 0){
                                 <!-- mail -->
                                 <label for="mail">メールアドレス<br>※半角英数字、半角ハイフンのみ可</label>
                                 <input type="text" name="mail" id="mail" maxlength="100"
-                                       pattern="^[\w\d\-_-]+@[\w\d_-]+\.[\w\d._-]+$" title="半角英数字、半角ハイフンでご入力ください"
+                                       pattern="^[a-zA-Z0-9\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-]+$" title="半角英数字、半角ハイフンでご入力ください"
                                        value="<?php print($member->mail) ?>"><br>
                                 <span class="err-msg-mail"></span>
                                 <br>
@@ -153,7 +153,7 @@ if ($_SESSION["authority"] == 0){
                                  <!-- 郵便番号 -->
                                 <label for="郵便番号">郵便番号</label>
                                 <input type=tel class="text" size="35" id="postal_code" name="postal_code" maxlength="7"
-                                       pattern="^[\d]+$"title="半角数字でご入力ください" 
+                                       pattern="^[\d]{7}"title="半角数字でご入力ください" 
                                        value="<?php print($member->postal_code) ?>"><br>
                                 <span class="err-msg-postal_code"></span>
                                 <br>

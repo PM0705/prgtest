@@ -115,7 +115,7 @@ $coution = "権限がないので操作できません";
                                 <dl>
                                     <dt><label for="mail">メールアドレス<br>※半角英数字、半角ハイフンのみ可</label></dt>
                                     <dd><input type="text" name="mail" id="mail" maxlength="100" value="<?= $_POST['mail'] ?>"
-                                               pattern="^[\w\d\-_-]+@[\w\d_-]+\.[\w\d._-]+$" title="半角英数字、半角ハイフンでご入力ください"><br>
+                                               pattern="^[a-zA-Z0-9\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-]+$" title="半角英数字、半角ハイフンでご入力ください"><br>
                                         <span class="err-msg-mail"></span>
                                     </dd>
                                 </dl>
@@ -138,9 +138,9 @@ $coution = "権限がないので操作できません";
                                 </dl>
                                 <!-- 郵便番号 -->
                                 <dl>
-                                    <dt><label for="郵便番号">郵便番号※半角数字のみ</label></dt>
+                                    <dt><label for="郵便番号">郵便番号※半角数字 7文字</label></dt>
                                     <dd><input type=tel class="text" size="35" id="postal_code" name="postal_code" maxlength="7" value="<?= $_POST['postal_code'] ?>"
-                                               pattern="^[\d]+$"title="半角数字でご入力ください"><br>
+                                               pattern="^[\d]{7}" title="半角数字７文字でご入力ください"><br>
                                     <span class="err-msg-postal_code"></span>
                                 </dd>
                                 </dl>
@@ -155,7 +155,7 @@ $coution = "権限がないので操作できません";
                                     $prefect=$_POST["prefecture"] 
                                     ?>
                                         
-                                        <option value='$prefect'selected><?php echo $_POST["prefecture"]?></option>
+                                        <option value='<?= $_POST["prefecture"] ?>'selected><?php echo $_POST["prefecture"]?></option>
                                         <?php
                           
                                                     $prefs = array ('北海道','青森県','岩手県','宮城県','秋田県','山形県',
