@@ -2,6 +2,7 @@
 //セッションを使うことを宣言
 session_start();
 var_dump($_SESSION);
+
 //ログインされていない場合は強制的にログインページにリダイレクト
 if ($_SESSION["authority"] == 0){
     header("Location: index.php");
@@ -78,12 +79,14 @@ if ($_SESSION["authority"] == 0){
             </p>
             
             <div class="form1">
-                <form action="pw.php" method="post">
-                    <!-- <input type="submit" class="button1" value="前に戻る"> -->
-                    <input type="submit" class="button1" value="前に戻る" onclick="history.back()">
-                    <input type="hidden" value="<?php echo $_POST['password']; ?>" name="password">
 
-                </form>
+                <div class="form1">
+                    <form action="pw.php" method="post">
+                        <!-- <input type="submit" class="button1" value="前に戻る"> -->
+                        <button type="button" class="button1" value="前に戻る" onclick="history.back()">
+                                前に戻る
+                        </button>
+                    </form>
                 <!-- 更新する・前に戻る -->
                 
 
@@ -91,11 +94,8 @@ if ($_SESSION["authority"] == 0){
                 
                     <input type="submit" class="button2" value="更新する"href="pw_complete.php<? $result['id'] ?>" name="btnSend">
                     <input type="hidden" value="<?php echo $_POST['id']; ?>" name="id">
-                    
                     <input type="hidden" value="<?php echo $_POST['password']; ?>" name="password">
-                    
 
-                    
                 </form>
             </div> 
         </div>

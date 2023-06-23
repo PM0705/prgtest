@@ -60,18 +60,12 @@ $coution = "権限がないので操作できません";
                                                                     AND gender LIKE  '%".$_POST["gender"]."%' 
                                                                     AND authority LIKE  '%".$_POST["authority"]."%'
                                                                     AND delete_flag = '0' 
-                                                                    ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
-            if($row==0){
-                $errmessage= '検索結果はありません';
-                
-                }
-                                                                
+                                                                    ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。    
+
         }
 
-
-
-
         ?>
+
 
         
 
@@ -212,7 +206,17 @@ $coution = "権限がないので操作できません";
             
 
             <!-- ここでPHPのforeachを使って結果をループさせる -->
+<?php
+        $count = $stmt->rowCount();
+        // var_dump($count);
+    if ($count == 0) {
+$errmessage = "検索結果はありません";
+} 
+?>
+
             <?php foreach ($stmt as $row): ?>
+
+
             <tr><td>
                     <?php echo $row['id']?>
                 </td>
@@ -297,7 +301,8 @@ $coution = "権限がないので操作できません";
                         
                     </td>
             </tr>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+
         
         
         </table>
@@ -330,10 +335,7 @@ $coution = "権限がないので操作できません";
                                                                     AND authority LIKE  '%".$_POST["authority"]."%' 
                                                                     AND delete_flag = '1' 
                                                                     ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
-            if($row==0){
-                $errmessage= '検索結果はありません';
-                
-                }
+
         }
       
 
