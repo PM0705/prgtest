@@ -47,16 +47,17 @@ $coution = "権限がないので操作できません";
     $password = "root";
     $options = [];
     $pdo = new PDO($dsn, $username, $password, $options);
-        if ((isset($_POST["family_name"])) && (isset($_POST["last_name"])) && (isset($_POST["family_name_kana"])) && (isset($_POST["last_name_kana"]))){
+        if ((isset($_POST["family_name"])) && (isset($_POST["last_name"])) && (isset($_POST["family_name_kana"])) && (isset($_POST["last_name_kana"])) && (isset($_POST["mail"]))){
             $stmt = $pdo->query("SELECT * FROM diblog_account where delete_flag = '0' ORDER BY id DESC");
             //SQL文を実行して、結果を$stmtに代入する。
         }
         error_reporting(0);
-        if($_POST["family_name"] != "" || $_POST["last_name"] != "" || $_POST["family_name_kana"] != "" || $_POST["last_name_kana"] != "" || $_POST["gender"] != "" || $_POST["authority"] != "" ){ //IDおよびユーザー名の入力有無を確認
+        if($_POST["family_name"] != "" || $_POST["last_name"] != "" || $_POST["family_name_kana"] != "" || $_POST["last_name_kana"] != "" || $_POST["mail"] != "" || $_POST["gender"] != "" || $_POST["authority"] != "" ){ //IDおよびユーザー名の入力有無を確認
             $stmt = $pdo->query("SELECT * FROM diblog_account WHERE family_name LIKE  '%".$_POST["family_name"]."%' 
                                                                     AND last_name LIKE  '%".$_POST["last_name"]."%' 
                                                                     AND family_name_kana LIKE  '%".$_POST["family_name_kana"]."%' 
                                                                     AND last_name_kana LIKE  '%".$_POST["last_name_kana"]."%' 
+                                                                    AND mail LIKE  '%".$_POST["mail"]."%' 
                                                                     AND gender LIKE  '%".$_POST["gender"]."%' 
                                                                     AND authority LIKE  '%".$_POST["authority"]."%'
                                                                     AND delete_flag = '0' 
@@ -186,6 +187,13 @@ $coution = "権限がないので操作できません";
                 </div>
             </div>
         </form>
+        <?php
+        $count = $stmt->rowCount();
+        // var_dump($count);
+    if ($count == 0) {
+        $errmessage = "検索結果はありません";
+        } 
+        ?>
         <h3>アカウント一覧</h3>
         <table>
             <tr>
@@ -206,13 +214,7 @@ $coution = "権限がないので操作できません";
             
 
             <!-- ここでPHPのforeachを使って結果をループさせる -->
-<?php
-        $count = $stmt->rowCount();
-        // var_dump($count);
-    if ($count == 0) {
-$errmessage = "検索結果はありません";
-} 
-?>
+
 
             <?php foreach ($stmt as $row): ?>
 
@@ -322,43 +324,51 @@ $errmessage = "検索結果はありません";
     $password = "root";
     $options = [];
     $pdo = new PDO($dsn, $username, $password, $options);
-        if ((isset($_POST["family_name"])) && (isset($_POST["last_name"])) && (isset($_POST["family_name_kana"])) && (isset($_POST["last_name_kana"]))){
+        if ((isset($_POST["family_name"])) && (isset($_POST["last_name"])) && (isset($_POST["family_name_kana"])) && (isset($_POST["last_name_kana"])) && (isset($_POST["mail"]))){
             $stmt = $pdo->query("SELECT * FROM diblog_account where delete_flag = '1' ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
         }
         error_reporting(0);
-        if($_POST["family_name"] != "" || $_POST["last_name"] != "" || $_POST["family_name_kana"] != "" || $_POST["last_name_kana"] != "" || $_POST["gender"] != "" || $_POST["authority"] != "" ){ //IDおよびユーザー名の入力有無を確認
+        if($_POST["family_name"] != "" || $_POST["last_name"] != "" || $_POST["family_name_kana"] != "" || $_POST["last_name_kana"] != "" || $_POST["mail"] != "" || $_POST["gender"] != "" || $_POST["authority"] != "" ){ //IDおよびユーザー名の入力有無を確認
             $stmt = $pdo->query("SELECT * FROM diblog_account WHERE family_name LIKE  '%".$_POST["family_name"]."%' 
                                                                     AND last_name LIKE  '%".$_POST["last_name"]."%' 
                                                                     AND family_name_kana LIKE  '%".$_POST["family_name_kana"]."%' 
                                                                     AND last_name_kana LIKE  '%".$_POST["last_name_kana"]."%' 
+                                                                    AND mail LIKE  '%".$_POST["mail"]."%' 
                                                                     AND gender LIKE  '%".$_POST["gender"]."%' 
                                                                     AND authority LIKE  '%".$_POST["authority"]."%' 
                                                                     AND delete_flag = '1' 
                                                                     ORDER BY id DESC"); //SQL文を実行して、結果を$stmtに代入する。
 
         }
-      
 
+    ?>
+            <?php
+        $count = $stmt->rowCount();
+        // var_dump($count);
+    if ($count == 0) {
+        $errmessage = "検索結果はありません";
+        } 
         ?>
     <div class="kizi1">
         <h3>削除済みアカウント一覧</h3>
 
         <table>
             <tr>
-            <th>ID</th>
-                    <th>名前（姓）</th>
-                    <th>名前（名）</th>
-                    <th>カナ（姓）</th>
-                    <th>カナ（名）</th>
-                    <th>メールアドレス</th>
-                    <th>性別</th>
-                    <th>アカウント権限</th>
-                    <th>削除フラグ</th>
-                    <th>登録日時</th>
-                    <th>更新日時</th>
-                    <th ><br>操作<br><p class="dl">※削除済みの為操作できません</p></th>
+                <th>ID</th>
+                <th>名前（姓）</th>
+                <th>名前（名）</th>
+                <th>カナ（姓）</th>
+                <th>カナ（名）</th>
+                <th>メールアドレス</th>
+                <th>性別</th>
+                <th>アカウント権限</th>
+                <th>削除フラグ</th>
+                <th>登録日時</th>
+                <th>更新日時</th>
+                <th ><br>操作<br><p class="dl">※削除済みの為操作できません</p></th>
                 
             </tr>
+            
             <!-- ここでPHPのforeachを使って結果をループさせる -->
             <?php foreach ($stmt as $row): ?>
             <tr><td>
